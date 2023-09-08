@@ -103,10 +103,8 @@
 
     <h1>Bitbucket Stats</h1>
 
-    <!-- p stands for paragrahph, img stands for image -->
-    <p>
-      <img src="HeaderTable.png" width="1200" height="300" />
-    </p>
+    <!-- img stands for image -->
+    <img src="HeaderTable.png"/>
 
     <h1>Short Paragraph</h1>
 
@@ -200,7 +198,7 @@
 
     <h1>Use Case Diagram (UMLentino)</h1>
 
-    <img style="object-fit: contain;" src="Project1_FINAL.png"  width="1200" height="800" />
+    <img src="Project1_FINAL.png"/>
 
     <h1>Use Case Description</h1>
 
@@ -385,6 +383,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        background-color: #ddd;
       }
 
       table {
@@ -394,17 +393,17 @@
       }
 
       td,th {
-        border: 1px solid #dddddd;
+        border: 1px solid #222;
         text-align: left;
         padding: 8px;
       }
 
       tr:nth-child(odd) {
-        background-color: #dddddd;
+        background-color: #bbb;
       }
       tr:first-child {
         background-color: #777;
-        color: #eee;
+        color: #ddd;
       }
 
       p{
@@ -422,6 +421,11 @@
 
       h1{
         margin-block-end: 10px;
+      }
+
+      img{
+        width: 90%;
+        height: auto;
       }
     </style>
 
