@@ -195,16 +195,19 @@
     <pre>
 
 <strong>Use case:</strong> Verify member
-<strong>Context: </strong> Brief description of the Use Case.
-<strong>Actors: </strong> List of actors of the Use Case.
-<strong>Main Success Scenario: </strong>
-   1. 
-   2. 
-   3. 
+<strong>Context: </strong> The health care provider intends to verify the member’s number
+<strong>Actors: </strong>  Provider and ChocAn data center
+<strong>Main Success Scenario: </strong> 
+  1. When the provider terminal detects a card, it dials the ChocAn data center.
+  1.1. The ChocAn data center checks the member number in the system.
+  2. The word “Validated” appears on a one-line display. 
+
 <strong>Extensions: </strong> 
-   1a. Instead of step 1 
-   3a. Instead of step 3.
-   3b. Other alternative to step 3.
+  1a. Invalid number 
+  1a.1. The system displays “Invalid number”
+  1b. Member account has been suspended because fees are owed
+  1b.1. The system displays “Account suspended”
+
 
 
 <strong>Use case:</strong> Add member
