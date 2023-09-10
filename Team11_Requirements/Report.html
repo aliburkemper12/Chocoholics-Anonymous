@@ -11,7 +11,7 @@
   <body>
 
     <!-- h1 stands for the biggest header (h6 would be smallest header) -->
-    <h1>Project 1 Report</h1>
+    <h2>Project 1 Report</h2>
 
     <table>
       <!-- tr stands for table row -->
@@ -43,15 +43,15 @@
       </tr>
       <tr>
         <td>Jack Sherry</td>
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test</td>
+        <td>jgsherry@crimson.ua.edu</td>
+        <td>12141673</td>
+        <td>10</td>
       </tr>
       <tr>
         <td>Luca</td>
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test</td>
+        <td>ldjontz@crimson.ua.edu</td>
+        <td>12265979</td>
+        <td>10</td>
       </tr>
       <tr>
         <td>Ryan Kutella</td>
@@ -61,7 +61,7 @@
       </tr>
     </table>
 
-    <h1>Task Distribution</h1>
+    <h2>Task Distribution</h2>
 
     <table>
       <tr>
@@ -71,52 +71,65 @@
       </tr>
       <tr>
         <td>Adison</td>
-        <td>User case diagram and use case descriptions</td>
+        <td>Use case diagram, use case descriptions, and short paragraph</td>
         <td>16.67</td>
       </tr>
       <tr>
         <td>Ali</td>
-        <td>Building glossary, helping build the user case diagram, writing user case descriptions, submitter.</td>
+        <td>Building glossary, helping build the user case diagram, writing user case descriptions, and submitter.</td>
         <td>16.67</td>
       </tr>
       <tr>
         <td>Jack Bentley</td>
-        <td>Use case diagram, use case descriptions, short paragraph</td>
+        <td>Use case diagram, use case descriptions, and short paragraph</td>
         <td>16.67</td>
       </tr>
       <tr>
         <td>Jack Sherry</td>
-        <td>Use case diagram, use case descriptions</td>
+        <td>Use case diagram and use case descriptions</td>
         <td>16.67</td>
       </tr>
       <tr>
         <td>Luca</td>
-        <td>Use case descritions, use case description</td>
+        <td>Use case diagram and use case descriptions</td>
         <td>16.67</td>
       </tr>
       <tr>
         <td>Ryan</td>
-        <td>Coded the table/report, use case descriptions, use case diagram</td>
+        <td>Coded the table/report, use case descriptions, and use case diagram</td>
         <td>16.67</td>
       </tr>
     </table>
 
-    <h1>Bitbucket Stats</h1>
+    <h2>Bitbucket Stats</h2>
 
-    <!-- p stands for paragrahph, img stands for image -->
+    <!-- img stands for image -->
+    <img src="HeaderTable.png"/>
+
+    <h2>Short Paragraph</h2>
+
+    <!-- &emsp is just 4 spaced -->
     <p>
-      <img src="HeaderTable.png" width="1200" height="300" />
+      &emsp; Our group assumed that some use cases were done by different systems so therefore they did not fall into the ChocAn system itself. 
+      First we produced a glossary and defined the actors and basic elements of the project. 
+      Some terms were defined with more detail in order to make the descriptions simple and not repeat what was already defined. 
+      Then we figured out the use cases by going line by line through the ChocAn project description. 
+      We determined the actors first then how each actor interacted with the system and with other actors. 
+      We made the assumption that the member itself does not interact with the system, 
+      instead the provider is the one who interacts with the system for the member. 
+      So the provider is the one that initiates the system after they provide services to the member. 
+      For the use case diagram we broke it down in the most general sense we could and then expanded on each of those based on 
+      if there were any more specifications for certain use cases. 
+      We decided which situations we should include on the diagram and which ones should be in the descriptions. 
+      We all brainstormed the use case diagram together on a white board to then determine the final diagram.  
+      To write the descriptions, we split them up evenly among our group members. 
+      Each group member then read through the project description while writing the descriptions in order to provide as much detail as possible. 
+      One group member wrote the html code for the Report.html file and their individual file RyanKutellaTeam11Report.html. 
+      The other group members copied and pasted this outline for their own individual files and included their own use case diagrams. 
+      After all of the tasks were finished, the submitter, Ali Burkemper, input all of the tasks into the Report.html outline to finish the report file.
     </p>
 
-    <h1>Short Paragraph</h1>
-
-    <p>
-      Our group assumed that some use cases were done by different systems so therefore they did not fall into the ChocAn system itself. 
-      We figured out the use cases going line by line determining the actors then how each actor interacted with the system. 
-      For the use case diagram we broke it down in the most general sense we could and then expanded on each of those based on if there were any more specifications for certain use cases. 
-    </p>
-
-    <h1>Glossary</h1>
+    <h2>Glossary</h2>
 
     <table>
       <tr>
@@ -183,17 +196,14 @@
       </tr>
     </table>
 
-    <h1>Use Case Diagram (UMLentino)</h1>
+    <h2>Use Case Diagram (UMLentino)</h2>
 
-    <p>
-      <img src="Project1_FINAL.png" style="object-fit: contain;" width="1200" height="800" />
-    </p>
+    <img src="Project1_FINAL.png"/>
 
-    <h1>Use Case Description</h1>
+    <h2>Use Case Description</h2>
 
     <!-- pre is the same as a 'p' tag but actually looks at tabs and new lines -->
     <pre>
-
 <strong>Use case:</strong> Verify member
 <strong>Context: </strong> The health care provider intends to verify the member’s number
 <strong>Actors: </strong>  Provider and ChocAn data center
@@ -201,13 +211,11 @@
   1. When the provider terminal detects a card, it dials the ChocAn data center.
   1.1. The ChocAn data center checks the member number in the system.
   2. The word “Validated” appears on a one-line display. 
-
 <strong>Extensions: </strong> 
   1a. Invalid number 
   1a.1. The system displays “Invalid number”
   1b. Member account has been suspended because fees are owed
   1b.1. The system displays “Account suspended”
-
 
 
 <strong>Use case:</strong> Add member
@@ -216,7 +224,6 @@
 <strong>Main Success Scenario: </strong>
   1. ChocAn data center software is run in interactive mode.
   2. Operator adds new new member to data center system.
-
 <strong>Extensions: </strong> 
    No extensions.
 
@@ -227,7 +234,6 @@
 <strong>Main Success Scenario: </strong>
   1. ChocAn data center software is run in interactive mode.
   2. Operator deletes a member from the system.
-
 <strong>Extensions: </strong> 
    No extensions
 
@@ -238,10 +244,8 @@
 <strong>Main Success Scenario: </strong>
   1. ChocAn data center software is run in interactive mode.
   2. Operator updates the member info.
-
 <strong>Extensions: </strong> 
    No extensions
-
 
 
 <strong>Use case:</strong> Run main accounting procedure
@@ -253,7 +257,6 @@
   1a. A ChocAn manager requests reports ahead of the main accounting procedure. Reports are generated.
 
 
-
 <strong>Use case:</strong> Access provider directory
 <strong>Context: </strong> A provider can request the Provider Directory from the software product at any time.
 <strong>Actors: </strong> Provider, ChocAn Data Center.
@@ -261,10 +264,8 @@
   1. Provider requests Provider Directory from the software product.
   2. Software product sends the Provider Directory to the provider.
   3. Provider receives the Provider Directory as an email attachment.
-
 <strong>Extensions: </strong> 
    No extensions
-
 
 
 <strong>Use case:</strong> Add provider
@@ -285,7 +286,6 @@
    No extensions
 
 
-
 <strong>Use case:</strong> Update provider
 <strong>Context: </strong> ChocAn Operator updates the provider in the ChocAn data center.
 <strong>Actors: </strong> ChocAn operator, ChocAn data center.
@@ -293,8 +293,6 @@
   1. ChocAn operator updates the provider in the ChocAn data center.
 <strong>Extensions: </strong> 
    No extensions
-
-
 
 
 <strong>Use case:</strong> Add/bill for services
@@ -313,7 +311,6 @@
   4.4. Software product includes the member number
   4.5. Software product includes the service code of the service provided
   4.6. Software product includes provider comments
-
 <strong>Extensions: </strong> 
     1a. Provider types in the member number into the provider terminal
     2a. The number is invalid
@@ -322,8 +319,6 @@
       2b.1. “Member suspended” displays on the terminal
     2b.2. Provider cancels billing process
     4a. There are no provider comments for the software product to include in the record
-
-
 
 
 <strong>Use case:</strong> Input service info
@@ -349,7 +344,6 @@
     5a. Provider does not enter comments about the service
 
 
-
 <strong>Use case:</strong> Display fee
 <strong>Context: </strong> Software product looks up and displays fee that the provider will be paid for providing a service.
 <strong>Actors: </strong> Provider, ChocAn Data Center.
@@ -362,10 +356,8 @@
     3.3. Provider enters the member name and number that the service was provided to
     3.4. Provider enters the service code corresponding to the service provide
     3.5. Provider enters the fee displayed on the terminal
-
 <strong>Extensions: </strong> 
    No extensions
-
 
 
 <strong>Use case:</strong> Run membership records
@@ -375,14 +367,12 @@
   1. Member pays membership fee to ChocAn
   2. Acme records that the member paid the fee
   3. Acme updates the membership records by accessing the ChocAn data center. Task is performed each night at 9pm.
-
 <strong>Extensions: </strong> 
     1a. Member does not pay membership fee on time
       1a.1. Acme sets member status to suspended
     1b. Member pays overdue fees
       1b.1. Acme reinstates membership
       1b.2. Acme removes suspended member status
-
   	
     </pre>
 
@@ -393,6 +383,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        background-color: #ddd;
       }
 
       table {
@@ -402,17 +393,41 @@
       }
 
       td,th {
-        border: 1px solid #dddddd;
+        border: 1px solid #222;
         text-align: left;
         padding: 8px;
       }
 
       tr:nth-child(odd) {
-        background-color: #dddddd;
+        background-color: #bbb;
       }
       tr:first-child {
         background-color: #777;
-        color: #eee;
+        color: #ddd;
+      }
+
+      p{
+        margin-block: 2px;
+        width: 70%;
+        font-size: 18px;
+        line-height: 1.75;
+      }
+
+      pre{
+        font-size: 18px;
+        line-height: 1.5;
+        width: 90%;
+        white-space: pre-wrap;
+      }
+
+      h2{
+        margin-block-start: 40px;
+        margin-block-end: 10px;
+      }
+
+      img{
+        width: 90%;
+        height: auto;
       }
     </style>
 
