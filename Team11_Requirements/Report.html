@@ -258,12 +258,27 @@
 
 
 <strong>Use case:</strong> Run main accounting procedure
-<strong>Context: </strong> The main accounting procedures and ChocAn managers can generate reports of services provided for the week or up until the day the report was requested.
+<strong>Context: </strong> The main accounting procedure is run after notified by the timer and generates reports based in the week's provided services.
 <strong>Actors: </strong> Timer
 <strong>Main Success Scenario: </strong>
-  1. At midnight on Friday the main accounting procedure runs and generates reports.
+  1. At midnight on Friday the timer notifies the system.
+  2. The system reads the file of the services provided from that week.
+  3. Reports and summary reports are generated and printed.
+  4. Reports are sent out to the members who received services that week, providers who provided services that week, and the manager.
 <strong>Extensions: </strong> 
-    1a. A ChocAn manager requests reports ahead of the main accounting procedure. Reports are generated.
+  No extensions.
+
+
+<strong>Use case:</strong> Generate Reports extends run main accounting procedure
+<strong>Context: </strong> The manager can request reports that are a part of the main accounting procedure at any time during the week.
+<strong>Actors: </strong> Manager
+<strong>Main Success Scenario: </strong>
+  1. Manager requests individual report or reports to be run.
+  2. The system reads the file of the services that have been provided that week up to the current date.
+  3. The reports are generated.
+  4. The system sends the requested reports to the manager.
+<strong>Extensions: </strong> 
+  No extensions.
 
 
 <strong>Use case:</strong> Access provider directory
