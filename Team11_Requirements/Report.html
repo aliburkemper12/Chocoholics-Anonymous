@@ -198,7 +198,7 @@
 
     <h2>Use Case Diagram (UMLentino)</h2>
 
-    <img src="Project1_FINAL.png"/>
+    <img src="Project1V2.png"/>
 
     <h2>Use Case Description</h2>
 
@@ -206,98 +206,135 @@
     <pre>
 <strong>Use case:</strong> Verify member
 <strong>Context: </strong> The health care provider intends to verify the member’s number
-<strong>Actors: </strong>  Provider and ChocAn data center
+<strong>Actors: </strong>  Provider
 <strong>Main Success Scenario: </strong> 
   1. When the provider terminal detects a card, it dials the ChocAn data center.
-  1.1. The ChocAn data center checks the member number in the system.
+   1.1. The ChocAn data center checks the member number in the system.
   2. The word “Validated” appears on a one-line display. 
 <strong>Extensions: </strong> 
-  1a. Invalid number 
-  1a.1. The system displays “Invalid number”
-  1b. Member account has been suspended because fees are owed
-  1b.1. The system displays “Account suspended”
+    1a. Invalid number 
+      1a.1. The system displays “Invalid number”
+    1b. Member account has been suspended because fees are owed
+      1b.1. The system displays “Account suspended”
 
 
-<strong>Use case:</strong> Add member
+<strong>Use case:</strong> Add member extends Update membership records
 <strong>Context: </strong> The operator adds a new member to the data center.
-<strong>Actors: </strong> ChocAn operator, ChocAn data center.
+<strong>Actors: </strong> ChocAn operator
 <strong>Main Success Scenario: </strong>
-  1. ChocAn data center software is run in interactive mode.
+  1. Operator selects "Add Member"
   2. Operator adds new new member to data center system.
 <strong>Extensions: </strong> 
    No extensions.
 
 
-<strong>Use case:</strong> Delete member
+<strong>Use case:</strong> Delete member extends Update membership records
 <strong>Context: </strong> The operator deletes a new member from the data center.
-<strong>Actors: </strong> ChocAn operator, ChocAn data center.
+<strong>Actors: </strong> ChocAn operator
 <strong>Main Success Scenario: </strong>
-  1. ChocAn data center software is run in interactive mode.
+  1. Operator selects "Delete Member".
   2. Operator deletes a member from the system.
 <strong>Extensions: </strong> 
-   No extensions
+   No extensions.
 
 
-<strong>Use case:</strong> Update member
+<strong>Use case:</strong> Update member extends Update membership records
 <strong>Context: </strong> The operator updates member records.
-<strong>Actors: </strong> ChocAn operator, ChocAn data center.
+<strong>Actors: </strong> ChocAn operator
 <strong>Main Success Scenario: </strong>
-  1. ChocAn data center software is run in interactive mode.
+  1. Operator selects "Update Member".
   2. Operator updates the member info.
 <strong>Extensions: </strong> 
-   No extensions
+   No extensions.
+
+<strong>Use case:</strong> Update membership records
+<strong>Context: </strong> The operator updates member records.
+<strong>Actors: </strong> ChocAn operator
+<strong>Main Success Scenario: </strong>
+  1. ChocAn data center software is run in interactive mode.
+  2. The operator edits the membership records.
+<strong>Extensions: </strong> 
+  No extensions.
 
 
 <strong>Use case:</strong> Run main accounting procedure
-<strong>Context: </strong> The main accounting procedures and ChocAn managers can generate reports of services provided for the week or up until the day the report was requested.
-<strong>Actors: </strong> ChocAn data center and ChocAn manager.
+<strong>Context: </strong> The main accounting procedure is run after notified by the timer and generates reports based in the week's provided services.
+<strong>Actors: </strong> Timer
 <strong>Main Success Scenario: </strong>
-  1. At midnight on Friday the main accounting procedure runs and generates reports.
+  1. At midnight on Friday the timer notifies the system.
+  2. The system reads the file of the services provided from that week.
+  3. Reports and summary reports are generated and printed.
+  4. Reports are sent out to the members who received services that week, providers who provided services that week, and the manager.
 <strong>Extensions: </strong> 
-  1a. A ChocAn manager requests reports ahead of the main accounting procedure. Reports are generated.
+  No extensions.
+
+
+<strong>Use case:</strong> Generate Reports extends run main accounting procedure
+<strong>Context: </strong> The manager can request reports that are a part of the main accounting procedure at any time during the week.
+<strong>Actors: </strong> Manager
+<strong>Main Success Scenario: </strong>
+  1. Manager requests individual report or reports to be run.
+  2. The system reads the file of the services that have been provided that week up to the current date.
+  3. The reports are generated.
+  4. The system sends the requested reports to the manager.
+<strong>Extensions: </strong> 
+  No extensions.
 
 
 <strong>Use case:</strong> Access provider directory
 <strong>Context: </strong> A provider can request the Provider Directory from the software product at any time.
-<strong>Actors: </strong> Provider, ChocAn Data Center.
+<strong>Actors: </strong> Provider
 <strong>Main Success Scenario: </strong>
   1. Provider requests Provider Directory from the software product.
   2. Software product sends the Provider Directory to the provider.
   3. Provider receives the Provider Directory as an email attachment.
 <strong>Extensions: </strong> 
-   No extensions
+  No extensions.
 
 
-<strong>Use case:</strong> Add provider
+<strong>Use case:</strong> Add provider extends Update provider records
 <strong>Context: </strong> ChocAn Operator adds the provider in the ChocAn data center.
-<strong>Actors: </strong> ChocAn operator, ChocAn data center.
+<strong>Actors: </strong> ChocAn operator
 <strong>Main Success Scenario: </strong>
-  1. ChocAn operator adds the provider in the ChocAn data center.
+  1. Operator selects "Add Provider".
+  2. ChocAn operator adds the provider in the ChocAn data center.
 <strong>Extensions: </strong> 
-   No extensions
+  No extensions.
 
 
-<strong>Use case:</strong> Delete provider
+<strong>Use case:</strong> Delete provider extends Update provider records
 <strong>Context: </strong> ChocAn Operator deletes the provider in the ChocAn data center.
-<strong>Actors: </strong> ChocAn operator, ChocAn data center.
+<strong>Actors: </strong> ChocAn operator
 <strong>Main Success Scenario: </strong>
-  1. ChocAn operator deletes the provider in the ChocAn data center.
+  1. Operator selects "Delete Provider".
+  2. ChocAn operator deletes the provider in the ChocAn data center.
 <strong>Extensions: </strong> 
-   No extensions
+  No extensions.
 
 
-<strong>Use case:</strong> Update provider
+<strong>Use case:</strong> Update provider extends Update provider records
 <strong>Context: </strong> ChocAn Operator updates the provider in the ChocAn data center.
-<strong>Actors: </strong> ChocAn operator, ChocAn data center.
+<strong>Actors: </strong> ChocAn operator
 <strong>Main Success Scenario: </strong>
-  1. ChocAn operator updates the provider in the ChocAn data center.
+  1. Operator selects "Update Provider".
+  2. ChocAn operator updates the provider in the ChocAn data center.
 <strong>Extensions: </strong> 
-   No extensions
+  No extensions.
+
+
+<strong>Use case:</strong> Update provider records
+<strong>Context: </strong> ChocAn Operator updates the provider records in the ChocAn data center.
+<strong>Actors: </strong> ChocAn operator
+<strong>Main Success Scenario: </strong>
+  1. ChocAn data center software is run in interactive mode.
+  2. ChocAn operator edits the provider records in the ChocAn data center.
+<strong>Extensions: </strong> 
+  No extensions.
 
 
 <strong>Use case:</strong> Add/bill for services
 <strong>Context: </strong> The provider uses the provider terminal to bill ChocAn after providing healthcare services to a member in order to receive payment.
-<strong>Actors: </strong> Provider, ChocAn Data Center
+<strong>Actors: </strong> Provider
 <strong>Main Success Scenario: </strong>
   1. Provider passes the member’s card through the provider terminal
   1.1. The provider terminal dials the ChocAn data center
@@ -305,32 +342,32 @@
   2. “Validated” appears on the provider terminal
   3. Provider inputs service info
   4. Software product writes a record to disk
-  4.1. Software product includes the current date and time
-  4.2. Software product includes the date the service was provided
-  4.3. Software product includes the provider number
-  4.4. Software product includes the member number
-  4.5. Software product includes the service code of the service provided
-  4.6. Software product includes provider comments
+   4.1. Software product includes the current date and time
+   4.2. Software product includes the date the service was provided
+   4.3. Software product includes the provider number
+   4.4. Software product includes the member number
+   4.5. Software product includes the service code of the service provided
+   4.6. Software product includes provider comments
 <strong>Extensions: </strong> 
     1a. Provider types in the member number into the provider terminal
     2a. The number is invalid
       2a.1. “Invalid number” displays on the terminal
     2b. Member account has been suspended because fees are owed
       2b.1. “Member suspended” displays on the terminal
-    2b.2. Provider cancels billing process
+      2b.2. Provider cancels billing process
     4a. There are no provider comments for the software product to include in the record
 
 
 <strong>Use case:</strong> Input service info
 <strong>Context: </strong> Provider enters the date and service code for the corresponding service they provided into the provider terminal in order to bill ChocAn the correct amount.
-<strong>Actors: </strong> Provider, ChocAn Data Center.
+<strong>Actors: </strong> Provider
 <strong>Main Success Scenario: </strong>
   1. Provider inputs into the terminal the date the service was provided in the form MM-DD-YYYY
   2. Provider uses Provider Directory to look up the six-digit service code corresponding to the service they just provided
   3. Provider inputs service code into provider terminal
   4. Software product displays the name of the service corresponding to the input code on the provider terminal
-  4.1. Software product asks provider to verify the name of the service
-  4.2. Provider verifies service name
+   4.1. Software product asks provider to verify the name of the service
+   4.2. Provider verifies service name
   5. Provider enters comments about the service provided
   6. Software product displays fee
 <strong>Extensions: </strong> 
@@ -346,19 +383,20 @@
 
 <strong>Use case:</strong> Display fee
 <strong>Context: </strong> Software product looks up and displays fee that the provider will be paid for providing a service.
-<strong>Actors: </strong> Provider, ChocAn Data Center.
+<strong>Actors: </strong> Provider
 <strong>Main Success Scenario: </strong>
   1. Software product looks up fee to be paid for the service provided based on the input service code
   2. Service fee is displayed on the providers terminal
   3. Provider completes verification form for service provided
-    3.1. Provider enters current date and time on form in the provider terminal
-    3.2. Provider enters the date the service was provided on form
-    3.3. Provider enters the member name and number that the service was provided to
-    3.4. Provider enters the service code corresponding to the service provide
-    3.5. Provider enters the fee displayed on the terminal
+   3.1. Provider enters current date and time on form in the provider terminal
+   3.2. Provider enters the date the service was provided on form
+   3.3. Provider enters the member name and number that the service was provided to
+   3.4. Provider enters the service code corresponding to the service provide
+   3.5. Provider enters the fee displayed on the terminal
 <strong>Extensions: </strong> 
-   No extensions
+  No extensions.
 
+<<<<<<< HEAD
 
 <strong>Use case: </strong> Run membership records
 <strong>Context: </strong> Acme updates the membership records in the ChocAn data center each night at 9pm.
@@ -373,6 +411,8 @@
     1b. Member pays overdue fees
       1b.1. Acme reinstates membership
       1b.2. Acme removes suspended member status
+=======
+>>>>>>> 969c31608de471c6539781741c4ea455361fb748
   	
     </pre>
 
