@@ -4,14 +4,14 @@
   <head>
     <meta charset="utf-8" />
     <!-- Title is just what the tab is named when it's open in browser -->
-    <title>Project 1 Report Outline</title>
+    <title>Project 2 Report</title>
   </head>
 
   <!-- Everything goes in the body -->
   <body>
 
     <!-- h1 stands for the biggest header (h6 would be smallest header) -->
-    <h2>Project 1 Report</h2>
+    <h2>Project 2 Report</h2>
 
     <table>
       <!-- tr stands for table row -->
@@ -48,7 +48,7 @@
         <td>10</td>
       </tr>
       <tr>
-        <td>Luca</td>
+        <td>Luca (Submitter)</td>
         <td>ldjontz@crimson.ua.edu</td>
         <td>12265979</td>
         <td>10</td>
@@ -71,33 +71,33 @@
       </tr>
       <tr>
         <td>Adison</td>
-        <td>Use case diagram, use case descriptions, and short paragraph</td>
+        <td>fill in</td>
         <td>16.67</td>
       </tr>
       <tr>
-        <td>Ali Burkemper</td>
+        <td>Ali</td>
         <td>Building short paragraph, working with rest of team to create activity and stereotype diagram. Created bill for services
           and generate report activity diagram.</td>
         <td>16.67</td>
       </tr>
       <tr>
         <td>Jack Bentley</td>
-        <td>Use case diagram, use case descriptions, and short paragraph</td>
+        <td>fill in</td>
         <td>16.67</td>
       </tr>
       <tr>
         <td>Jack Sherry</td>
-        <td>Use case diagram and use case descriptions</td>
+        <td>fill in</td>
         <td>16.67</td>
       </tr>
       <tr>
         <td>Luca</td>
-        <td>Use case diagram and use case descriptions</td>
+        <td>fill in</td>
         <td>16.67</td>
       </tr>
       <tr>
         <td>Ryan</td>
-        <td>Coded the table/report, use case descriptions, and use case diagram</td>
+        <td>fill in</td>
         <td>16.67</td>
       </tr>
     </table>
@@ -112,7 +112,7 @@
     <!-- &emsp is just 4 spaced -->
     <p>
       The files and member/provider records will be computerized. The hardware required will be a computer for the provider, manager, and operators, 
-      as well as data servers to store our data. The ChocAn system can receive and send data the from provider terminal. The system writes EFT data 
+      as well as data servers to store our data. The ChocAn system can receive and send data from the provider terminal. The system writes EFT data 
       to a disk that banking computers can access. Acme has access to and can update the membership records. The provider, operator, and manager 
       access the system through their own terminals. The operators run exclusively in interactive mode. The data is stored on the ChocAn system disk 
       in individual files.
@@ -120,36 +120,58 @@
 
     <h2>Activity Diagram (UMLentino)</h2>
 
-    <img src="Project1V2.png"/>
+    <img src="Project 2 Activity Diagram.png"/>
 
     <h2>Stereotype Diagram (UMLentino)</h2>
 
     <img src="Stereotype.png"/>
 
-    <!-- <h2>Analysis</h2>  is this neededddddddddddddded???? -->
+    <h2>Activity Diagrams for Use Cases</h2>
 
-    <!-- pre is the same as a 'p' tag but actually looks at tabs and new lines -->
     <div class="activity">
-    <h2>Activity Diagram for Bill for Services (UMLentino)</h2>
+    <div class="activityCard">
+      <h3>Activity Diagram for Bill for Services</h2>
+      <img src="BillForServices.png"/>
+    </div>
+    
+    <div class="activityCard">
+      <h3>Activity Diagram for Request Report</h2>
+      <img src="RequestReport.png"/>
+    </div>
+    
+    <div class="activityCard">
+      <h3>Activity Diagram for Verify Member</h2>
+      <img src="Project 2 A_D_VerifyMember.png"/>
+    </div>
+    
+    <div class="activityCard">
+      <h3>Activity Diagram for Request Provider Directory</h2>
+      <img src="Project 2 A_D_ProviderD.png"/>
+    </div>
 
-    <img src="BillForServices.png"/>
+    <div class="activityCard">
+      <h3>Manage Member Records</h2>
+        <img src="UpdateMemberActivity.png"/>
+    </div>
+    
+    <div class="activityCard">
+      <h3>Manage Provider Records</h2>
+      <img src="UpdateProviderActivity.png"/>
+    </div>
 
-    <h2>Activity Diagram for Request Report (UMLentino)</h2>
-
-    <img src="RequestReport.png"/>
-
-
-<!-- Add other activity diagrams here -->
-
-
-
-
+    <div class="activityCard">
+      <h3>Title</h2>
+        <img src=""/>
+    </div>
+    
+    <div class="activityCard">
+      <h3>Title</h2>
+      <img src=""/>
+    </div>
+    
+    <!-- Add other activity diagrams here -->
 
   </div>
-
-    <pre>
-
-    </pre>
 
     <!-- style holds the CSS and just styles elements -->
     <style>
@@ -158,7 +180,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        background-color: #ddd;
+        /* background-color: #ddd; */
       }
 
       table {
@@ -206,7 +228,29 @@
       }
 
       .activity img{
-        width: 60%
+        width: 100%;
+        height: auto;
+      }
+
+      .activity{
+        width: 90%;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .activityCard{
+        margin-inline: auto;
+        display: flex;
+        flex-direction: column;
+        min-width: 300px;
+        width: 400px;
+        height: auto;
+        border-radius: 10px;
+        padding: 10px;
+        margin-block: 40px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      .activity h3{
+        text-align: center;
       }
     </style>
 
