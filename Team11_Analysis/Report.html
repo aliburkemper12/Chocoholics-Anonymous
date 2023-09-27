@@ -125,25 +125,39 @@
 
     <img src="Stereotype.png"/>
 
-    <!-- <h2>Analysis</h2>  is this neededddddddddddddded???? -->
+    <h2>Activity Diagrams for Use Cases</h2>
 
-    <!-- pre is the same as a 'p' tag but actually looks at tabs and new lines -->
     <div class="activity">
-    <h2>Activity Diagram for Bill for Services (UMLentino)</h2>
+    <div class="activityCard">
+      <h3>Activity Diagram for Bill for Services</h2>
+      <img src="BillForServices.png"/>
+    </div>
+    
+    <div class="activityCard">
+      <h3>Activity Diagram for Request Report</h2>
+      <img src="RequestReport.png"/>
+    </div>
+    
+    <div class="activityCard">
+      <h3>Activity Diagram for Verify Member</h2>
+      <img src="Project 2 A_D_VerifyMember.png"/>
+    </div>
+    
+    <div class="activityCard">
+      <h3>Activity Diagram for Request Provider Directory</h2>
+      <img src="Project 2 A_D_ProviderD.png"/>
+    </div>
 
-    <img src="BillForServices.png"/>
-
-    <h2>Activity Diagram for Request Report (UMLentino)</h2>
-
-    <img src="RequestReport.png"/>
-
-    <h2>Activity Diagram for Verify Member (UMLentino)</h2>
-
-    <img src="Project 2 A_D_VerifyMember.png"/>
-
-    <h2>Activity Diagram for Request Provider Directory (UMLentino)</h2>
-
-    <img src="Project 2 A_D_ProviderD.png"/>
+    <div class="activityCard">
+      <h3>Title</h2>
+        <img src=""/>
+    </div>
+    
+    <div class="activityCard">
+      <h3>Title</h2>
+      <img src=""/>
+    </div>
+    
 
 
 <!-- Add other activity diagrams here -->
@@ -154,10 +168,6 @@
 
   </div>
 
-    <pre>
-
-    </pre>
-
     <!-- style holds the CSS and just styles elements -->
     <style>
       body {
@@ -165,7 +175,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        background-color: #ddd;
+        /* background-color: #ddd; */
       }
 
       table {
@@ -213,7 +223,29 @@
       }
 
       .activity img{
-        width: 60%
+        width: 100%;
+        height: auto;
+      }
+
+      .activity{
+        width: 90%;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .activityCard{
+        margin-inline: auto;
+        display: flex;
+        flex-direction: column;
+        min-width: 200px;
+        width: 300px;
+        height: auto;
+        border-radius: 10px;
+        padding: 10px;
+        margin-block: 40px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      .activity h3{
+        text-align: center;
       }
     </style>
 
