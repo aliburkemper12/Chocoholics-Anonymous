@@ -30,7 +30,7 @@
         <td>10</td>
       </tr>
       <tr>
-        <td>Ali</td>
+        <td>Ali (Submitter)</td>
         <td>aeburkemper@crimson.ua.edu</td>
         <td>12220226</td>
         <td>10</td>
@@ -76,7 +76,7 @@
       </tr>
       <tr>
         <td>Ali</td>
-        <td>Building glossary, helping build the user case diagram, writing user case descriptions, and submitter.</td>
+        <td>Building glossary, helping build the user case diagram, and writing user case descriptions.</td>
         <td>16.67</td>
       </tr>
       <tr>
@@ -218,13 +218,49 @@
       1b.1. The system displays “Account suspended”
 
 
+<strong>Use case:</strong> Verify provider
+<strong>Context: </strong> The provider terminal verifies the provider when they log on.
+<strong>Actors: </strong>  Provider
+<strong>Main Success Scenario: </strong> 
+  1. Provider enters credentials into terminal
+   1.1. The ChocAn data center checks the credentials in the system
+  2. “Validated” appears on the terminal. 
+<strong>Extensions: </strong> 
+    1a. Invalid number 
+      1a.1. “Invalid number” is displayed
+
+
+<strong>Use case:</strong> Verify manager
+<strong>Context: </strong> The manager terminal verifies the manager when they log on.
+<strong>Actors: </strong>  Manager
+<strong>Main Success Scenario: </strong> 
+  1. Manager enters credentials into terminal
+   1.1. The ChocAn data center checks the credentials in the system
+  2. “Validated” appears on the terminal. 
+<strong>Extensions: </strong> 
+    1a. Invalid number 
+      1a.1. “Invalid number” is displayed
+
+
+<strong>Use case:</strong> Verify operator
+<strong>Context: </strong> The operator terminal verifies the operator when they log on.
+<strong>Actors: </strong>  Operator
+<strong>Main Success Scenario: </strong> 
+  1. Operator enters credentials into terminal
+   1.1. The ChocAn data center checks the credentials in the system
+  2. “Validated” appears on the terminal. 
+<strong>Extensions: </strong> 
+    1a. Invalid number 
+      1a.1. “Invalid number” is displayed
+
+
 <strong>Use case:</strong> Add member extends Update membership records
 <strong>Context: </strong> The operator adds a new member to the data center.
 <strong>Actors: </strong> ChocAn operator
 <strong>Main Success Scenario: </strong>
   1. Operator selects "Add Member"
   2. Operator adds new new member to data center system.
-  3. Go back to menu.
+  3. Operator goes back to menu.
 <strong>Extensions: </strong> 
    No extensions.
 
@@ -235,7 +271,7 @@
 <strong>Main Success Scenario: </strong>
   1. Operator selects "Delete Member".
   2. Operator deletes a member from the system.
-  3. Go back to menu.
+  3. Operator goes back to menu.
 <strong>Extensions: </strong> 
    No extensions.
 
@@ -246,9 +282,10 @@
 <strong>Main Success Scenario: </strong>
   1. Operator selects "Update Member".
   2. Operator updates the member info.
-  3. Go back to menu.
+  3. Operator goes back to menu.
 <strong>Extensions: </strong> 
    No extensions.
+
 
 <strong>Use case:</strong> Update membership records
 <strong>Context: </strong> The operator updates member records.
@@ -256,9 +293,9 @@
 <strong>Main Success Scenario: </strong>
   1. ChocAn data center software is run in interactive mode.
   2. The operator edits the membership records.
-  3. Go back to menu.
+  3. Operator goes back to menu.
 <strong>Extensions: </strong> 
-  No extensions.
+    3a. Operator logs out of terminal.
 
 
 <strong>Use case:</strong> Run main accounting procedure
@@ -273,7 +310,7 @@
   No extensions.
 
 
-<strong>Use case:</strong> Generate Reports extends run main accounting procedure
+<strong>Use case:</strong> Request Reports extends Run main accounting procedure
 <strong>Context: </strong> The manager can request reports that are a part of the main accounting procedure at any time during the week.
 <strong>Actors: </strong> Manager
 <strong>Main Success Scenario: </strong>
@@ -281,8 +318,9 @@
   2. The system reads the file of the services that have been provided that week up to the current date.
   3. The reports are generated.
   4. The system sends the requested reports to the manager.
+  5. Manager goes back to menu.
 <strong>Extensions: </strong> 
-  No extensions.
+    5a. Manager logs out of terminal.
 
 
 <strong>Use case:</strong> Access provider directory
@@ -292,9 +330,9 @@
   1. Provider requests Provider Directory from the software product.
   2. Software product sends the Provider Directory to the provider.
   3. Provider receives the Provider Directory as an email attachment.
-  4. Go back to menu.
+  4. Provider goes back to menu.
 <strong>Extensions: </strong> 
-  No extensions.
+    4a. Provider logs out of terminal.
 
 
 <strong>Use case:</strong> Add provider extends Update provider records
@@ -303,7 +341,7 @@
 <strong>Main Success Scenario: </strong>
   1. Operator selects "Add Provider".
   2. ChocAn operator adds the provider in the ChocAn data center.
-  3. Go back to menu.
+  3. Operator goes back to menu.
 <strong>Extensions: </strong> 
   No extensions.
 
@@ -314,7 +352,7 @@
 <strong>Main Success Scenario: </strong>
   1. Operator selects "Delete Provider".
   2. ChocAn operator deletes the provider in the ChocAn data center.
-  3. Go back to menu.
+  3. Operator goes back to menu.
 <strong>Extensions: </strong> 
   No extensions.
 
@@ -325,7 +363,7 @@
 <strong>Main Success Scenario: </strong>
   1. Operator selects "Update Provider".
   2. ChocAn operator updates the provider in the ChocAn data center.
-  3. Go back to menu.
+  3. Operator goes back to menu.
 <strong>Extensions: </strong> 
   No extensions.
 
@@ -336,9 +374,9 @@
 <strong>Main Success Scenario: </strong>
   1. ChocAn data center software is run in interactive mode.
   2. ChocAn operator edits the provider records in the ChocAn data center.
-  3. Go back to menu.
+  3. Operator goes back to menu.
 <strong>Extensions: </strong> 
-  No extensions.
+    3a. Operator logs out of terminal.
 
 
 <strong>Use case:</strong> Add/bill for services
@@ -357,7 +395,6 @@
    4.4. Software product includes the member number
    4.5. Software product includes the service code of the service provided
    4.6. Software product includes provider comments
-  5. Go back to menu.
 <strong>Extensions: </strong> 
     1a. Provider types in the member number into the provider terminal
     2a. The number is invalid
@@ -380,7 +417,6 @@
    4.2. Provider verifies service name
   5. Provider enters comments about the service provided
   6. Software product displays fee
-  7. Go back to menu.
 <strong>Extensions: </strong> 
     2a. Provider knows service code from memory
     3a. Provider entered nonexistent code
@@ -404,26 +440,10 @@
    3.3. Provider enters the member name and number that the service was provided to
    3.4. Provider enters the service code corresponding to the service provide
    3.5. Provider enters the fee displayed on the terminal
+  4. Provider goes back to menu.
 <strong>Extensions: </strong> 
-  No extensions.
+    4a. Provider logs out of terminal.
 
-<<<<<<< HEAD
-
-<strong>Use case: </strong> Run membership records
-<strong>Context: </strong> Acme updates the membership records in the ChocAn data center each night at 9pm.
-<strong>Actors: </strong> Acme accounting services, ChocAn data center.
-<strong>Main Success Scenario: </strong>
-  1. Member pays membership fee to ChocAn
-  2. Acme records that the member paid the fee
-  3. Acme updates the membership records by accessing the ChocAn data center. Task is performed each night at 9pm.
-<strong>Extensions: </strong> 
-    1a. Member does not pay membership fee on time
-      1a.1. Acme sets member status to suspended
-    1b. Member pays overdue fees
-      1b.1. Acme reinstates membership
-      1b.2. Acme removes suspended member status
-=======
->>>>>>> 969c31608de471c6539781741c4ea455361fb748
   	
     </pre>
 
