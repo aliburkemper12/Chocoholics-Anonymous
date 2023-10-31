@@ -11,7 +11,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class TimerClass {
-    
+
     boolean justRan = false; //This is just to fix Task from runnning more than once in a second
 
     TimerClass(){}
@@ -52,11 +52,11 @@ public class TimerClass {
             justRan = true; //need to set true so I don't just run this multiple times every friday at midnight
             runTask();  //makes sure Task is setup to run next friday at midnight too
         
-            //Instead of system.out below do actual report generation
-            System.out.println("Task performed NOW");
+            // System.out.println("Task performed NOW");
+            Report newReport = new Report();
+            newReport.generateReport();
+            newReport.sendReport();
         }
     };
-
-    
 
 }
