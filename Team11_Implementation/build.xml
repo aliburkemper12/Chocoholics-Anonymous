@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<project name="Team11_Implementation" default="all" basedir=".">
+  <property name="src"   value="src"/>
+  <property name="release" value="release"/>
+  <property name="lib"   value="lib"/>
+
+<target name="all" depends="clean, compile, jar, cleanup" description="Builds the whole project">
+    <!-- <echo>Doing all</echo> -->
+</target>
+
+<target name="clean" description="Removes previous build">
+    <delete verbose="true">
+      <fileset dir="${release}"/>
+    </delete>
+  </target>
+
+<target name="compile" description="compile whole project">
+    <!-- <echo>compile ${ant.project.name} </echo> -->
+    <mkdir dir="${build}" />
+    <javac srcdir="${src}" destdir="${build}"/>
+  </target>
+
+  <target name="jar" depends="compile">
+    <jar destfile="${release}/test.jar"
+         includes="**/*.class" />
+  </target>
+
+  <target name="cleanup" description="clean up">
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
+</project>
