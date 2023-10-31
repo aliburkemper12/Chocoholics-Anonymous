@@ -1,13 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-
-class gui{
-     
-
+class App{
      //Main functions is just holding instances of terminal and running gui
       public static void main(String args[]){
-
+          System.out.println("Hello");
           //Terminal instances below
           ManagerTerminal mngTerm = new ManagerTerminal();
           ProviderTerminal provTerm = new ProviderTerminal();
