@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+
 class gui{
      
 
@@ -11,6 +12,10 @@ class gui{
           ManagerTerminal mngTerm = new ManagerTerminal();
           ProviderTerminal provTerm = new ProviderTerminal();
           OperatorTerminal opTerm = new OperatorTerminal();
+
+          //Timer instance and start timer
+          TimerClass timer = new TimerClass();
+          timer.runTask();
 
           //Creating the Frame
           JFrame frame = new JFrame("GUI");
