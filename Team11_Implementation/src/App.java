@@ -2,9 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 class gui{
-     // //Creating the panel at bottom and adding components
      
 
+     //Main functions is just holding instances of terminal and running gui
       public static void main(String args[]){
 
           //Terminal instances below
@@ -69,8 +69,6 @@ class gui{
           m1.add(m1_1);
           m1.add(m1_2);
           m1.add(m1_3);
-
-          
 
           //Adding menuBar to the frame. Selected terminal will be added in the actual menu item actionPerformed function
           frame.getContentPane().add(BorderLayout.NORTH, mb);
