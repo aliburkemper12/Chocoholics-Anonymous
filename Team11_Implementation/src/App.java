@@ -1,13 +1,28 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 class App{
+
+     static AllProviders providers;
+     static AllMembers members;
+     static AllManagers managers;
+
      //Main functions is just holding instances of terminal and running gui
       public static void main(String args[]){
-          System.out.println("Hello");
+          //Initialize All... Instances
+          providers = new AllProviders();
+          members = new AllMembers();
+          managers = new AllManagers();
+
           //Terminal instances below
-          ManagerTerminal mngTerm = new ManagerTerminal();
-          ProviderTerminal provTerm = new ProviderTerminal();
+          ManagerTerminal mngTerm = new ManagerTerminal(providers, members, managers);
+          ProviderTerminal provTerm = new ProviderTerminal(providers, members);
           OperatorTerminal opTerm = new OperatorTerminal();
 
           //Timer instance and start timer
@@ -17,7 +32,7 @@ class App{
           //Creating the Frame
           JFrame frame = new JFrame("GUI");
           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-          frame.setSize(400, 400);
+          frame.setSize(800, 800);
                
           //Creating the MenuBar and adding components
           JMenuBar mb = new JMenuBar();
@@ -36,6 +51,7 @@ class App{
                     frame.getContentPane().add(BorderLayout.SOUTH, sPanel);
                }
           });
+
           //Below is menu item 'Provider' and it's onClick function
           JMenuItem m1_2 = new JMenuItem(new AbstractAction("Provider") {
                public void actionPerformed(ActionEvent e) {
