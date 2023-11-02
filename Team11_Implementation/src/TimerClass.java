@@ -17,13 +17,13 @@ public class TimerClass {
     TimerClass(){}
 
     //Sets up Task class to run every Friday at 
-    public void runTask() {
+    public void runTask(int dayOfWeek, int hour, int min, int sec) {
         ZonedDateTime currentTime = ZonedDateTime.now(ZoneId.of("America/Chicago"));    //current time and date
 
         ZoneId z = ZoneId.of( "America/Chicago" ); //just sets zone
         LocalDate today = LocalDate.now(z); //current date
-        DayOfWeek dow = DayOfWeek.of(5) ;  // Friday = 5.
-        LocalTime lt = LocalTime.of(23,59,59); //first field is hours (23== 11pm), second field is minutes, third is seconds
+        DayOfWeek dow = DayOfWeek.of(dayOfWeek) ;  // Friday = 5.
+        LocalTime lt = LocalTime.of(hour,min,sec); //first field is hours (23== 11pm), second field is minutes, third is seconds
         LocalDate ld = today.with(TemporalAdjusters.next(dow)); //Gets next friday
 
         //check if it should happen today
@@ -44,19 +44,33 @@ public class TimerClass {
         long initialDelay = duration.getSeconds();  
 
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1); //just # of tasks so in this case 1 
-        scheduler.schedule(new Task(), initialDelay, TimeUnit.SECONDS);  //Runs new task instance after delay
+        scheduler.schedule(new Task(dayOfWeek, hour, min, sec), initialDelay, TimeUnit.SECONDS);  //Runs new task instance after delay
     }
 
     class Task extends TimerTask {
+        int dayOfWeek;
+        int hour;
+        int min;
+        int sec;
+        public Task(int dayOfWeek, int hour, int min, int sec){
+            this.dayOfWeek = dayOfWeek;
+            this.hour = hour;
+            this.min = min;
+            this.sec = sec;
+        }
         public void run() {
             justRan = true; //need to set true so I don't just run this multiple times every friday at midnight
-            runTask();  //makes sure Task is setup to run next friday at midnight too
+            runTask(dayOfWeek,hour,min,sec);  //makes sure Task is setup to run next friday at midnight too
         
             // System.out.println("Task performed NOW");
-            Report newReport = new Report();
-            newReport.generateReport();
-            newReport.sendReport();
+            runMainAccountingProcedure();
         }
     };
 
+    //Finish below
+    public void runMainAccountingProcedure(){
+        Report newReport = new Report();
+        newReport.generateReport();
+        newReport.sendReport();
+    }
 }
