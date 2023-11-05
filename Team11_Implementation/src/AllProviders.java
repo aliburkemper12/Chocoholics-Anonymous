@@ -1,7 +1,7 @@
 public class AllProviders {
     public AllProviders(){}
 
-    public boolean verifyProvider(int memNum){
+    public boolean verifyProvider(int provNum){
         return true;
     }
 }

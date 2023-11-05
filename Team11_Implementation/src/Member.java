@@ -26,6 +26,7 @@ public class Member {
     // returns list of members and their info after searching database
     public List<Member> getMemberInfo() {
         // Do stuff
+        return null;
     }
 
     public  String getName() {
