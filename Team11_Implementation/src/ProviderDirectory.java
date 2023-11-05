@@ -1,12 +1,11 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.util.Collections;
-import java.util.List;
-import java.util.ArrayList;
 import java.io.File;
-import java.io.IOException;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class ProviderDirectory {
     
@@ -31,28 +30,28 @@ public class ProviderDirectory {
         return;
     }
 
-    class Service extends ProviderDirectory {
-        private String name;
-        private int code;
-        private int fee;
-        public Service(String name, int code, int fee){
-            this.name = name;
-            this.code = code;
-            this.fee = fee;
-        }
-        public String getName(){
-            return name;
-        }
-        public int getCode(){
-            return code;
-        }
-        public int getFee(){
-            return fee;
-        }
-        public String toString(){
-            return name + " code: " + code + " fee: " + fee + "\n";
-        }
-    }
+    // class Service extends ProviderDirectory {
+    //     private String name;
+    //     private int code;
+    //     private int fee;
+    //     public Service(String name, int code, int fee){
+    //         this.name = name;
+    //         this.code = code;
+    //         this.fee = fee;
+    //     }
+    //     public String getName(){
+    //         return name;
+    //     }
+    //     public int getCode(){
+    //         return code;
+    //     }
+    //     public int getFee(){
+    //         return fee;
+    //     }
+    //     public String toString(){
+    //         return name + " code: " + code + " fee: " + fee + "\n";
+    //     }
+    // }
 
     class ServiceComparator implements java.util.Comparator<Service> {
         public int compare(Service a, Service b){

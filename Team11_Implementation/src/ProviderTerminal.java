@@ -80,8 +80,11 @@ public class ProviderTerminal {
             });
             JButton accessDirectory = new JButton(new AbstractAction("Access Directory") {
                 public void actionPerformed(ActionEvent e) {
-
                     provDirectory = new ProviderDirectory(currentProvider);
+                    panel.removeAll();
+                    panel.add(provDirectory.getPanel());
+                    panel.repaint();
+                    panel.revalidate();
                 }
             });;
             JButton addBill = new JButton();
