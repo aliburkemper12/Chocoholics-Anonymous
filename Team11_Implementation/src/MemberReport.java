@@ -6,7 +6,7 @@ public class MemberReport {
     String service;
     String providerName;
 
-    // get all information for member and fill it in
+    // get all information for member and fill it in.. also generate?
     public MemberReport (String number) {
         // do stuff
     }
