@@ -23,6 +23,7 @@ public class ProviderDirectory {
         try{
             FileWriter myWriter = new FileWriter("Provider_Directory.txt");
             myWriter.write(Services.toString());
+            myWriter.close();
         } catch(IOException e){
             System.out.println("error occurred in provider directroy file creation\n");
         };
