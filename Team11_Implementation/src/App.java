@@ -25,7 +25,7 @@ class App{
           //Terminal instances below
           ManagerTerminal mngTerm = new ManagerTerminal(providers, members, managers);
           ProviderTerminal provTerm = new ProviderTerminal(providers, members);
-          OperatorTerminal opTerm = new OperatorTerminal();
+          OperatorTerminal opTerm = new OperatorTerminal(providers, members);
 
           //Timer instance and start timer
           TimerClass timer = new TimerClass();

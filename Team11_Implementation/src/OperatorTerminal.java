@@ -1,10 +1,14 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class OperatorTerminal {
-    OperatorTerminal(){
 
+    AllProviders providers;
+    AllMembers members;
+
+    OperatorTerminal(AllProviders providers, AllMembers members){
+        this.providers = providers;
+        this.members = members;
     }
 
     public JPanel getPanel(){
