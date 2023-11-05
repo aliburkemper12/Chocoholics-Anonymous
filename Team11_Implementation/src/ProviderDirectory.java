@@ -9,23 +9,24 @@ import java.io.IOException;
 import java.io.FileWriter;
 
 public class ProviderDirectory {
-    ProviderDirectory(){
+    
+    ArrayList<Service> services;
 
+    ProviderDirectory(Provider provider){
+        services = provider.getServices();
     }
 
-    ArrayList<Service> Services;
-
     public void requestDirectory(){
-        Collections.sort(Services, new ServiceComparator());
+        Collections.sort(services, new ServiceComparator());
             
         File outputFile = new File("Provider_Directory.txt");
 
         try{
             FileWriter myWriter = new FileWriter("Provider_Directory.txt");
-            myWriter.write(Services.toString());
+            myWriter.write(services.toString());
             myWriter.close();
         } catch(IOException e){
-            System.out.println("error occurred in provider directroy file creation\n");
+            System.out.println("error occurred in provider directory file creation\n");
         };
         return;
     }
