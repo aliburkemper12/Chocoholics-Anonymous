@@ -14,6 +14,7 @@ class App{
      static AllProviders providers;
      static AllMembers members;
      static AllManagers managers;
+     static AllOperators operators;
 
      //Main functions is just holding instances of terminal and running gui
       public static void main(String args[]){
@@ -21,11 +22,12 @@ class App{
           providers = new AllProviders();
           members = new AllMembers();
           managers = new AllManagers();
+          operators = new AllOperators();
 
           //Terminal instances below
           ManagerTerminal mngTerm = new ManagerTerminal(providers, members, managers);
           ProviderTerminal provTerm = new ProviderTerminal(providers, members);
-          OperatorTerminal opTerm = new OperatorTerminal(providers, members);
+          OperatorTerminal opTerm = new OperatorTerminal(providers, members, operators);
 
           //Timer instance and start timer
           TimerClass timer = new TimerClass();
