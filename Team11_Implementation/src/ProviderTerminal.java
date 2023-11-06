@@ -31,7 +31,7 @@ public class ProviderTerminal {
         JTextField input = new JTextField(20);
         JButton submitButton = new JButton(new AbstractAction("Submit") {
             public void actionPerformed(ActionEvent e) {
-                verify(false, input.getText(), panel);
+                verify(false, input.getText(), panel, false);
             }
         });
         panel.add(input);
@@ -41,7 +41,7 @@ public class ProviderTerminal {
 
     
     //Called when submit is clicked when asking for Provider OR Member #
-    private void verify(boolean memberCode, String input, JPanel panel){
+    private void verify(boolean memberCode, String input, JPanel panel, boolean fromBill){
         boolean codeIsValid = false;
         int inputInt;
 
@@ -78,7 +78,7 @@ public class ProviderTerminal {
                     JTextField input = new JTextField(20);
                     JButton submitButton = new JButton(new AbstractAction("Submit") {
                         public void actionPerformed(ActionEvent e) {
-                            verify(true, input.getText(), panel);
+                            verify(true, input.getText(), panel, false);
                         }
                     });
                     panel.add(input);
@@ -89,14 +89,39 @@ public class ProviderTerminal {
             });
             JButton accessDirectory = new JButton(new AbstractAction("Access Directory") {
                 public void actionPerformed(ActionEvent e) {
-                    provDirectory = new ProviderDirectory(currentProvider);
+                    JPanel temp = panel;
+
                     panel.removeAll();
-                    panel.add(provDirectory.getPanel());
+                    panel.setLayout(new GridLayout(1, 2));
+                    panel.add(temp);
+                    
+                    JPanel provPanel = new JPanel();
+                    JLabel test = new JLabel("YO");
+                    provPanel.add(test);
+                    
+                    panel.add(provPanel);
+
+                    // provDirectory = new ProviderDirectory(currentProvider);
                     panel.repaint();
                     panel.revalidate();
                 }
             });;
-            JButton addBill = new JButton();
+            JButton addBill = new JButton(new AbstractAction("Bill Service") {
+                public void actionPerformed(ActionEvent e) {
+                    panel.removeAll();
+                    panel.add(new JLabel("Member #:"));
+                    JTextField input = new JTextField(20);
+                    JButton submitButton = new JButton(new AbstractAction("Submit") {
+                        public void actionPerformed(ActionEvent e) {
+                            verify(true, input.getText(), panel, true);
+                        }
+                    });
+                    panel.add(input);
+                    panel.add(submitButton);
+                    panel.repaint();
+                    panel.revalidate();
+                }
+            });
 
             //this below just makes these go below the label
             JPanel tempLowerPanel = new JPanel();
