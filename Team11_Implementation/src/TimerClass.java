@@ -47,7 +47,7 @@ public class TimerClass {
         justRan = false;
 
         ZonedDateTime nextRun = ZonedDateTime.of(ld,lt,z); //Now will get this zone's time using ld (localDate) lt (localTime) and z (Zone)
-        System.out.println(nextRun); //Outs next run time
+        // System.out.println(nextRun); //Outs next run time
 
         Duration duration = Duration.between(currentTime, nextRun); 
         long initialDelay = duration.getSeconds();  

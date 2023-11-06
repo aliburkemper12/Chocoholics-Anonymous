@@ -16,6 +16,7 @@ public class ProviderTerminal {
 
     //Provider directory instance
     ProviderDirectory provDirectory;
+    boolean directoryToggle = false;
 
     Provider currentProvider;
    
@@ -24,24 +25,42 @@ public class ProviderTerminal {
         this.members = members;
     }
 
+    JPanel panel;
+    JPanel mainPanel;
+    JPanel dirPanel;
+
     //Called from App when Provider Terminal is selcted
     public JPanel getPanel(){
-        JPanel panel = new JPanel(); 
-        panel.add(new JLabel("Provider #:"));
-        JTextField input = new JTextField(20);
+        panel = new JPanel(); 
+
+        mainPanel = new JPanel();
+        dirPanel = new JPanel();
+        JLabel test = new JLabel("Directory Here");
+        dirPanel.add(test);
+
+        panel.setLayout(new GridLayout(1,1));
+        panel.add(mainPanel);
+        // panel.add(dirPanel);
+
+        JTextField input = new JTextField(10);
         JButton submitButton = new JButton(new AbstractAction("Submit") {
             public void actionPerformed(ActionEvent e) {
-                verify(false, input.getText(), panel, false);
+                verify(false, input.getText(), false);
             }
         });
-        panel.add(input);
-        panel.add(submitButton);
+
+        JLabel label = new JLabel("Provider #:");
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        mainPanel.add(label);
+        mainPanel.add(input);
+        mainPanel.add(submitButton);
+
         return panel;
     }
 
     
     //Called when submit is clicked when asking for Provider OR Member #
-    private void verify(boolean memberCode, String input, JPanel panel, boolean fromBill){
+    private void verify(boolean memberCode, String input, boolean fromBill){
         boolean codeIsValid = false;
         int inputInt;
 
@@ -62,82 +81,100 @@ public class ProviderTerminal {
         }
 
         if (codeIsValid && memberCode) {    //removes all if code is right and if memberCode was checked also adds valid label
-            panel.removeAll();
-            panel.setLayout(new GridLayout(2, 1));
-            JLabel label = new JLabel("Member was VALID!");
-            label.setHorizontalAlignment(JLabel.CENTER);
-            panel.add(label);
-        }else if (codeIsValid && !memberCode) panel.removeAll();
+            mainPanel.removeAll();
+            JOptionPane.showMessageDialog(null, "Member Approved");
+            // mainPanel.setLayout(new GridLayout(2,1));
+            // JLabel label = new JLabel("Member was VALID!");
+            // label.setHorizontalAlignment(JLabel.CENTER);
+            // mainPanel.add(label);
+        }else if (codeIsValid && !memberCode){
+            mainPanel.removeAll();
+            currentProvider = providers.getProvider(inputInt);
+        } 
 
         if(codeIsValid){    //since code was right show verified terminal
-            currentProvider = providers.getProvider(inputInt);
             JButton verifyMember = new JButton(new AbstractAction("Provide Services") {
                 public void actionPerformed(ActionEvent e) {
-                    panel.removeAll();
-                    panel.add(new JLabel("Member #:"));
-                    JTextField input = new JTextField(20);
+                    mainPanel.removeAll();
+                    
+                    JLabel label = new JLabel("Member #:");
+                    label.setHorizontalAlignment(JLabel.RIGHT);
+                    mainPanel.add(label);
+                    JTextField input = new JTextField(10);
                     JButton submitButton = new JButton(new AbstractAction("Submit") {
                         public void actionPerformed(ActionEvent e) {
-                            verify(true, input.getText(), panel, false);
+                            verify(true, input.getText(), false);
                         }
                     });
-                    panel.add(input);
-                    panel.add(submitButton);
-                    panel.repaint();
-                    panel.revalidate();
+                    
+                    mainPanel.add(input);
+                    mainPanel.add(submitButton);
+                    mainPanel.repaint();
+                    mainPanel.revalidate();
                 }
             });
-            JButton accessDirectory = new JButton(new AbstractAction("Access Directory") {
+            JButton accessDirectory = new JButton(new AbstractAction("Toggle Directory") {
                 public void actionPerformed(ActionEvent e) {
-                    JPanel temp = panel;
-
-                    panel.removeAll();
-                    panel.setLayout(new GridLayout(1, 2));
-                    panel.add(temp);
-                    
-                    JPanel provPanel = new JPanel();
-                    JLabel test = new JLabel("YO");
-                    provPanel.add(test);
-                    
-                    panel.add(provPanel);
-
-                    // provDirectory = new ProviderDirectory(currentProvider);
-                    panel.repaint();
-                    panel.revalidate();
+                    if(!directoryToggle){
+                        panel.removeAll();
+                        panel.setLayout(new GridLayout(1,2));
+                        panel.add(mainPanel);
+                        panel.add(dirPanel);
+                    }
+                    else{
+                        panel.removeAll();
+                        panel.setLayout(new GridLayout(1,1));
+                        panel.add(mainPanel);
+                    }
+                    directoryToggle = !directoryToggle;
+                    dirPanel.repaint();
+                    dirPanel.revalidate();
+                    mainPanel.repaint();
+                    mainPanel.revalidate();
                 }
             });;
             JButton addBill = new JButton(new AbstractAction("Bill Service") {
                 public void actionPerformed(ActionEvent e) {
-                    panel.removeAll();
-                    panel.add(new JLabel("Member #:"));
-                    JTextField input = new JTextField(20);
+                    mainPanel.removeAll();
+                    
+                    JTextField input = new JTextField(10);
                     JButton submitButton = new JButton(new AbstractAction("Submit") {
                         public void actionPerformed(ActionEvent e) {
-                            verify(true, input.getText(), panel, true);
+                            verify(true, input.getText(), true);
                         }
                     });
-                    panel.add(input);
-                    panel.add(submitButton);
-                    panel.repaint();
-                    panel.revalidate();
+
+                    JLabel label = new JLabel("Member #:");
+                    label.setHorizontalAlignment(JLabel.RIGHT);
+                    mainPanel.add(label);
+                    mainPanel.add(input);
+                    mainPanel.add(submitButton);
+                    mainPanel.repaint();
+                    mainPanel.revalidate();
                 }
             });
 
             //this below just makes these go below the label
             JPanel tempLowerPanel = new JPanel();
+            
             tempLowerPanel.add(verifyMember);
-            tempLowerPanel.add(accessDirectory);
             tempLowerPanel.add(addBill);
+            tempLowerPanel.add(accessDirectory);
 
-            panel.add(tempLowerPanel);
+            mainPanel.add(tempLowerPanel);
         }
         else{//code was wrong
             JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
         }
 
         //repaint and revalidate reloads the panel with updates
-        panel.repaint();
-        panel.revalidate();
+        mainPanel.repaint();
+        mainPanel.revalidate();
+    }
+
+    JPanel getTempPanel(){
+        JPanel test = new JPanel();
+        return test;
     }
 }
 

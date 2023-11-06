@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -37,7 +38,7 @@ class App{
           //Creating the Frame
           JFrame frame = new JFrame("ChocAn System");
           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-          frame.setSize(800, 800);
+          frame.setSize(800, 200);
                
           //Creating the MenuBar and adding components
           JMenuBar mb = new JMenuBar();
@@ -45,7 +46,7 @@ class App{
           mb.add(m1);
 
           //South Panel
-          JPanel terminalPanel = new JPanel();
+          JPanel terminalPanel = new JPanel(new GridLayout(0, 1));
 
           //Demo menu below just shows demo options
           JMenu m2 = new JMenu("Demo Options");
