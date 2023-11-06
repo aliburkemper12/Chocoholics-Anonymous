@@ -1,3 +1,4 @@
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -38,6 +39,7 @@ public class ProviderTerminal {
         return panel;
     }
 
+    
     //Called when submit is clicked when asking for Provider OR Member #
     private void verify(boolean memberCode, String input, JPanel panel){
         boolean codeIsValid = false;
@@ -59,9 +61,15 @@ public class ProviderTerminal {
             codeIsValid = providers.verifyProvider(inputInt);
         }
 
-        //now we know if code was valid or not
-        if(codeIsValid && !memberCode){//provider code was right
+        if (codeIsValid && memberCode) {    //removes all if code is right and if memberCode was checked also adds valid label
             panel.removeAll();
+            panel.setLayout(new GridLayout(2, 1));
+            JLabel label = new JLabel("Member was VALID!");
+            label.setHorizontalAlignment(JLabel.CENTER);
+            panel.add(label);
+        }else if (codeIsValid && !memberCode) panel.removeAll();
+
+        if(codeIsValid){    //since code was right show verified terminal
             currentProvider = providers.getProvider(inputInt);
             JButton verifyMember = new JButton(new AbstractAction("Provide Services") {
                 public void actionPerformed(ActionEvent e) {
@@ -90,18 +98,16 @@ public class ProviderTerminal {
             });;
             JButton addBill = new JButton();
 
-            panel.add(verifyMember);
-            panel.add(accessDirectory);
-            panel.add(addBill);
+            //this below just makes these go below the label
+            JPanel tempLowerPanel = new JPanel();
+            tempLowerPanel.add(verifyMember);
+            tempLowerPanel.add(accessDirectory);
+            tempLowerPanel.add(addBill);
+
+            panel.add(tempLowerPanel);
         }
-        else if(!codeIsValid && !memberCode){//provider code was wrong
-            JOptionPane.showMessageDialog(null, "Invalid Provider Code, Please Retry");
-        }
-        else if(codeIsValid && memberCode){//member code was right
-            JOptionPane.showMessageDialog(null, "Valid Member Code!");
-        }
-        else if(!codeIsValid && memberCode){//member code was wrong
-            JOptionPane.showMessageDialog(null, "Invalid Member Code, Please Retry");
+        else{//code was wrong
+            JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
         }
 
         //repaint and revalidate reloads the panel with updates
