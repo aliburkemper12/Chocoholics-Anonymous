@@ -9,4 +9,8 @@ public class AllOperators {
     public boolean verifyOperator(int operatorNum){
         return false;
     }
+
+    public Operator getOperator(int operatorNum){
+        return null;
+    }
 }

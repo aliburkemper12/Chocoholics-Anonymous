@@ -3,6 +3,10 @@ public class AllMembers {
     public AllMembers(){}
     ArrayList<Member> members; 
     public boolean verifyMember(int memNum){
-        return false;
+        return true;
+    }
+
+    public Member getMember(int memNum){
+        return null;
     }
 }

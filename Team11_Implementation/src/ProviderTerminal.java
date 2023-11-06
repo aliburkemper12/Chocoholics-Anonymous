@@ -62,6 +62,7 @@ public class ProviderTerminal {
         //now we know if code was valid or not
         if(codeIsValid && !memberCode){//provider code was right
             panel.removeAll();
+            currentProvider = providers.getProvider(inputInt);
             JButton verifyMember = new JButton(new AbstractAction("Provide Services") {
                 public void actionPerformed(ActionEvent e) {
                     panel.removeAll();

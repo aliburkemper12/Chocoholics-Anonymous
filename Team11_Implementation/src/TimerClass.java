@@ -15,6 +15,9 @@ public class TimerClass {
     AllProviders providers;
     AllMembers members;
 
+    //put schedule up here so when demo'ing can get rid of last instance
+    ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1); //just # of tasks so in this case 1 
+
     boolean justRan = false; //This is just to fix Task from runnning more than once in a second
 
     TimerClass(AllProviders providers, AllMembers members){
@@ -44,13 +47,17 @@ public class TimerClass {
         justRan = false;
 
         ZonedDateTime nextRun = ZonedDateTime.of(ld,lt,z); //Now will get this zone's time using ld (localDate) lt (localTime) and z (Zone)
-        // System.out.println(nextRun); //Outs next run time
+        System.out.println(nextRun); //Outs next run time
 
         Duration duration = Duration.between(currentTime, nextRun); 
         long initialDelay = duration.getSeconds();  
 
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1); //just # of tasks so in this case 1 
         scheduler.schedule(new Task(dayOfWeek, hour, min, sec), initialDelay, TimeUnit.SECONDS);  //Runs new task instance after delay
+    }
+
+    public void runNow(){
+        Task temp = new Task(5,23,59,59);   //next one should run at friday on midnight
+        temp.run();
     }
 
     //What actually happens when it goes off, will just call runMainAccountingProcedure

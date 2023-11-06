@@ -28,6 +28,7 @@ class App{
           ManagerTerminal mngTerm = new ManagerTerminal(providers, members, managers);
           ProviderTerminal provTerm = new ProviderTerminal(providers, members);
           OperatorTerminal opTerm = new OperatorTerminal(providers, members, operators);
+          MemberTerminal memTerm = new MemberTerminal(members); //Just for Demo Purpose
 
           //Timer instance and start timer
           TimerClass timer = new TimerClass(providers, members);
@@ -48,6 +49,20 @@ class App{
 
           //Demo menu below just shows demo options
           JMenu m2 = new JMenu("Demo Options");
+          JMenuItem m2_1 = new JMenuItem(new AbstractAction("Timer go off now") {
+               public void actionPerformed(ActionEvent e) {
+                    timer.runNow(); //will run now and next run will still be friday at midnight
+               }
+          });
+          JMenuItem m2_2 = new JMenuItem(new AbstractAction("Member Reports") {
+               public void actionPerformed(ActionEvent e) {
+                    m1.setEnabled(false);    //make it so you can't select other terminals
+                    m2.setVisible(false);    //remove demo options
+                    terminalPanel.add(memTerm.getPanel());
+               }
+          });
+          m2.add(m2_1);
+          m2.add(m2_2);
      
           //Below is menu item 'Operator' and it's onClick function
           JMenuItem m1_1 = new JMenuItem(new AbstractAction("Operator") {

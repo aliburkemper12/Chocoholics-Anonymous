@@ -4,4 +4,9 @@ public class AllManagers {
     public boolean verifyManager(int manNum){
         return true;
     }
+
+    public Manager getManager(int manNum){
+        return null;
+    }
 }
+

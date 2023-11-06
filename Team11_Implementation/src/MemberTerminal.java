@@ -1,3 +1,4 @@
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -7,25 +8,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class ManagerTerminal {
+public class MemberTerminal {
 
     //All... instances (passed from App on creation)
-    AllProviders providers;
     AllMembers members;
-    AllManagers managers;
 
-    Manager currentManager;
+    Member currentMember; //is null until after verify
    
-    ManagerTerminal(AllProviders providers, AllMembers members, AllManagers managers){
-        this.providers = providers;
+    MemberTerminal(AllMembers members){
         this.members = members;
-        this.managers = managers;
     }
 
     //Called from App when Manager Terminal is selcted
     public JPanel getPanel(){
         JPanel panel = new JPanel(); 
-        panel.add(new JLabel("Manager #:"));
+        panel.add(new JLabel("Member #:"));
         JTextField input = new JTextField(20);
         JButton submitButton = new JButton(new AbstractAction("Submit") {
             public void actionPerformed(ActionEvent e) {
@@ -48,21 +45,16 @@ public class ManagerTerminal {
         }
 
         //if invalid int then inputInt will be -1 and line below will be false
-        boolean codeIsValid = managers.verifyManager(inputInt);
+        boolean codeIsValid = members.verifyMember(inputInt);
 
         //now we know if code was valid or not
         if(codeIsValid){//Manager code was right
             panel.removeAll();
-            currentManager = managers.getManager(inputInt);
-            JButton requestReport = new JButton(new AbstractAction("Request Reports") {
-                public void actionPerformed(ActionEvent e) {
-                    requestReport();
-                }
-            });
-            panel.add(requestReport);
+            currentMember = members.getMember(inputInt);
+            panel.add(showReports(currentMember));
         }
         else{//provider code was wrong
-            JOptionPane.showMessageDialog(null, "Invalid Manager Code, Please Retry");
+            JOptionPane.showMessageDialog(null, "Invalid Member Code, Please Retry");
         }
 
         //repaint and revalidate reloads the panel with updates
@@ -71,9 +63,7 @@ public class ManagerTerminal {
     }
 
     //initiateReport is going to be called from GUI (getPanel function)
-    private void requestReport(){
-        Report newReport = new Report();
-        newReport.generateReport();
-        newReport.sendReport();
+    private Panel showReports(Member member){
+        return new Panel();
     }
 }
