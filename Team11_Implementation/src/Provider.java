@@ -1,12 +1,14 @@
-import java.util.arrayList;
+import java.util.ArrayList;
 public class Provider{
     private String name;
     private int credentials;
-    private arrayList<Service> services;
+    private ArrayList<Service> services;
+    
     Provider(String name, int credentials){
         this.name = name;
         this.credentials = credentials;
     }
+
     public void addService(Service newService){
         services.add(newService);
     }
@@ -16,7 +18,7 @@ public class Provider{
     public int getCreds(){
         return credentials;
     }
-    public arrayList<Service> getServices(){
+    public ArrayList<Service> getServices(){
         return services;
     }
 }

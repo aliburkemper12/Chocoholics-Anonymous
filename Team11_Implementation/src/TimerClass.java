@@ -12,11 +12,17 @@ import java.util.concurrent.TimeUnit;
 
 public class TimerClass {
 
+    AllProviders providers;
+    AllMembers members;
+
     boolean justRan = false; //This is just to fix Task from runnning more than once in a second
 
-    TimerClass(){}
+    TimerClass(AllProviders providers, AllMembers members){
+        this.providers = providers;
+        this.members = members;
+    }
 
-    //Sets up Task class to run every Friday at 
+    //Sets up Task class to run every Friday at (or whatever parameters you pass in)
     public void runTask(int dayOfWeek, int hour, int min, int sec) {
         ZonedDateTime currentTime = ZonedDateTime.now(ZoneId.of("America/Chicago"));    //current time and date
 
@@ -47,6 +53,7 @@ public class TimerClass {
         scheduler.schedule(new Task(dayOfWeek, hour, min, sec), initialDelay, TimeUnit.SECONDS);  //Runs new task instance after delay
     }
 
+    //What actually happens when it goes off, will just call runMainAccountingProcedure
     class Task extends TimerTask {
         int dayOfWeek;
         int hour;

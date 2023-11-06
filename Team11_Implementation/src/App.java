@@ -30,7 +30,7 @@ class App{
           OperatorTerminal opTerm = new OperatorTerminal(providers, members, operators);
 
           //Timer instance and start timer
-          TimerClass timer = new TimerClass();
+          TimerClass timer = new TimerClass(providers, members);
           timer.runTask(5,23,59,59);     //5,23,59,59 is correct parameters for friday at 11:59:59 PM
 
           //Creating the Frame

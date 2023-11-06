@@ -12,6 +12,11 @@ public class ProviderTerminal {
     //All... instances (passed from App on creation)
     AllProviders providers;
     AllMembers members;
+
+    //Provider directory instance
+    ProviderDirectory provDirectory;
+
+    Provider currentProvider;
    
     ProviderTerminal(AllProviders providers, AllMembers members){
         this.providers = providers;
@@ -73,7 +78,15 @@ public class ProviderTerminal {
                     panel.revalidate();
                 }
             });
-            JButton accessDirectory = new JButton();
+            JButton accessDirectory = new JButton(new AbstractAction("Access Directory") {
+                public void actionPerformed(ActionEvent e) {
+                    provDirectory = new ProviderDirectory(currentProvider);
+                    panel.removeAll();
+                    panel.add(provDirectory.getPanel());
+                    panel.repaint();
+                    panel.revalidate();
+                }
+            });;
             JButton addBill = new JButton();
 
             panel.add(verifyMember);
