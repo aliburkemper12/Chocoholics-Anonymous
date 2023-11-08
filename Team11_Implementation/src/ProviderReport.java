@@ -33,7 +33,7 @@ public class ProviderReport {
             report += "\nService date: ";
             report += serviceDate;
             report += "\nMember name and number: ";
-            memberName = 
+            memberName = //find a way to get membername from membernum
             report += memberName;
             report += " ";
             report += memberNum;
