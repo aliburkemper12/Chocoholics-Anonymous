@@ -36,7 +36,7 @@ public class Member {
         return memberNumber;
     }
 
-    public void setMemberNumber(int memberNumber) {
+    public void setMemberNumber(long memberNumber) {
         this.memberNumber = memberNumber;
     }
 
