@@ -6,32 +6,27 @@ import java.util.List;
 
 // @author Ali Burkemper
 
-// name number address city zipcode
-// pulling from array in all members, see provider
-// store data here
 public class Member {
 
     private String name;
-    private int memberNumber;
+    private long memberNumber;
     private String status;
     private String address;
     private String city;
     private int zipcode;
+    private String state;
 
-    public void newMember(String name, int memberNumber, String status, String address, String city, int zipcode) {
+    Member(String name, long memberNumber, String status, String address, String city, int zipcode, String state) {
         this.name = name;
         this.memberNumber = memberNumber;
         this.status = status;
         this.address = address;
         this.city = city;
         this.zipcode = zipcode;
+        this.state = state;
     }
 
-    public void getMember() {
-        
-    }    
-
-    public int getMemberNumber() {
+    public long getMemberNumber() {
         return memberNumber;
     }
 
@@ -77,5 +72,13 @@ public class Member {
 
     public void setZip(int zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }
