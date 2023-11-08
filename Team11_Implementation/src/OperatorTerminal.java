@@ -3,6 +3,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import java.util.Random;
 
@@ -15,7 +24,7 @@ public class OperatorTerminal {
     AllMembers members;
     AllOperators operators;
     
-    private long RandomGeneratedNumber(String[] args) {        
+    private long RandomGeneratedNumber() {        
         // Create an instance of the Random class
         Random random = new Random();
 
@@ -34,17 +43,35 @@ public class OperatorTerminal {
         this.operators = operators;
         
     }
+    JPanel panel;
+    JPanel mainPanel;
+    JPanel dirPanel;
+
 
     public JPanel getPanel(){
         JPanel panel = new JPanel(); 
         panel.add(new JLabel("Operator"));
         
-        JButton addBill = new JButton(new AbstractAction("Bill Service") {
+        JButton addBill = new JButton(new AbstractAction("Verify Member") {
                 public void actionPerformed(ActionEvent e) {
+                    mainPanel.removeAll();
                     
+                    JTextField input = new JTextField(10);
+                    JButton submitButton = new JButton(new AbstractAction("Submit") {
+                        public void actionPerformed(ActionEvent e) {
+                            verify(true, input.getText(), true);
+                        }
+                    });
+
+                    JLabel label = new JLabel("Member #:");
+                    label.setHorizontalAlignment(JLabel.RIGHT);
+                    mainPanel.add(label);
+                    mainPanel.add(input);
+                    mainPanel.add(submitButton);
+                    mainPanel.repaint();
+                    mainPanel.revalidate();
                 }
-            });
-            return panel;
+            });return panel;
     }
     
 }
