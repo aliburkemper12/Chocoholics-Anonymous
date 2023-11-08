@@ -69,7 +69,7 @@ class App{
           JMenuItem m1_1 = new JMenuItem(new AbstractAction("Operator") {
                public void actionPerformed(ActionEvent e) {
                     m1.setText("Operator Terminal");
-                    m1.setEnabled(false);    //make it so you can't select other terminals
+                    m1.removeAll();
                     m2.setVisible(false);    //remove demo options
                     terminalPanel.add(opTerm.getPanel());
                     frame.repaint();
@@ -81,9 +81,9 @@ class App{
           JMenuItem m1_2 = new JMenuItem(new AbstractAction("Provider") {
                public void actionPerformed(ActionEvent e) {
                     m1.setText("Provider Terminal");
-                    m1.setEnabled(false);    //make it so you can't select other terminals
+                    m1.removeAll();
                     m2.setVisible(false);    //remove demo options
-                    terminalPanel.add(provTerm.getPanel());
+                    terminalPanel.add(provTerm.getPanel(m1));
                     frame.repaint();
                     frame.revalidate();
                }
@@ -92,7 +92,7 @@ class App{
           JMenuItem m1_3 = new JMenuItem(new AbstractAction("Manager") {
                public void actionPerformed(ActionEvent e) {
                     m1.setText("Manager Terminal");
-                    m1.setEnabled(false);    //make it so you can't select other terminals
+                    m1.removeAll();
                     m2.setVisible(false);    //remove demo options
                     terminalPanel.add(mngTerm.getPanel());
                     frame.repaint();
@@ -100,12 +100,20 @@ class App{
                }
           });
           
+          m1.add(m1_1);
+          m1.add(m1_2);
+          m1.add(m1_3);
+
           JMenu m3 = new JMenu("Restart/End");
           //Restart below just resets the menu, puts in a blank panel, and clears sPanel
           JMenuItem m3_1 = new JMenuItem(new AbstractAction("Restart") {
                public void actionPerformed(ActionEvent e) {
                     m1.setText("Select Terminal");
-                    m1.setEnabled(true);     //enable selecting terminal
+                    m1.setEnabled(true);  
+                    m1.removeAll();
+                    m1.add(m1_1);
+                    m1.add(m1_2);
+                    m1.add(m1_3);   //enable selecting terminal
                     m2.setVisible(true);     //enable demo options
                     terminalPanel.removeAll();    //clear anything inside terminalPanels
                     frame.repaint();    
@@ -122,9 +130,7 @@ class App{
           mb.add(m2); //adding restart to menubar
 
           //Adding operator, manager, and provider to menu item 'Select Terminal'
-          m1.add(m1_1);
-          m1.add(m1_2);
-          m1.add(m1_3);
+         
           m3.add(m3_1);
           m3.add(m3_2);
 
