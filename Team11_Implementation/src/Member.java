@@ -6,9 +6,6 @@ import java.util.List;
 
 // @author Ali Burkemper
 
-// name number address city zipcode
-// pulling from array in all members, see provider
-// store data here
 public class Member {
 
     private String name;
@@ -28,8 +25,6 @@ public class Member {
         this.zipcode = zipcode;
         this.state = state;
     }
-
-    
 
     public long getMemberNumber() {
         return memberNumber;
@@ -83,7 +78,7 @@ public class Member {
         return state;
     }
 
-    public void setState() {
+    public void setState(String state) {
         this.state = state;
     }
 }
