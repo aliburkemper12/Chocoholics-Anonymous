@@ -208,6 +208,9 @@ public class ProviderTerminal {
         panel.repaint();
     }
 
+    JPanel getTempPanel(){
+        JPanel test = new JPanel();
+        return test;
     // Opens new frame of the provDirectoryPanel which shows services
     private void showProviderDirectory() {
         JFrame frame = new JFrame("Provider Directory");
