@@ -4,6 +4,7 @@ import java.util.Random;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -14,7 +15,7 @@ public class OperatorTerminal {
     AllOperators operators;
 
     boolean operatorVerified = false;
-    Provider currentOperator;
+    Operator currentOperator;
 
     private long RandomGeneratedNumber() {
         // Create an instance of the Random class
@@ -93,15 +94,31 @@ public class OperatorTerminal {
             }
         });
 
-                    JLabel label = new JLabel("Member #:");
-                    label.setHorizontalAlignment(JLabel.RIGHT);
-                    mainPanel.add(label);
-                    mainPanel.add(input);
-                    mainPanel.add(submitButton);
-                    mainPanel.repaint();
-                    mainPanel.revalidate();
-                }
-            });return panel;
+        JLabel label = new JLabel("Member #:");
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        panel.add(label);
+        panel.add(input);
+        panel.add(submitButton);
+        panel.repaint();
+        panel.revalidate();
     }
-    
+
+    // Called when submit is clicked when asking for Operator #
+    private void verify(String input) {
+        int inputInt;
+        try {
+            inputInt = Integer.parseInt(input);
+        } catch (NumberFormatException rand) {
+            inputInt = -1;
+        }
+
+        if (operators.verifyOperator(inputInt)) {
+            operatorVerified = true;
+            currentOperator = operators.getOperator(inputInt);
+        } else
+            JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
+
+        refreshPanel();
+    }
+
 }
