@@ -6,12 +6,12 @@ public class ServiceRecord {
 
     private String date = "";
     private String dateService = "";
-    private int providerNum = 0;
-    private int memberNum = 0;
+    private long providerNum = 0;
+    private long memberNum = 0;
     private int serviceCode = 0;
     private String comment = "";
 
-    public ServiceRecord(String date, String dateService, int providerNum, int memberNum, int serviceCode, String comment){
+    public ServiceRecord(String date, String dateService, long providerNum, long memberNum, int serviceCode, String comment){
         this.date = date;
         this.dateService = dateService;
         this.providerNum = providerNum;
@@ -28,11 +28,11 @@ public class ServiceRecord {
         this.dateService = dateService;
     }
 
-    public void setMemberNum(int memberNum) {
+    public void setMemberNum(long memberNum) {
         this.memberNum = memberNum;
     }
 
-    public void setProviderNum(int providerNum) {
+    public void setProviderNum(long providerNum) {
         this.providerNum = providerNum;
     }
 
@@ -52,11 +52,11 @@ public class ServiceRecord {
         return dateService;
     }
 
-    public int getProviderNum() {
+    public long getProviderNum() {
         return providerNum;
     }
 
-    public int getMemberNum() {
+    public long getMemberNum() {
         return memberNum;
     }
 
