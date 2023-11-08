@@ -17,7 +17,11 @@ public class Report {
         serviceDate = "";
     }
 
-    public void generateReport(){
+    public void generateProviderReport(){
+        //do stuff
+    }
+
+    public void generateMemberReport(){
         //do stuff
     }
 
