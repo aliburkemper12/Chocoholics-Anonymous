@@ -1,19 +1,24 @@
+import java.util.ArrayList;
 
 public class ProviderReport {
-    ProviderReport(String timeReceived, String memberName, int memberNum, int serviceCode, int fee, int consultationsNum){
-        this.timeReceived = timeReceived;
-        this.memberName = memberName;
-        this.serviceCode = serviceCode;
-        this.fee = fee;
-        this.consultationsNum = consultationsNum;
-        this.weekFee = fee;
-    }
-    
-    String timeReceived;
-    String memberName;
-    int memberNum;
-    int serviceCode;
-    int fee;
-    int consultationsNum;
+    ArrayList<DiskRecord> records;
     int weekFee;
+    String memberName;
+
+    ProviderReport(){
+    }
+
+    public void addRecord(DiskRecord record){
+        records.add(record);
+    }
+
+    public String writeReport(){
+        String currDate;
+        String serviceDate;
+        
+        
+        for(DiskRecord record : records){
+
+        }
+    }
 }
