@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,13 +17,25 @@ public class Member {
     private String address;
     private String city;
     private int zipcode;
-    private 
+
+    public void newMember(String name, int memberNumber, String status, String address, String city, int zipcode) {
+        this.name = name;
+        this.memberNumber = memberNumber;
+        this.status = status;
+        this.address = address;
+        this.city = city;
+        this.zipcode = zipcode;
+    }
+
+    public void getMember() {
+        
+    }    
 
     public int getMemberNumber() {
         return memberNumber;
     }
 
-    public void setMemberNumber(Int memberNumber) {
+    public void setMemberNumber(int memberNumber) {
         this.memberNumber = memberNumber;
     }
 
