@@ -15,8 +15,9 @@ public class Member {
     private String city;
     private int zipcode;
     private String state;
+    private ArrayList<Service> services;
 
-    Member(String name, long memberNumber, String status, String address, String city, int zipcode, String state) {
+    Member(String name, long memberNumber, String status, String address, String city, int zipcode, String state, Service service) {
         this.name = name;
         this.memberNumber = memberNumber;
         this.status = status;
@@ -24,6 +25,11 @@ public class Member {
         this.city = city;
         this.zipcode = zipcode;
         this.state = state;
+        services.add(service);
+    }
+
+    public void addService(Service service){
+        services.add(service);
     }
 
     public long getMemberNumber() {
