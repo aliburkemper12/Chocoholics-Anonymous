@@ -16,7 +16,7 @@ public class Member {
     private int zipcode;
     private String state;
 
-    public void newMember(String name, long memberNumber, String status, String address, String city, int zipcode, String state) {
+    Member(String name, long memberNumber, String status, String address, String city, int zipcode, String state) {
         this.name = name;
         this.memberNumber = memberNumber;
         this.status = status;
