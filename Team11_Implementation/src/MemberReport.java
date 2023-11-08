@@ -7,7 +7,8 @@ public class MemberReport {
     String providerName;
 
     // get all information for member and fill it in.. also generate?
-    public MemberReport (String number) {
-        // do stuff
+    public MemberReport (String service, String providerName) {
+        this.service = service;
+        this.providerName = providerName;
     }
 }

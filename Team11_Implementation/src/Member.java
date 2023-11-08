@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -5,24 +6,31 @@ import java.util.List;
 
 // @author Ali Burkemper
 
-// name number address city zipcode
-// pulling from array in all members, see provider
-// store data here
 public class Member {
 
     private String name;
-    private int memberNumber;
+    private long memberNumber;
     private String status;
     private String address;
     private String city;
     private int zipcode;
-    private 
+    private String state;
 
-    public int getMemberNumber() {
+    Member(String name, long memberNumber, String status, String address, String city, int zipcode, String state) {
+        this.name = name;
+        this.memberNumber = memberNumber;
+        this.status = status;
+        this.address = address;
+        this.city = city;
+        this.zipcode = zipcode;
+        this.state = state;
+    }
+
+    public long getMemberNumber() {
         return memberNumber;
     }
 
-    public void setMemberNumber(Int memberNumber) {
+    public void setMemberNumber(int memberNumber) {
         this.memberNumber = memberNumber;
     }
 
@@ -64,5 +72,13 @@ public class Member {
 
     public void setZip(int zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }
