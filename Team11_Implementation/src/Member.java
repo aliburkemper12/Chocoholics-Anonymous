@@ -11,6 +11,22 @@ public class Member {
 
     private String name;
     private int memberNumber;
+<<<<<<< HEAD
+=======
+    private String status;
+>>>>>>> 56beeb5a2091a17a99a6f0c66810ae778ccfb7db
+
+    //Could do this for constructor - Adison
+    /*
+     * public Member(String name, int memberNumber) {
+     *   this.name = name;
+     *   this.memberNumber = memberNumber;
+     * }
+     * 
+     * public int getMemberNumber() {
+     *   return memberNumber;
+     * }
+     */
 
     // returns member ID number from database by searching for 
     // name [CSV files?] 
