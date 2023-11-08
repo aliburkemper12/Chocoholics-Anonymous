@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -5,28 +6,37 @@ import java.util.List;
 
 // @author Ali Burkemper
 
-
+// name number address city zipcode
+// pulling from array in all members, see provider
+// store data here
 public class Member {
 
     private String name;
-    private String number;
+    private long memberNumber;
     private String status;
+    private String address;
+    private String city;
+    private int zipcode;
+    private String state;
 
-    // returns member ID number from database by searching for 
-    // name [CSV files?] 
-    public Member getNumber(String name) {
-        List<Member> members = getMemberInfo();
-        for (Member member : members) {
-            if(member.getName().equals(name))
-                return member;
-        }
-        return null;
+    public void newMember(String name, long memberNumber, String status, String address, String city, int zipcode, String state) {
+        this.name = name;
+        this.memberNumber = memberNumber;
+        this.status = status;
+        this.address = address;
+        this.city = city;
+        this.zipcode = zipcode;
+        this.state = state;
     }
+
     
-    // returns list of members and their info after searching database
-    public List<Member> getMemberInfo() {
-        // Do stuff
-        return null;
+
+    public long getMemberNumber() {
+        return memberNumber;
+    }
+
+    public void setMemberNumber(int memberNumber) {
+        this.memberNumber = memberNumber;
     }
 
     public  String getName() {
@@ -36,5 +46,44 @@ public class Member {
     public void setName(String name) {
         this.name = name;
     }
+
+    public  String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public  String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
     
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getZip() {
+        return zipcode;
+    }
+
+    public void setZip(int zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState() {
+        this.state = state;
+    }
 }
