@@ -30,6 +30,9 @@ public class ProviderDirectory {
         return;
     }
 
+    public ArrayList<Service> requestServices(){
+        return services;
+    }
     // class Service extends ProviderDirectory {
     //     private String name;
     //     private int code;
