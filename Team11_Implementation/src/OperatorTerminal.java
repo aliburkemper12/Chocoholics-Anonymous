@@ -52,7 +52,7 @@ public class OperatorTerminal {
         JPanel panel = new JPanel(); 
         panel.add(new JLabel("Operator"));
         
-        JButton addBill = new JButton(new AbstractAction("Verify Member") {
+        JButton addBill = new JButton(new AbstractAction("Verify Operator") {
                 public void actionPerformed(ActionEvent e) {
                     mainPanel.removeAll();
                     
@@ -63,7 +63,7 @@ public class OperatorTerminal {
                         }
                     });
 
-                    JLabel label = new JLabel("Member #:");
+                    JLabel label = new JLabel("Credentials:");
                     label.setHorizontalAlignment(JLabel.RIGHT);
                     mainPanel.add(label);
                     mainPanel.add(input);
