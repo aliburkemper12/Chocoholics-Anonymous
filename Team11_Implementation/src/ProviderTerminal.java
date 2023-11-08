@@ -37,9 +37,14 @@ public class ProviderTerminal {
 
     // Called from App to get this panel
     public JPanel getPanel(JMenu mb) {
+        resetClass();
         refreshPanel();
         menu = mb;
         return panel;
+    }
+
+    private void resetClass(){
+        providerVerified = false;
     }
 
     // Called to update screen
@@ -121,24 +126,26 @@ public class ProviderTerminal {
     // memberCode is true when it was prompting for member num,
     // fromBill is true when it's called from Bill Service btn.
     private void verify(boolean memberCode, String input, boolean fromBill) {
-        int inputInt;
+        long inputInt;
         try {
-            inputInt = Integer.parseInt(input);
+            inputInt = Long.parseLong(input);
         } catch (NumberFormatException rand) {
             inputInt = -1;
         }
 
         if (memberCode) {
-            // String temp = members.verifyMember(inputInt); //for when it's a string not
-            // boolean
-            if (members.verifyMember(inputInt)) {
+            String memberStatus = members.verifyMember(inputInt);
+        
+            if (memberStatus.equals("Validated")) {
                 JOptionPane.showMessageDialog(null, "Member Valid");
                 if (fromBill) {
                     setBillPanel(inputInt);
                     return;
                 }
-            } else
-                JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
+            } else if(memberStatus.equals("Member suspended")){
+                JOptionPane.showMessageDialog(null, "Member Suspended");
+            } 
+            else JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
         } else {
             if (providers.verifyProvider(inputInt)) {
                 providerVerified = true;
@@ -160,10 +167,13 @@ public class ProviderTerminal {
     }
 
     // Panel for filling out bill after member was verified
-    private void setBillPanel(int memberCode) {
+    private void setBillPanel(long memberCode) {
+        Member currentMember = members.getMember(memberCode);
         panel.removeAll();
 
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JPanel tempPanel = new JPanel();
+
+        tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
         // panel.add(datePicker);
         JPanel rowOne = new JPanel();
         JLabel label = new JLabel("MM-DD-YYYY:");
@@ -174,11 +184,7 @@ public class ProviderTerminal {
         JTextField dayInput = new JTextField(2);
 
         JTextField yearInput = new JTextField(4);
-        JButton submitButton = new JButton(new AbstractAction("Submit") {
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
+        
         rowOne.add(label);
         rowOne.add(monthInput);
         rowOne.add(dash1);
@@ -196,13 +202,24 @@ public class ProviderTerminal {
         JTextArea textArea = new JTextArea(4,30);
         rowThree.add(textArea);
 
+        JButton submitButton = new JButton(new AbstractAction("Submit") {
+            public void actionPerformed(ActionEvent e) {
+                String date = monthInput.getText()+ "-" + dayInput.getText()+ "-" + yearInput.getText();
+                //check if serviceLabel is real code
+                //make it an int
+                addServices(currentProvider, currentMember, date, 1, textArea.getText());
+            }
+        });
+
         JPanel rowFour = new JPanel();
         rowFour.add(submitButton);
 
-        panel.add(rowOne);
-        panel.add(rowTwo);
-        panel.add(rowThree);
-        panel.add(rowFour);
+        tempPanel.add(rowOne);
+        tempPanel.add(rowTwo);
+        tempPanel.add(rowThree);
+        tempPanel.add(rowFour);
+
+        panel.add(tempPanel);
 
         panel.revalidate();
         panel.repaint();
@@ -211,6 +228,8 @@ public class ProviderTerminal {
     JPanel getTempPanel(){
         JPanel test = new JPanel();
         return test;
+    }
+
     // Opens new frame of the provDirectoryPanel which shows services
     private void showProviderDirectory() {
         JFrame frame = new JFrame("Provider Directory");
@@ -218,5 +237,10 @@ public class ProviderTerminal {
         frame.setSize(400, 400);
         // frame.add(provDirectoryPanel);
         frame.setVisible(true);
+    }
+
+    //add to cProvider and cMember and get current date
+    private void addServices(Provider cProvider, Member cMember, String date, int serviceCode, String comments){
+        ServiceRecord temp = new ServiceRecord(date, date, cProvider.getCreds(), cMember.getMemberNumber(), serviceCode, comments);
     }
 }

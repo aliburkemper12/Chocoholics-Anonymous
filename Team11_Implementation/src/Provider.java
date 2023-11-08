@@ -4,7 +4,7 @@ public class Provider{
     private long credentials;
     private ArrayList<Service> services;
     
-    Provider(String name, int credentials){
+    Provider(String name, long credentials){
         this.name = name;
         this.credentials = credentials;
     }

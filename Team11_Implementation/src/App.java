@@ -25,6 +25,13 @@ class App{
           managers = new AllManagers();
           operators = new AllOperators();
 
+          //Making fake info
+          members.addMember(1, "Fake Guy", "Paid", "10 Road", "Tuscaloosa", "Alabama", 0);
+          members.addMember(2, "Fake Girl", "Invalid", "11 Road", "Birmingham", "Alabama", 0);
+
+          providers.addProvider(1, "Fake Guy", "10 Road", "Tuscaloosa", "Alabama", 0);
+
+
           //Terminal instances below
           ManagerTerminal mngTerm = new ManagerTerminal(providers, members, managers);
           ProviderTerminal provTerm = new ProviderTerminal(providers, members);
