@@ -9,8 +9,20 @@ import java.util.List;
 public class Member {
 
     private String name;
-    private String number;
+    private int memberNumber;
     private String status;
+
+    //Could do this for constructor - Adison
+    /*
+     * public Member(String name, int memberNumber) {
+     *   this.name = name;
+     *   this.memberNumber = memberNumber;
+     * }
+     * 
+     * public int getMemberNumber() {
+     *   return memberNumber;
+     * }
+     */
 
     // returns member ID number from database by searching for 
     // name [CSV files?] 
