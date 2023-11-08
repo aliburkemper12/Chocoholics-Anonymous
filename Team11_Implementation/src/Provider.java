@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Provider{
     private String name;
-    private int credentials;
+    private long credentials;
     private ArrayList<Service> services;
     
     Provider(String name, int credentials){
@@ -15,7 +15,7 @@ public class Provider{
     public String getName(){
         return name;
     }
-    public int getCreds(){
+    public long getCreds(){
         return credentials;
     }
     public ArrayList<Service> getServices(){
