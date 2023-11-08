@@ -5,16 +5,16 @@ import java.util.List;
 
 // @author Ali Burkemper
 
-
+// name number address city zipcode
+// pulling from array in all members, see provider
 public class Member {
 
     private String name;
-    private String number;
-    private String status;
+    private int memberNumber;
 
     // returns member ID number from database by searching for 
     // name [CSV files?] 
-    public Member getNumber(String name) {
+    public Member getMemberNumber(String name) {
         List<Member> members = getMemberInfo();
         for (Member member : members) {
             if(member.getName().equals(name))
