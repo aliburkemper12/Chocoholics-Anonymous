@@ -6,14 +6,19 @@ import java.util.ArrayList;
 public class AllProviders {
 
     ArrayList<Provider> providerList = new ArrayList<Provider>();
-    int credentials;
-    String name;
+    long credentials; // 9 digits
+    String name; // 25 characters
+    String address; // 25 characters
+    String city; // 14 characters
+    String state; // 2 characters
+    int zip; // 5 digits
 
     public AllProviders(){}
 
     //Terminal verifies that provider credentials are valid
     //when they log in
-    public boolean verifyProvider(int credentials){
+    //GOOD
+    public boolean verifyProvider(long credentials){
         for (int i = 0; i < providerList.size(); i++) {
             Provider toVerify = providerList.get(i);
             if (toVerify.getCreds() == credentials) {
@@ -25,13 +30,15 @@ public class AllProviders {
 
     //Operator chooses to add a provider with specified
     //credentials and name
-    public void addProvider(int credentials, String name) {
+    //NEED MORE INPUTS
+    public void addProvider(long credentials, String name, String address, String city, String state, int zip) {
         Provider toAdd = new Provider(name, credentials);
         providerList.add(toAdd);
     }
 
     //Operator chooses to delete the provider with input credentials
-    public void deleteProvider(int credentials) {
+    //GOOD
+    public void deleteProvider(long credentials) {
         for (int i = 0; i < providerList.size(); i++) {
             Provider toDelete = providerList.get(i);
             if (toDelete.getCreds() == credentials) {
@@ -42,7 +49,8 @@ public class AllProviders {
 
     //Operator chooses to update the provider with input credentials
     //might need setter function to be able to change name, address, etc.
-    public void updateProvider(int credentials, String name) {
+    //NEED MORE INPUTS
+    public void updateProvider(long credentials, String name) {
         for (int i = 0; i < providerList.size(); i++) {
             Provider toUpdate = providerList.get(i);
             if (toUpdate.getCreds() == credentials) {
