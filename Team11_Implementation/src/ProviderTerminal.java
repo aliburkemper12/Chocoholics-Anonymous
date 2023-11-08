@@ -172,6 +172,13 @@ public class ProviderTerminal {
         mainPanel.revalidate();
     }
 
+    private void requestDirectory(){
+        ProviderDirectory directory = new ProviderDirectory(currentProvider);
+        directory.requestDirectory();
+    }
+
+    
+
     JPanel getTempPanel(){
         JPanel test = new JPanel();
         return test;
