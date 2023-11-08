@@ -177,7 +177,19 @@ public class ProviderTerminal {
         directory.requestDirectory();
     }
 
-    
+    private void billService(){
+        /*Verify member
+         * Display validated
+         * Ask for service date
+         * Key in service date
+         * Ask for service code
+         * Either display name of service entered, or that a nonexistant code was entered
+         * Ask provider to verify that the correct service has been entered
+         * Write optional comments
+         * Write record to disk
+         * Lookup fee to be paid and display it
+         */
+    }
 
     JPanel getTempPanel(){
         JPanel test = new JPanel();
