@@ -58,12 +58,48 @@ public class OperatorTerminal {
         panel.revalidate();
         panel.repaint();
     }
-
+    String name; // 25 characters
+    String status;
+    String address; // 25 characters
+    String city; // 14 characters
+    String state; // 2 characters
+    int zip; 
     // Sets mainPanel to verified page
     private void setVerfiedPanel() {
         JButton addMember = new JButton(new AbstractAction("Add Member") {
             public void actionPerformed(ActionEvent e) {
                 //
+                panel.removeAll();
+                JTextField memberName = new JTextField(1);
+                JTextField memberStatus = new JTextField(1);
+                JTextField  memberAddress = new JTextField(1);
+                JTextField memberCity = new JTextField(1);
+                JTextField memberState = new JTextField(1);
+                JTextField memberZip = new JTextField(1);
+                
+                long memberNumber = RandomGeneratedNumber();
+
+
+
+        
+        JButton submitButton = new JButton(new AbstractAction("Submit") {
+            public void actionPerformed(ActionEvent e) {
+                // when submitted do more stuff here
+                // like setting currentOperator and checking if input is verified
+                status = memberStatus.getText();
+                name = memberName.getText();
+                address = memberAddress.getText();
+                state = memberState.getText();
+                city = memberCity.getText();
+                boolean caughtError;
+                try {
+                    zip = Integer.parseInt(memberZip.getText());
+                } catch (NumberFormatException rand) {
+                    caughtError = true;
+                    JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
+                }
+            }
+             });
             }
         });
         JButton deleteMember = new JButton(new AbstractAction("Delete Member") {
@@ -94,7 +130,7 @@ public class OperatorTerminal {
             }
         });
 
-        JLabel label = new JLabel("Member #:");
+        JLabel label = new JLabel("Credentials:");
         label.setHorizontalAlignment(JLabel.RIGHT);
         panel.add(label);
         panel.add(input);
