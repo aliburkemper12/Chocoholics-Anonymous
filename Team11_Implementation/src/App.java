@@ -27,10 +27,11 @@ class App{
 
           //Making fake info
           members.addMember(1, "Fake Guy", "Paid", "10 Road", "Tuscaloosa", "Alabama", 0);
-          members.addMember(2, "Fake Girl", "Invalid", "11 Road", "Birmingham", "Alabama", 0);
+          members.addMember(2, "Fake Girl", "Unpaid", "11 Road", "Birmingham", "Alabama", 0);
 
           providers.addProvider(1, "Fake Guy", "10 Road", "Tuscaloosa", "Alabama", 0);
 
+          managers.addManager(1, "Fake Guy");
 
           //Terminal instances below
           ManagerTerminal mngTerm = new ManagerTerminal(providers, members, managers);
@@ -45,7 +46,7 @@ class App{
           //Creating the Frame
           JFrame frame = new JFrame("ChocAn System");
           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-          frame.setSize(800, 200);
+          frame.setSize(800, 400);
                
           //Creating the MenuBar and adding components
           JMenuBar mb = new JMenuBar();

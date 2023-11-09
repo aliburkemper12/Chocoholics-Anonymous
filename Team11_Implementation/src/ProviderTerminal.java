@@ -15,40 +15,32 @@ import javax.swing.JTextField;
 public class ProviderTerminal {
 
     // All... instances (passed from App on creation)
-    AllProviders providers;
-    AllMembers members;
+    private AllProviders providers;
+    private AllMembers members;
 
-    // provDirectory and provDirectoryPanel will be initialized after provider is
-    // verified
-    ProviderDirectory provDirectory;
-    JPanel provDirectoryPanel;
-    boolean providerVerified = false;
-
-    Provider currentProvider;
-
+    //Creates the class, called from App
     ProviderTerminal(AllProviders providers, AllMembers members) {
         this.providers = providers;
         this.members = members;
     }
 
-    // The actual screen
+    private boolean providerVerified = false;
+    private Provider currentProvider;
+
+    // The actual screen and menu
     private JPanel panel = new JPanel();
     private JMenu menu;
 
     // Called from App to get this panel
     public JPanel getPanel(JMenu mb) {
-        resetClass();
+        providerVerified = false; // set providerVerified to false so everytime provider terminal is opened
         refreshPanel();
         menu = mb;
         return panel;
     }
 
-    private void resetClass(){
-        providerVerified = false;
-    }
-
-    // Called to update screen
-    public void refreshPanel() {
+    // Called to update screen to either verified or unverified page
+    private void refreshPanel() {
         panel.removeAll();
 
         if (providerVerified) {
@@ -103,6 +95,7 @@ public class ProviderTerminal {
     }
 
     // Sets panel to the member # ___ page
+    // fromBill is true when it's called from Bill Service btn.
     private void setMemberRequestPanel(boolean fromBill) {
         panel.removeAll();
 
@@ -130,22 +123,24 @@ public class ProviderTerminal {
         try {
             inputInt = Long.parseLong(input);
         } catch (NumberFormatException rand) {
-            inputInt = -1;
+            JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
+            return;
         }
 
         if (memberCode) {
             String memberStatus = members.verifyMember(inputInt);
-        
+
             if (memberStatus.equals("Validated")) {
                 JOptionPane.showMessageDialog(null, "Member Valid");
                 if (fromBill) {
-                    setBillPanel(inputInt);
+                    Member cMember = members.getMember(inputInt);
+                    setBillPanel(cMember, false);
                     return;
                 }
-            } else if(memberStatus.equals("Member suspended")){
+            } else if (memberStatus.equals("Member suspended")) {
                 JOptionPane.showMessageDialog(null, "Member Suspended");
-            } 
-            else JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
+            } else
+                JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
         } else {
             if (providers.verifyProvider(inputInt)) {
                 providerVerified = true;
@@ -166,9 +161,17 @@ public class ProviderTerminal {
         refreshPanel();
     }
 
+    //variables used for setBillPanel and setConfirmationPanel
+    private String codeText;
+    private String monthText;
+    private String dayText;
+    private String yearText; 
+    private String comments;
+
     // Panel for filling out bill after member was verified
-    private void setBillPanel(long memberCode) {
-        Member currentMember = members.getMember(memberCode);
+    // Called when "Bill Service" clicked
+    private void setBillPanel(Member cMember, boolean useTextValues) {
+        Member currentMember = cMember;
         panel.removeAll();
 
         JPanel tempPanel = new JPanel();
@@ -180,11 +183,9 @@ public class ProviderTerminal {
         JLabel dash1 = new JLabel("-");
         JLabel dash2 = new JLabel("-");
         JTextField monthInput = new JTextField(2);
-
         JTextField dayInput = new JTextField(2);
-
         JTextField yearInput = new JTextField(4);
-        
+
         rowOne.add(label);
         rowOne.add(monthInput);
         rowOne.add(dash1);
@@ -199,38 +200,144 @@ public class ProviderTerminal {
         rowTwo.add(codeInput);
 
         JPanel rowThree = new JPanel();
-        JTextArea textArea = new JTextArea(4,30);
-        rowThree.add(textArea);
+        JLabel commentLabel = new JLabel("Comments:");
+        rowThree.add(commentLabel);
+
+        JPanel rowFour = new JPanel();
+        JTextArea textArea = new JTextArea(4, 30);
+        rowFour.add(textArea);
 
         JButton submitButton = new JButton(new AbstractAction("Submit") {
             public void actionPerformed(ActionEvent e) {
-                String date = monthInput.getText()+ "-" + dayInput.getText()+ "-" + yearInput.getText();
-                //check if serviceLabel is real code
-                //make it an int
-                addServices(currentProvider, currentMember, date, 1, textArea.getText());
+                codeText = codeInput.getText();
+                monthText = monthInput.getText();
+                dayText = dayInput.getText();
+                yearText = yearInput.getText();
+                comments = textArea.getText();
+                setConfirmationPanel(currentMember);
             }
         });
 
-        JPanel rowFour = new JPanel();
-        rowFour.add(submitButton);
+        JPanel rowFive = new JPanel();
+        rowFive.add(submitButton);
 
         tempPanel.add(rowOne);
         tempPanel.add(rowTwo);
         tempPanel.add(rowThree);
         tempPanel.add(rowFour);
+        tempPanel.add(rowFive);
 
         panel.add(tempPanel);
+
+        if(useTextValues){
+            monthInput.setText(monthText);
+            dayInput.setText(dayText);
+            yearInput.setText(yearText);
+            codeInput.setText(codeText);
+            textArea.setText(comments);
+        }
 
         panel.revalidate();
         panel.repaint();
     }
 
-    JPanel getTempPanel(){
-        JPanel test = new JPanel();
-        return test;
+    // The screen after submit is clicked when billing
+    // Show the service code and name and asks if it's correct
+    // If "No" pressed then goes back to billPanel 
+    // If "Yes" pressed then calls addServiceReports and alerts it worked and calls refreshPanel()
+    private void setConfirmationPanel(Member cMember) {
+        int monthInt;
+        int dayInt;
+        int yearInt;
+        int codeInt;
+        try {
+            codeInt = Integer.parseInt(codeText);
+            // check if codeInt is valid service, if not then alert and return
+        } catch (NumberFormatException rand) {
+            JOptionPane.showMessageDialog(null, "Code needs to be all numbers");
+            return;
+        }
+        // get month input
+        try {
+            monthInt = Integer.parseInt(monthText);
+            if (monthInt < 1 || monthInt > 12) {
+                JOptionPane.showMessageDialog(null, "Month isn't valid (Needs to be number 1-12)");
+                return;
+            }
+        } catch (NumberFormatException rand) {
+            JOptionPane.showMessageDialog(null, "Month isn't valid (Needs to be number 1-12)");
+            return;
+        }
+        // get day input
+        try {
+            dayInt = Integer.parseInt(dayText);
+            if (dayInt < 1 || dayInt > 31) {
+                JOptionPane.showMessageDialog(null, "Day isn't valid (Needs to be number 1-31)");
+                return;
+            }
+        } catch (NumberFormatException rand) {
+            JOptionPane.showMessageDialog(null, "Day isn't valid (Needs to be number 1-31)");
+            return;
+        }
+        // get year input
+        try {
+            yearInt = Integer.parseInt(yearText);
+            if (yearInt < 1990) {
+                JOptionPane.showMessageDialog(null, "Year isn't valid (Needs to be number greater than 1990)");
+                return;
+            }
+        } catch (NumberFormatException rand) {
+            JOptionPane.showMessageDialog(null, "Year isn't valid (Needs to be number greater than 1990)");
+            return;
+        }
+        // at this point: code is valid service code and month, day, and year are valid;
+
+        JPanel rowOne = new JPanel();
+        JLabel isCorrectLabel = new JLabel("Is this service correct?");
+        rowOne.add(isCorrectLabel);
+
+        JPanel rowTwo = new JPanel();
+        JLabel serviceCodeLabel = new JLabel("Service Code: " + codeInt);
+        rowTwo.add(serviceCodeLabel);
+
+        JPanel rowThree = new JPanel();
+        // Get service name from code
+        String serviceName = "Temp";
+        JLabel serviceCodeName = new JLabel("Service Name: " + serviceName);
+        rowThree.add(serviceCodeName);
+
+        JPanel rowFour = new JPanel();
+        JButton yesButton = new JButton(new AbstractAction("Yes") {
+            public void actionPerformed(ActionEvent e) {
+                String date = monthInt + "-" + dayInt + "-" + yearInt;
+                addServiceReports(currentProvider, cMember, date, codeInt, comments);
+                JOptionPane.showMessageDialog(null, "Service successfully billed!");
+                refreshPanel();
+            }
+        });
+        JButton noButton = new JButton(new AbstractAction("No") {
+            public void actionPerformed(ActionEvent e) {
+                setBillPanel(cMember, true);
+            }
+        });
+        rowFour.add(noButton);
+        rowFour.add(yesButton);
+
+        JPanel tempPanel1 = new JPanel();
+        tempPanel1.setLayout(new BoxLayout(tempPanel1, BoxLayout.Y_AXIS));
+
+        tempPanel1.add(rowOne);
+        tempPanel1.add(rowTwo);
+        tempPanel1.add(rowThree);
+        tempPanel1.add(rowFour);
+        panel.removeAll();
+        panel.add(tempPanel1);
+
+        panel.revalidate();
+        panel.repaint();
     }
 
-    // Opens new frame of the provDirectoryPanel which shows services
+    // Opens new frame which should show all services available
     private void showProviderDirectory() {
         JFrame frame = new JFrame("Provider Directory");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -239,8 +346,11 @@ public class ProviderTerminal {
         frame.setVisible(true);
     }
 
-    //add to cProvider and cMember and get current date
-    private void addServices(Provider cProvider, Member cMember, String date, int serviceCode, String comments){
-        ServiceRecord temp = new ServiceRecord(date, date, cProvider.getCreds(), cMember.getMemberNumber(), serviceCode, comments);
+    // Uses information passed in to make a new ServiceRecord() and add it to the member and provider involved
+    private void addServiceReports(Provider cProvider, Member cMember, String date, int serviceCode, String comments) {
+        // ServiceRecord temp = new ServiceRecord(date, date, cProvider.getCreds(),
+        // cMember.getMemberNumber(), serviceCode, comments);
+        // cProvider.addService(temp);
+        // cMember.addService(temp);
     }
 }
