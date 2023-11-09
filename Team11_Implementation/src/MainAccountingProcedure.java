@@ -21,16 +21,14 @@ public class MainAccountingProcedure {
             for (int i = 0; i < memberList.size(); i++) {
                 Member toFindMember = memberList.get(i);
                 if (toFindMember = /* in the billing list */){
-                    MemberReport newMemberReport = new MemberReport();
+                    Report newMemberReport = new Report();
                     newMemberReport.generateMemberReport(memberNumber);
                 }
             }
         }
 
         // request report is called and members and stuff are passed in
-        Report newReport = new Report();
-        newReport.generateProviderReport();
-        newReport.generateMemberReport();
+  
         //newReport.sendReport();
     }
 

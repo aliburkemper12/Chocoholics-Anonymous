@@ -17,11 +17,11 @@ public class Report {
         serviceDate = "";
     }
 
-    public void generateProviderReport(){
+    public void generateProviderReport(long providerNum){
         //do stuff
     }
 
-    public void generateMemberReport(){
+    public void generateMemberReport(long memberNum){
         //do stuff
     }
 
