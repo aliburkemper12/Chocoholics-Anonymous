@@ -17,11 +17,12 @@ public class MainAccountingProcedure {
         ArrayList<Member> memberList = members.memberList;
         ArrayList<Provider> providerList = providers.providerList;
 
-        public String findMember(long memberNumber){
+        public void findMember(long memberNumber){
             for (int i = 0; i < memberList.size(); i++) {
                 Member toFindMember = memberList.get(i);
                 if (toFindMember = /* in the billing list */){
-                    // generate member report
+                    MemberReport newMemberReport = new MemberReport();
+                    newMemberReport.generateMemberReport(memberNumber);
                 }
             }
         }
