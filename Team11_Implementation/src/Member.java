@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 
 // Class containing information for members.
