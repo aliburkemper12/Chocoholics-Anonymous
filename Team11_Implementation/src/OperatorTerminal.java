@@ -65,6 +65,7 @@ public class OperatorTerminal {
     String state; // 2 characters
     int zip; 
     long memberNumber;
+    long credentials;
     // Sets mainPanel to verified page
     private void setVerfiedPanel() {
         JButton addMember = new JButton(new AbstractAction("Add Member") {
@@ -79,7 +80,7 @@ public class OperatorTerminal {
                 JTextField memberZip = new JTextField(1);
                 
                 memberNumber = RandomGeneratedNumber();
-
+                credentials = RandomGeneratedNumber();
 
 
         
@@ -114,7 +115,7 @@ public class OperatorTerminal {
         JButton updateMember = new JButton(new AbstractAction("Update Member") {
             public void actionPerformed(ActionEvent e) {
                 //
-
+                members.getMember(memberNumber);
                 memberUpdatePanel(null);
             }
         });
@@ -127,14 +128,14 @@ public class OperatorTerminal {
         JButton deleteProvider = new JButton(new AbstractAction("Delete Provider") {
             public void actionPerformed(ActionEvent e) {
                 //
-                memberUpdatePanel(null);
-                
+                providers.deleteProvider(credentials);
+                JOptionPane.showMessageDialog(null, "Provider successfully deleted");  
             }
         });
         JButton updateProvider = new JButton(new AbstractAction("Update Provider") {
             public void actionPerformed(ActionEvent e) {
                 //
-                
+                memberUpdatePanel(null);
             }
         });
         panel.add(addMember);
@@ -184,6 +185,7 @@ public class OperatorTerminal {
     }
 
     private void memberUpdatePanel(Member cMember) {
+        panel.removeAll();
         JPanel rowOne = new JPanel();
         JLabel nameLabel = new JLabel(cMember.getName());
         rowOne.add(nameLabel);
