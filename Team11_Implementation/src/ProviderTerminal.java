@@ -261,7 +261,7 @@ public class ProviderTerminal {
     // The screen after submit is clicked when billing
     // Show the service code and name and asks if it's correct
     // If "No" pressed then goes back to billPanel 
-    // If "Yes" pressed then calls addServiceReports and alerts it worked and calls refreshPanel()
+    // If "Yes" pressed then calls addServiceReports and alerts it worked and calls showServiceFeePanel()
     private void setConfirmationPanel(Member cMember) {
         int monthInt;
         int dayInt;
@@ -328,8 +328,7 @@ public class ProviderTerminal {
             public void actionPerformed(ActionEvent e) {
                 String date = monthInt + "-" + dayInt + "-" + yearInt;
                 addServiceReports(currentProvider, cMember, date, codeInt, comments);
-                JOptionPane.showMessageDialog(null, "Service successfully billed!");
-                refreshPanel();
+                showServiceFeePanel(codeInt, serviceName, 10);
             }
         });
         JButton noButton = new JButton(new AbstractAction("No") {
@@ -361,6 +360,48 @@ public class ProviderTerminal {
         frame.setSize(400, 400);
         // frame.add(provDirectoryPanel);
         frame.setVisible(true);
+    }
+
+    // Called after bill is submitted to show fee for provider's files
+    private void showServiceFeePanel(int serviceCode, String serviceName, int serviceFee){
+        panel.removeAll();
+
+        JPanel tempPanel1 = new JPanel();
+        tempPanel1.setLayout(new BoxLayout(tempPanel1, BoxLayout.Y_AXIS));
+
+        JPanel rowOne = new JPanel();
+        JLabel message = new JLabel("Service Successfully Billed!");
+        rowOne.add(message);
+
+        JPanel rowTwo = new JPanel();
+        JLabel serviceCodeLabel = new JLabel("Service Code: " + serviceCode);
+        rowTwo.add(serviceCodeLabel);
+
+        JPanel rowThree = new JPanel();
+        JLabel serviceNameLabel = new JLabel("Service Name: "+serviceName);
+        rowThree.add(serviceNameLabel);
+
+        JPanel rowFour = new JPanel();
+        JLabel serviceFeeLabel = new JLabel("Service Fee: $"+serviceFee);
+        rowFour.add(serviceFeeLabel);
+
+        JPanel rowFive = new JPanel();
+        JButton doneButton = new JButton(new AbstractAction("Done") {
+            public void actionPerformed(ActionEvent e) {
+                refreshPanel();
+            }
+        });
+        rowFive.add(doneButton);
+
+        tempPanel1.add(rowOne);
+        tempPanel1.add(rowTwo);
+        tempPanel1.add(rowThree);
+        tempPanel1.add(rowFour);
+        tempPanel1.add(rowFive);
+
+        panel.add(tempPanel1);
+        panel.revalidate();
+        panel.repaint();
     }
 
     // Uses information passed in to make a new ServiceRecord() and add it to the member and provider involved
