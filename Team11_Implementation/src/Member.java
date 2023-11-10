@@ -7,15 +7,16 @@ import java.util.ArrayList;
 
 public class Member {
 
-    private String name;
-    private long memberNumber;
-    private String status;
-    private String address;
-    private String city;
-    private int zipcode;
-    private String state;
+    private String name; // 25 characters
+    private long memberNumber; //9 digits
+    private String status; // Paid, terminated, unpaid
+    private String address; // 25 characters
+    private String city; // 14 characters
+    private int zipcode; // 6 digits
+    private String state; // 2 characters
     private ArrayList<Service> services;
 
+    // Create a new member to be put int the ArrayList
     Member(String name, long memberNumber, String status, String address, String city, int zipcode, String state) {
         this.name = name;
         this.memberNumber = memberNumber;
@@ -27,62 +28,77 @@ public class Member {
         services = new ArrayList<Service>();
     }
 
+    // Add service to ArrayList
     public void addService(Service service){
         services.add(service);
     }
 
+    // Get member number
     public long getMemberNumber() {
         return memberNumber;
     }
 
+    // Set member number
     public void setMemberNumber(long memberNumber) {
         this.memberNumber = memberNumber;
     }
 
+    // Get name of member
     public  String getName() {
         return name;
     }
 
+    // Set name of member
     public void setName(String name) {
         this.name = name;
     }
 
+    // Get status of member
     public  String getStatus() {
         return status;
     }
 
+    // Set status of member
     public void setStatus(String status) {
         this.status = status;
     }
 
+    // Get address of member
     public  String getAddress() {
         return address;
     }
 
+    // Set address of member
     public void setAddress(String address) {
         this.address = address;
     }
     
+    // Get city of member
     public String getCity() {
         return city;
     }
 
+    // Set city of member
     public void setCity(String city) {
         this.city = city;
     }
 
+    // Get zipcode of member
     public int getZip() {
         return zipcode;
     }
 
+    // Set zipcode of member
     public void setZip(int zipcode) {
         this.zipcode = zipcode;
     }
 
+    // Get state of member
     public String getState() {
         return state;
     }
 
+    // Set state of member
     public void setState(String state) {
         this.state = state;
     }
