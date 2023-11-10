@@ -1,6 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.util.Random;
-import java.util.ArrayList;
+
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -114,6 +114,7 @@ public class OperatorTerminal {
         JButton updateMember = new JButton(new AbstractAction("Update Member") {
             public void actionPerformed(ActionEvent e) {
                 //
+                memberUpdatePanel(null);
                 
             }
         });
@@ -159,6 +160,54 @@ public class OperatorTerminal {
             JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
 
         refreshPanel();
+    }
+
+    private void memberUpdatePanel(Member cMember) {
+        JPanel rowOne = new JPanel();
+        JLabel nameLabel = new JLabel(cMember.getName());
+        rowOne.add(nameLabel);
+
+        JPanel rowTwo = new JPanel();
+        JLabel addressLabel = new JLabel(cMember.getAddress());
+        rowTwo.add(addressLabel);
+
+        JPanel rowThree = new JPanel();
+        JLabel cityLabel = new JLabel(cMember.getCity());
+        rowThree.add(cityLabel);
+
+        JPanel rowFour = new JPanel();
+        JLabel stateLabel = new JLabel(cMember.getState());
+        rowFour.add(stateLabel);
+
+        JPanel rowFive = new JPanel();
+        JLabel zipLabel = new JLabel(cMember.getZip() + "");
+        rowFive.add(zipLabel);
+
+        JPanel rowSix = new JPanel();
+        JButton submitButton = new JButton(new AbstractAction("Submit") {
+            public void actionPerformed(ActionEvent e) {
+                int zipInt;
+                try {
+                    zipInt = Integer.parseInt(zipLabel.getText());
+                } catch (NumberFormatException rand) {
+                    JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
+                    return;
+                }
+                cMember.setName(nameLabel.getText());
+                cMember.setAddress(addressLabel.getText());
+                cMember.setCity(cityLabel.getText());
+                cMember.setState(stateLabel.getText());
+                cMember.setZip(zipInt);
+            }
+        });
+        rowSix.add(submitButton);
+
+        panel.add(rowOne);
+        panel.add(rowTwo);
+        panel.add(rowThree);
+        panel.add(rowFour);
+        panel.add(rowFive);
+        panel.add(rowSix);
     }
 
 }
