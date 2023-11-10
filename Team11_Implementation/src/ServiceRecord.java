@@ -1,9 +1,10 @@
-import java.util.List;
+
 
 // @author Jack Sherry
 
 public class ServiceRecord {
 
+    //public ArrayList<ServiceRecord> serviceRecordList = new ArrayList<ServiceRecord>();
     private String date = "";
     private String dateService = "";
     private long providerNum = 0;

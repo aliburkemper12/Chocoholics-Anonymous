@@ -33,28 +33,6 @@ public class ProviderDirectory {
     public ArrayList<Service> requestServices(){
         return services;
     }
-    // class Service extends ProviderDirectory {
-    //     private String name;
-    //     private int code;
-    //     private int fee;
-    //     public Service(String name, int code, int fee){
-    //         this.name = name;
-    //         this.code = code;
-    //         this.fee = fee;
-    //     }
-    //     public String getName(){
-    //         return name;
-    //     }
-    //     public int getCode(){
-    //         return code;
-    //     }
-    //     public int getFee(){
-    //         return fee;
-    //     }
-    //     public String toString(){
-    //         return name + " code: " + code + " fee: " + fee + "\n";
-    //     }
-    // }
 
     class ServiceComparator implements java.util.Comparator<Service> {
         public int compare(Service a, Service b){

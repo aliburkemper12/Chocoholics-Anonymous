@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class MainAccountingProcedure {
     
+    /*  ***BELOW CODE NOT BEING USED***
     AllMembers members;
     AllProviders providers;
 
@@ -20,25 +21,26 @@ public class MainAccountingProcedure {
         public void findMember(long memberNumber){
             for (int i = 0; i < memberList.size(); i++) {
                 Member toFindMember = memberList.get(i);
-                if (toFindMember = /* in the billing list */){
+                if (toFindMember =  in the billing list ){
                     Report newMemberReport = new Report();
                     newMemberReport.generateMemberReport(memberNumber);
                 }
             }
         }
+    } */
 
-        // request report is called and members and stuff are passed in
-  
-        //newReport.sendReport();
-    }
-
-    /*  pseudo code:
-    get list of providers that billed for services that week
-    check that they are valid
-    run generate provider report
-    
-    same thing with member report
+    /*  new pseudo code:
+    search through the services and check for the ones from that week
+    make a list of the service codes from that week
     */
+
+
+    Member servRecord;
+    
+    public void runMainAccountingProcedure(){
+        ArrayList<Member> serviceRecordList = servRecord.serviceRecordList;
+
+    }
 
     public void summaryReport(){
 
