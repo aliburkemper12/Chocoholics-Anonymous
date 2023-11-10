@@ -18,7 +18,7 @@ public class ProviderTerminal {
     private AllProviders providers;
     private AllMembers members;
 
-    //Creates the class, called from App
+    // Creates the class, called from App
     ProviderTerminal(AllProviders providers, AllMembers members) {
         this.providers = providers;
         this.members = members;
@@ -146,11 +146,12 @@ public class ProviderTerminal {
                     Member cMember = members.getMember(inputInt);
                     setBillPanel(cMember, false);
                     return;
-                }
-                else refreshPanel();
-            } 
-            else if (memberStatus.equals("Member suspended"))  JOptionPane.showMessageDialog(null, "Member Suspended");
-            else JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
+                } else
+                    refreshPanel();
+            } else if (memberStatus.equals("Member suspended"))
+                JOptionPane.showMessageDialog(null, "Member Suspended");
+            else
+                JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
         } else {
             if (providers.verifyProvider(inputInt)) {
                 providerVerified = true;
@@ -165,15 +166,16 @@ public class ProviderTerminal {
                 // currentProvider = providers.getProvider(inputInt);
                 // provDirectory = new ProviderDirectory(currentProvider);
                 // provDirectoryPanel = provDirectory.getPanel();
-            } else JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
+            } else
+                JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
         }
     }
 
-    //variables used for setBillPanel and setConfirmationPanel
+    // variables used for setBillPanel and setConfirmationPanel
     private String codeText;
     private String monthText;
     private String dayText;
-    private String yearText; 
+    private String yearText;
     private String comments;
 
     // Panel for filling out bill after member was verified
@@ -246,7 +248,7 @@ public class ProviderTerminal {
 
         panel.add(tempPanel);
 
-        if(useTextValues){
+        if (useTextValues) {
             monthInput.setText(monthText);
             dayInput.setText(dayText);
             yearInput.setText(yearText);
@@ -260,8 +262,9 @@ public class ProviderTerminal {
 
     // The screen after submit is clicked when billing
     // Show the service code and name and asks if it's correct
-    // If "No" pressed then goes back to billPanel 
-    // If "Yes" pressed then calls addServiceReports and alerts it worked and calls showServiceFeePanel()
+    // If "No" pressed then goes back to billPanel
+    // If "Yes" pressed then calls addServiceReports and alerts it worked and calls
+    // showServiceFeePanel()
     private void setConfirmationPanel(Member cMember) {
         int monthInt;
         int dayInt;
@@ -358,12 +361,12 @@ public class ProviderTerminal {
         JFrame frame = new JFrame("Provider Directory");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(400, 400);
-        // frame.add(provDirectoryPanel);
+        // frame.add(memberUpdatePanel());
         frame.setVisible(true);
     }
 
     // Called after bill is submitted to show fee for provider's files
-    private void showServiceFeePanel(int serviceCode, String serviceName, int serviceFee){
+    private void showServiceFeePanel(int serviceCode, String serviceName, int serviceFee) {
         panel.removeAll();
 
         JPanel tempPanel1 = new JPanel();
@@ -378,11 +381,11 @@ public class ProviderTerminal {
         rowTwo.add(serviceCodeLabel);
 
         JPanel rowThree = new JPanel();
-        JLabel serviceNameLabel = new JLabel("Service Name: "+serviceName);
+        JLabel serviceNameLabel = new JLabel("Service Name: " + serviceName);
         rowThree.add(serviceNameLabel);
 
         JPanel rowFour = new JPanel();
-        JLabel serviceFeeLabel = new JLabel("Service Fee: $"+serviceFee);
+        JLabel serviceFeeLabel = new JLabel("Service Fee: $" + serviceFee);
         rowFour.add(serviceFeeLabel);
 
         JPanel rowFive = new JPanel();
@@ -404,11 +407,24 @@ public class ProviderTerminal {
         panel.repaint();
     }
 
-    // Uses information passed in to make a new ServiceRecord() and add it to the member and provider involved
+    // Uses information passed in to make a new ServiceRecord() and add it to the
+    // member and provider involved
     private void addServiceReports(Provider cProvider, Member cMember, String date, int serviceCode, String comments) {
         // ServiceRecord temp = new ServiceRecord(date, date, cProvider.getCreds(),
         // cMember.getMemberNumber(), serviceCode, comments);
         // cProvider.addService(temp);
         // cMember.addService(temp);
+    }
+
+    private void billService(Member currMember, String date, String serviceDate, int serviceCode, String comment){
+        members.verifyMember(currMember.getMemberNumber());
+        ServiceRecord service =  new ServiceRecord(date, serviceDate, currentProvider.getProviderNum(), currMember.getMemberNumber(), serviceCode, comment);
+        currentProvider.addRecord(service);
+    }
+
+    private void getReport(){
+        ArrayList<ServiceRecord> records = currentProvider.getRecords();
+        ProviderReport report = new ProviderReport(members, records);
+        String reportText = report.writeReport();
     }
 }
