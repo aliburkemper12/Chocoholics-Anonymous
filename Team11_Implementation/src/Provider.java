@@ -3,6 +3,7 @@ public class Provider{
     private String name;
     private long credentials;
     private ArrayList<Service> services;
+    private ArrayList<DiskRecord> records;
     
     Provider(String name, int credentials){
         this.name = name;
@@ -20,5 +21,11 @@ public class Provider{
     }
     public ArrayList<Service> getServices(){
         return services;
+    }
+    public void addRecord(DiskRecord record){
+        records.add(record);
+    }
+    public ArrayList<DiskRecord> getRecords(){
+        return records;
     }
 }

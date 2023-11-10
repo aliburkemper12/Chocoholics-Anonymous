@@ -5,13 +5,13 @@ public class ProviderReport {
     int weekFee;
     String memberName;
     String report;
+    AllMembers members;
+    Member currMember;
 
-    ProviderReport(){
+    ProviderReport(AllMembers members, ArrayList<DiskRecord> records){
         weekFee = 0;
-    }
-
-    public void addRecord(DiskRecord record){
-        records.add(record);
+        this.members = members;
+        this.records = records;
     }
 
     public String writeReport(){
@@ -33,7 +33,8 @@ public class ProviderReport {
             report += "\nService date: ";
             report += serviceDate;
             report += "\nMember name and number: ";
-            memberName = //find a way to get membername from membernum
+            currMember = members.getMember(memberNum);
+            memberName = currMember.getName();
             report += memberName;
             report += " ";
             report += memberNum;
