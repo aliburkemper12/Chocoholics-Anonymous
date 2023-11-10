@@ -35,7 +35,7 @@ public class ManagerReport {
                 ServiceRecord s = sRecords.get(j);
                 LocalDate ld = s.getDateService();
                 if (checkIfSameWeek(ld)) {
-                    // totalFee += s.getServiceFee(); //need service fee in ServiceReport
+                    totalFee += s.getServiceFee(); //need service fee in ServiceReport
                     totalConsultations++;
                 }
                 // if not in week just ignore
@@ -47,7 +47,7 @@ public class ManagerReport {
 
     // Returns true if check date is in the week of gloabl variable today
     private boolean checkIfSameWeek(LocalDate check) {
-        DayOfWeek sun = DayOfWeek.of(0); // Sunday = 0.
+        DayOfWeek sun = DayOfWeek.of(7); // Sunday = 7.
         DayOfWeek sat = DayOfWeek.of(6); // Saturday = 6.
 
         LocalDate endOfWeek = today.with(TemporalAdjusters.nextOrSame(sat)); // Gets next friday

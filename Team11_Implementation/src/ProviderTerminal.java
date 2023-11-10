@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
 
 public class ProviderTerminal {
 
@@ -354,7 +356,7 @@ public class ProviderTerminal {
         JButton yesButton = new JButton(new AbstractAction("YES") {
             public void actionPerformed(ActionEvent e) {
                 String date = monthInt + "-" + dayInt + "-" + yearInt;
-                addServiceReports(currentProvider, cMember, date, codeInt, comments);
+                addServiceReports(currentProvider, cMember, date, codeInt, comments, serviceFee);
                 showServiceFeePanel(codeInt, serviceName, serviceFee);
             }
         });
@@ -398,13 +400,18 @@ public class ProviderTerminal {
         }
     }
 
+
+    boolean frameOpen = false;
+    JFrame frame;
     // Opens new frame which should show all services available
     private void showProviderDirectory() {
-        JFrame frame = new JFrame("Provider Directory");
+        if(frameOpen) frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+        frame = new JFrame("Provider Directory");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(400, 200);
         frame.getContentPane().add(BorderLayout.SOUTH, provDirectoryPanel);  
         frame.setVisible(true);
+        frameOpen = true;
     }
 
     // Called after bill is submitted to show fee for provider's files
@@ -452,8 +459,10 @@ public class ProviderTerminal {
     // Uses information passed in to make a new ServiceRecord() and add it to the
     // member and provider involved
     // Called when YES is clicked to confirm bill
-    private void addServiceReports(Provider cProvider, Member cMember, String date, int serviceCode, String comments) {
-        //Whatever Luca wants me to call
+    private void addServiceReports(Provider cProvider, Member cMember, String date, int serviceCode, String comments, int serviceFee) {
+        ServiceRecord temp = new ServiceRecord(date, cProvider.getCreds(), cMember.getMemberNumber(), serviceCode, comments, serviceFee);
+        cProvider.addRecord(temp);
+        cMember.addService(temp);
     }
 
     private void billService(Member currMember, String date, String serviceDate, int serviceCode, String comment){

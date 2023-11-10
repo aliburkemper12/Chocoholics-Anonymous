@@ -143,5 +143,6 @@ public class ManagerTerminal {
     //initiateReport is going to be called from GUI (getPanel function)
     private void requestReport(){
         //Whatever Jack wants us to call
+        mReport.createReport();
     }
 }
