@@ -14,9 +14,10 @@ public class Member {
     private String city; // 14 characters
     private int zipcode; // 6 digits
     private String state; // 2 characters
-    private ArrayList<Service> serviceReports;
+    private ArrayList<ServiceRecord> serviceReports;
+    private ArrayList<Report> memberReport;
 
-    // Create a new member to be put int the ArrayList
+    // Create a new member to be put into the ArrayList
     Member(String name, long memberNumber, String status, String address, String city, int zipcode, String state) {
         this.name = name;
         this.memberNumber = memberNumber;
@@ -25,11 +26,16 @@ public class Member {
         this.city = city;
         this.zipcode = zipcode;
         this.state = state;
-        serviceReports = new ArrayList<Service>();
+        serviceReports = new ArrayList<ServiceRecord>();
+    }
+
+    // Add report to memberReport
+    public void addReport(Report report){
+        memberReport.add(report);
     }
 
     // Add service to ArrayList
-    public void addService(Service service){
+    public void addService(ServiceRecord service){
         serviceReports.add(service);
     }
 
@@ -44,7 +50,7 @@ public class Member {
     }
 
     // Get name of member
-    public  String getName() {
+    public String getName() {
         return name;
     }
 

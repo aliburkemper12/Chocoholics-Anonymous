@@ -1,12 +1,11 @@
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 
 // @author Jack Sherry
 
 public class ServiceRecord {
 
-    public ArrayList<ServiceRecord> serviceRecordList = new ArrayList<ServiceRecord>();
+    //public ArrayList<ServiceRecord> serviceRecordList = new ArrayList<ServiceRecord>();
     private String date = "";
     private LocalDate dateService;
     private long providerNum = 0;
