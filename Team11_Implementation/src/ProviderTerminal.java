@@ -61,12 +61,6 @@ public class ProviderTerminal {
                 setMemberRequestPanel(false);
             }
         });
-        JButton accessDirectory = new JButton(new AbstractAction("Show Directory") {
-            public void actionPerformed(ActionEvent e) {
-                showProviderDirectory();
-            }
-        });
-
         JButton addBill = new JButton(new AbstractAction("Bill Service") {
             public void actionPerformed(ActionEvent e) {
                 setMemberRequestPanel(true);
@@ -75,7 +69,6 @@ public class ProviderTerminal {
 
         panel.add(verifyMember);
         panel.add(addBill);
-        panel.add(accessDirectory);
     }
 
     // Sets panel to the provider # _____ page
@@ -99,6 +92,15 @@ public class ProviderTerminal {
     private void setMemberRequestPanel(boolean fromBill) {
         panel.removeAll();
 
+        JPanel rowZero = new JPanel();
+        JButton goBack = new JButton(new AbstractAction("Go Back") {
+            public void actionPerformed(ActionEvent e) {
+                refreshPanel();
+            }
+        });
+        rowZero.add(goBack);
+
+        JPanel rowOne = new JPanel();
         JLabel label = new JLabel("Member #:");
         label.setHorizontalAlignment(JLabel.RIGHT);
         JTextField input = new JTextField(10);
@@ -108,9 +110,18 @@ public class ProviderTerminal {
             }
         });
 
-        panel.add(label);
-        panel.add(input);
-        panel.add(submitButton);
+        rowOne.add(label);
+        rowOne.add(input);
+        rowOne.add(submitButton);
+
+        JPanel tempPanel = new JPanel();
+        tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
+
+        tempPanel.add(rowZero);
+        tempPanel.add(rowOne);
+
+        panel.add(tempPanel);
+
         panel.revalidate();
         panel.repaint();
     }
@@ -129,7 +140,6 @@ public class ProviderTerminal {
 
         if (memberCode) {
             String memberStatus = members.verifyMember(inputInt);
-
             if (memberStatus.equals("Validated")) {
                 JOptionPane.showMessageDialog(null, "Member Valid");
                 if (fromBill) {
@@ -137,10 +147,10 @@ public class ProviderTerminal {
                     setBillPanel(cMember, false);
                     return;
                 }
-            } else if (memberStatus.equals("Member suspended")) {
-                JOptionPane.showMessageDialog(null, "Member Suspended");
-            } else
-                JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
+                else refreshPanel();
+            } 
+            else if (memberStatus.equals("Member suspended"))  JOptionPane.showMessageDialog(null, "Member Suspended");
+            else JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
         } else {
             if (providers.verifyProvider(inputInt)) {
                 providerVerified = true;
@@ -151,14 +161,12 @@ public class ProviderTerminal {
                 });
                 menu.setText("Show Directory");
                 menu.add(m1);
+                refreshPanel();
                 // currentProvider = providers.getProvider(inputInt);
                 // provDirectory = new ProviderDirectory(currentProvider);
                 // provDirectoryPanel = provDirectory.getPanel();
-            } else
-                JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
+            } else JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
         }
-
-        refreshPanel();
     }
 
     //variables used for setBillPanel and setConfirmationPanel
@@ -175,8 +183,16 @@ public class ProviderTerminal {
         panel.removeAll();
 
         JPanel tempPanel = new JPanel();
-
         tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
+
+        JPanel rowZero = new JPanel();
+        JButton goBack = new JButton(new AbstractAction("Go Back") {
+            public void actionPerformed(ActionEvent e) {
+                setMemberRequestPanel(true);
+            }
+        });
+        rowZero.add(goBack);
+
         // panel.add(datePicker);
         JPanel rowOne = new JPanel();
         JLabel label = new JLabel("MM-DD-YYYY:");
@@ -221,6 +237,7 @@ public class ProviderTerminal {
         JPanel rowFive = new JPanel();
         rowFive.add(submitButton);
 
+        tempPanel.add(rowZero);
         tempPanel.add(rowOne);
         tempPanel.add(rowTwo);
         tempPanel.add(rowThree);
