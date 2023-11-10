@@ -1,6 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.util.Random;
-
+import java.util.ArrayList;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -64,6 +64,7 @@ public class OperatorTerminal {
     String city; // 14 characters
     String state; // 2 characters
     int zip; 
+    long memberNumber;
     // Sets mainPanel to verified page
     private void setVerfiedPanel() {
         JButton addMember = new JButton(new AbstractAction("Add Member") {
@@ -77,7 +78,7 @@ public class OperatorTerminal {
                 JTextField memberState = new JTextField(1);
                 JTextField memberZip = new JTextField(1);
                 
-                long memberNumber = RandomGeneratedNumber();
+                memberNumber = RandomGeneratedNumber();
 
 
 
@@ -105,12 +106,15 @@ public class OperatorTerminal {
         JButton deleteMember = new JButton(new AbstractAction("Delete Member") {
             public void actionPerformed(ActionEvent e) {
                 //
+                members.deleteMember(memberNumber);
+                JOptionPane.showMessageDialog(null, "Member successfully deleted"); 
             }
         });
 
         JButton updateMember = new JButton(new AbstractAction("Update Member") {
             public void actionPerformed(ActionEvent e) {
                 //
+                
             }
         });
 
