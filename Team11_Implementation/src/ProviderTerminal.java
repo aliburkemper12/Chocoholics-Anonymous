@@ -411,4 +411,16 @@ public class ProviderTerminal {
         // cProvider.addService(temp);
         // cMember.addService(temp);
     }
+
+    private void billService(Member currMember, String date, String serviceDate, int serviceCode, String comment){
+        members.verifyMember(currMember.getMemberNumber());
+        ServiceRecord service =  new ServiceRecord(date, serviceDate, currentProvider.getProviderNum(), currMember.getMemberNumber(), serviceCode, comment);
+        currentProvider.addRecord(service);
+    }
+
+    private void getReport(){
+        ArrayList<ServiceRecord> records = currentProvider.getRecords();
+        ProviderReport report = new ProviderReport(members, records);
+        String reportText = report.writeReport();
+    }
 }

@@ -22,7 +22,7 @@ public class ProviderReport {
         int fee;
         int consultations = 0;
         
-        for(DiskRecord record : records){
+        for(ServiceRecord record : records){
             currDate = record.getCurrDate();
             serviceDate = record.serviceDate();
             memberNum = record.getMemberNum();
