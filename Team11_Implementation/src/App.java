@@ -25,6 +25,9 @@ class App{
           managers = new AllManagers();
           operators = new AllOperators();
 
+          ManagerReport m = new ManagerReport();
+          m.createReport(providers);
+
           //Making fake info
           members.addMember(1, "Fake Guy", "Paid", "10 Road", "Tuscaloosa", "Alabama", 0);
           members.addMember(2, "Fake Girl", "Unpaid", "11 Road", "Birmingham", "Alabama", 0);
