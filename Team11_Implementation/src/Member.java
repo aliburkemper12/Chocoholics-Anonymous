@@ -14,7 +14,7 @@ public class Member {
     private String city; // 14 characters
     private int zipcode; // 6 digits
     private String state; // 2 characters
-    private ArrayList<Service> services;
+    private ArrayList<Service> serviceReports;
 
     // Create a new member to be put int the ArrayList
     Member(String name, long memberNumber, String status, String address, String city, int zipcode, String state) {
@@ -25,12 +25,12 @@ public class Member {
         this.city = city;
         this.zipcode = zipcode;
         this.state = state;
-        services = new ArrayList<Service>();
+        serviceReports = new ArrayList<Service>();
     }
 
     // Add service to ArrayList
     public void addService(Service service){
-        services.add(service);
+        serviceReports.add(service);
     }
 
     // Get member number
