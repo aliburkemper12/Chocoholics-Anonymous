@@ -72,8 +72,7 @@ public class ManagerTerminal {
 
     //initiateReport is going to be called from GUI (getPanel function)
     private void requestReport(){
-        Report newReport = new Report();
-        newReport.generateReport();
-        newReport.sendReport();
+        MainAccountingProcedure temp = new MainAccountingProcedure(members, providers);
+        temp.runMainAccountingProcedure();
     }
 }
