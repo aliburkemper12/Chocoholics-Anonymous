@@ -83,8 +83,10 @@ public class TimerClass {
 
     //Finish below
     public void runMainAccountingProcedure(){
-        Report newReport = new Report();
-        newReport.generateReport();
-        newReport.sendReport();
+        // do stuff
+    }
+
+    public void deleteMemberList(){
+        // do stuff
     }
 }
