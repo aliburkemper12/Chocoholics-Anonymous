@@ -63,6 +63,7 @@ public class AllMembers {
             if (toDelete.getMemberNumber() == memberNumber) {
                 //Member with matching memberNumber found
                 memberList.remove(i);
+                return;
             }
         }
     }
@@ -75,6 +76,7 @@ public class AllMembers {
             if (toUpdate.getMemberNumber() == memberNumber) {
                 //Member with matching memberNumber found
                 toUpdate.setName(name);
+                return;
             }
         }
     }
@@ -87,6 +89,7 @@ public class AllMembers {
             if (toUpdate.getMemberNumber() == memberNumber) {
                 //Member with matching memberNumber found
                 toUpdate.setAddress(address);
+                return;
             }
         }
     }
@@ -99,6 +102,7 @@ public class AllMembers {
             if (toUpdate.getMemberNumber() == memberNumber) {
                 //Member with matching memberNumber found
                 toUpdate.setStatus(status);
+                return;
             }
         }
     }
@@ -111,6 +115,7 @@ public class AllMembers {
             if (toUpdate.getMemberNumber() == memberNumber) {
                 //Member with matching memberNumber found
                 toUpdate.setCity(city);
+                return;
             }
         }
     }
@@ -123,6 +128,7 @@ public class AllMembers {
             if (toUpdate.getMemberNumber() == memberNumber) {
                 //Member with matching memberNumber found
                 toUpdate.setState(state);
+                return;
             }
         }
     }
@@ -135,6 +141,7 @@ public class AllMembers {
             if (toUpdate.getMemberNumber() == memberNumber) {
                 //Member with matching memberNumber found
                 toUpdate.setZip(zip);
+                return;
             }
         }
     }
