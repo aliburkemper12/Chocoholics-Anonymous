@@ -25,6 +25,16 @@ class App{
           managers = new AllManagers();
           operators = new AllOperators();
 
+          //Making fake info
+          members.addMember(1, "Fake Guy", "Paid", "10 Road", "Tuscaloosa", "Alabama", 0);
+          members.addMember(2, "Fake Girl", "Unpaid", "11 Road", "Birmingham", "Alabama", 0);
+
+          providers.addProvider(1, "Fake Prov", "10 Road", "Tuscaloosa", "Alabama", 0);
+
+          operators.addOperator(1, "Fake Op");
+
+          managers.addManager(1, "Fake Man");
+
           //Terminal instances below
           ManagerTerminal mngTerm = new ManagerTerminal(providers, members, managers);
           ProviderTerminal provTerm = new ProviderTerminal(providers, members);
@@ -38,7 +48,7 @@ class App{
           //Creating the Frame
           JFrame frame = new JFrame("ChocAn System");
           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-          frame.setSize(800, 200);
+          frame.setSize(800, 400);
                
           //Creating the MenuBar and adding components
           JMenuBar mb = new JMenuBar();
@@ -55,7 +65,7 @@ class App{
                     timer.runNow(); //will run now and next run will still be friday at midnight
                }
           });
-          JMenuItem m2_2 = new JMenuItem(new AbstractAction("Member Reports") {
+          JMenuItem m2_2 = new JMenuItem(new AbstractAction("Member Terminal") {
                public void actionPerformed(ActionEvent e) {
                     m1.setEnabled(false);    //make it so you can't select other terminals
                     m2.setVisible(false);    //remove demo options
