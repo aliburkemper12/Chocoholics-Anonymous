@@ -14,20 +14,18 @@ public class ManagerReport {
 
     private File myObj;
 
-    public ArrayList<String> linesInReport;
+    public ArrayList<String> linesInReport = new ArrayList<String>();
     
     private AllProviders providers;
 
     public ManagerReport(AllProviders providers) {
         this.providers = providers;
-        createReport();
     }
 
     // Called in managerReport
     public void createReport() {
         makeFile();
         ArrayList<Provider> pList = providers.providerList;
-        linesInReport = new ArrayList<String>();
         for (int i = 0; i < pList.size(); i++) {
             ArrayList<ServiceRecord> sRecords = pList.get(i).getRecords();
             String name = pList.get(i).getName();
@@ -42,7 +40,7 @@ public class ManagerReport {
                 }
                 // if not in week just ignore
             }
-            linesInReport.add("Provider: "+name + "-> Total Consultations: " + totalConsultations + ",  Total Fee: " + totalFee + ";");
+            linesInReport.add("Provider Name: "+name + ",  Total Consultations: " + totalConsultations + ",  Total Fee: " + totalFee);
         }
         writeToFile();
     }

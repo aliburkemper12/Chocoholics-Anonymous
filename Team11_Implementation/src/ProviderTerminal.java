@@ -453,7 +453,7 @@ public class ProviderTerminal {
     // member and provider involved
     // Called when YES is clicked to confirm bill
     private void addServiceReports(Provider cProvider, Member cMember, String date, int serviceCode, String comments) {
-        
+        //Whatever Luca wants me to call
     }
 
     private void billService(Member currMember, String date, String serviceDate, int serviceCode, String comment){
