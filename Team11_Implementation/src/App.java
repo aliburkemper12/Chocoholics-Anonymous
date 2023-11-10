@@ -29,9 +29,11 @@ class App{
           members.addMember(1, "Fake Guy", "Paid", "10 Road", "Tuscaloosa", "Alabama", 0);
           members.addMember(2, "Fake Girl", "Unpaid", "11 Road", "Birmingham", "Alabama", 0);
 
-          providers.addProvider(1, "Fake Guy", "10 Road", "Tuscaloosa", "Alabama", 0);
+          providers.addProvider(1, "Fake Prov", "10 Road", "Tuscaloosa", "Alabama", 0);
 
-          managers.addManager(1, "Fake Guy");
+          operators.addOperator(1, "Fake Op");
+
+          managers.addManager(1, "Fake Man");
 
           //Terminal instances below
           ManagerTerminal mngTerm = new ManagerTerminal(providers, members, managers);
@@ -63,7 +65,7 @@ class App{
                     timer.runNow(); //will run now and next run will still be friday at midnight
                }
           });
-          JMenuItem m2_2 = new JMenuItem(new AbstractAction("Member Reports") {
+          JMenuItem m2_2 = new JMenuItem(new AbstractAction("Member Terminal") {
                public void actionPerformed(ActionEvent e) {
                     m1.setEnabled(false);    //make it so you can't select other terminals
                     m2.setVisible(false);    //remove demo options
