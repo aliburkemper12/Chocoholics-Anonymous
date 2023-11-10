@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 
 public class ProviderReport {
-    ArrayList<DiskRecord> records;
+    ArrayList<ServiceRecord> records;
     int weekFee;
     String memberName;
     String report;
     AllMembers members;
     Member currMember;
 
-    ProviderReport(AllMembers members, ArrayList<DiskRecord> records){
+    ProviderReport(AllMembers members, ArrayList<ServiceRecordecord> records){
         weekFee = 0;
         this.members = members;
         this.records = records;

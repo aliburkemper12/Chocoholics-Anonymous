@@ -11,7 +11,7 @@ public class Provider{
     private String state;
     private int zipcode;
     private ArrayList<Service> services;
-    private ArrayList<DiskRecord> records;
+    private ArrayList<ServiceRecord> records;
     
     Provider(String name, long credentials, String address, String city, String state, int zipcode){
         this.name = name;
@@ -77,10 +77,10 @@ public class Provider{
     public ArrayList<Service> getServices(){
         return services;
     }
-    public void addRecord(DiskRecord record){
+    public void addRecord(ServiceRecord record){
         records.add(record);
     }
-    public ArrayList<DiskRecord> getRecords(){
+    public ArrayList<ServiceRecord> getRecords(){
         return records;
     }
 }
