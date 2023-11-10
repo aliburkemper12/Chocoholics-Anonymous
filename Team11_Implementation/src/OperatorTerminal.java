@@ -114,13 +114,33 @@ public class OperatorTerminal {
         JButton updateMember = new JButton(new AbstractAction("Update Member") {
             public void actionPerformed(ActionEvent e) {
                 //
+
+            }
+        });
+        JButton addProvider = new JButton(new AbstractAction("Add Provider") {
+            public void actionPerformed(ActionEvent e) {
+                //
                 
             }
         });
-
+        JButton deleteProvider = new JButton(new AbstractAction("Delete Provider") {
+            public void actionPerformed(ActionEvent e) {
+                //
+                
+            }
+        });
+        JButton updateProvider = new JButton(new AbstractAction("Update Provider") {
+            public void actionPerformed(ActionEvent e) {
+                //
+                
+            }
+        });
         panel.add(addMember);
         panel.add(deleteMember);
         panel.add(updateMember);
+        panel.add(addProvider);
+        panel.add(deleteProvider);
+        panel.add(updateProvider);
     }
 
     // Sets panel to the provider # _____ page
