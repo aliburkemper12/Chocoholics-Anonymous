@@ -80,7 +80,7 @@ public class OperatorTerminal {
                 JTextField memberZip = new JTextField(1);
                 
                 memberNumber = RandomGeneratedNumber();
-                credentials = RandomGeneratedNumber();
+                
 
 
         
@@ -123,6 +123,7 @@ public class OperatorTerminal {
             public void actionPerformed(ActionEvent e) {
                 //
                 
+               credentials = RandomGeneratedNumber(); 
             }
         });
         JButton deleteProvider = new JButton(new AbstractAction("Delete Provider") {
