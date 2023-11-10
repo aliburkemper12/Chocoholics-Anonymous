@@ -26,18 +26,11 @@ public class MainAccountingProcedure {
                 }
             }
         }
-
-        // request report is called and members and stuff are passed in
-  
-        //newReport.sendReport();
     }
 
     /*  pseudo code:
-    get list of providers that billed for services that week
-    check that they are valid
-    run generate provider report
-    
-    same thing with member report
+    search through the services and check for the ones from that week
+    make a list of the service codes from that week
     */
 
     public void summaryReport(){
