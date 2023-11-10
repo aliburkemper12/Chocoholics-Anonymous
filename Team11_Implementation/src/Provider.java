@@ -20,6 +20,10 @@ public class Provider{
         this.city = city;
         this.zipcode = zipcode;
         this.state = state;
+        Service temp1 = new Service("Session with Dietitian", 598470, 50);
+        Service temp2 = new Service("Aerobics Exercise Session", 883948, 150);
+        services.add(temp1);
+        services.add(temp2);
     }
 
     public void addService(Service newService){

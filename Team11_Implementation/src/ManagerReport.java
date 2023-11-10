@@ -10,17 +10,21 @@ import java.util.ArrayList;
 public class ManagerReport {
 
     private ZoneId z = ZoneId.of("America/Chicago"); // just sets zone
-    private LocalDate today = LocalDate.now(z); // current date
+    private LocalDate today = LocalDate.now(z); // current date (needs time zone above)
 
     private File myObj;
 
     public ArrayList<String> linesInReport;
+    
+    private AllProviders providers;
 
-    public ManagerReport() {
-
+    public ManagerReport(AllProviders providers) {
+        this.providers = providers;
+        createReport();
     }
 
-    public void createReport(AllProviders providers) {
+    // Called in managerReport
+    public void createReport() {
         makeFile();
         ArrayList<Provider> pList = providers.providerList;
         linesInReport = new ArrayList<String>();
@@ -32,7 +36,7 @@ public class ManagerReport {
             for (int j = 0; j < sRecords.size(); j++) {
                 ServiceRecord s = sRecords.get(j);
                 LocalDate ld = s.getDateService();
-                if (checkIfSameWeek(today, ld)) {
+                if (checkIfSameWeek(ld)) {
                     // totalFee += s.getServiceFee(); //need service fee in ServiceReport
                     totalConsultations++;
                 }
@@ -43,7 +47,8 @@ public class ManagerReport {
         writeToFile();
     }
 
-    private boolean checkIfSameWeek(LocalDate today, LocalDate check) {
+    // Returns true if check date is in the week of gloabl variable today
+    private boolean checkIfSameWeek(LocalDate check) {
         DayOfWeek sun = DayOfWeek.of(0); // Sunday = 0.
         DayOfWeek sat = DayOfWeek.of(6); // Saturday = 6.
 
@@ -53,6 +58,7 @@ public class ManagerReport {
         return !(check.isBefore(startOfWeek) || check.isAfter(endOfWeek));
     }
 
+    // Makes file in data folder called "ManagerReport.txt"
     private void makeFile() {
         try {
             myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ManagerReport.txt");
@@ -67,6 +73,7 @@ public class ManagerReport {
         }
     }
 
+    // After linesInReport is complete this just takes each string in array and writes to new line
     private void writeToFile() {
         try {
             FileWriter myWriter = new FileWriter(myObj.getPath());

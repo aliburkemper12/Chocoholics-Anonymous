@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
@@ -25,8 +26,11 @@ public class ProviderTerminal {
         this.members = members;
     }
 
+    private ProviderDirectory providerDirectory;
+    private JPanel provDirectoryPanel;
     private boolean providerVerified = false;
     private Provider currentProvider;
+    ArrayList<Service> services;
 
     // The actual screen and menu
     private JPanel panel = new JPanel();
@@ -164,9 +168,9 @@ public class ProviderTerminal {
                 menu.setText("Show Directory");
                 menu.add(m1);
                 refreshPanel();
-                // currentProvider = providers.getProvider(inputInt);
-                // provDirectory = new ProviderDirectory(currentProvider);
-                // provDirectoryPanel = provDirectory.getPanel();
+                currentProvider = providers.getProvider(inputInt);
+                providerDirectory = new ProviderDirectory(currentProvider);
+                makeProviderDirectoryPanel();
             } else
                 JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
         }
@@ -311,6 +315,21 @@ public class ProviderTerminal {
             JOptionPane.showMessageDialog(null, "Year isn't valid (Needs to be number greater than 1990)");
             return;
         }
+
+        Service cService = new Service();
+        boolean serviceFound = false;
+        for(int i = 0; i < services.size(); i++){
+            cService = services.get(i);
+            if(cService.getCode()==codeInt){
+                serviceFound = true;
+                break;
+            }
+        }
+        if(!serviceFound){
+            JOptionPane.showMessageDialog(null, "Service code isn't valid");
+            return;
+        }
+
         // at this point: code is valid service code and month, day, and year are valid;
 
         JPanel rowOne = new JPanel();
@@ -322,26 +341,30 @@ public class ProviderTerminal {
         rowTwo.add(serviceCodeLabel);
 
         JPanel rowThree = new JPanel();
-        // Get service name from code
-        String serviceName = "Temp";
+        String serviceName = cService.getName();
         JLabel serviceCodeName = new JLabel("Service Name: " + serviceName);
         rowThree.add(serviceCodeName);
 
         JPanel rowFour = new JPanel();
-        JButton yesButton = new JButton(new AbstractAction("Yes") {
+        int serviceFee = cService.getFee();
+        JLabel serviceFeeLabel = new JLabel("Service Fee: " + serviceFee);
+        rowFour.add(serviceFeeLabel);
+
+        JPanel rowFive = new JPanel();
+        JButton yesButton = new JButton(new AbstractAction("YES") {
             public void actionPerformed(ActionEvent e) {
                 String date = monthInt + "-" + dayInt + "-" + yearInt;
                 addServiceReports(currentProvider, cMember, date, codeInt, comments);
-                showServiceFeePanel(codeInt, serviceName, 10);
+                showServiceFeePanel(codeInt, serviceName, serviceFee);
             }
         });
-        JButton noButton = new JButton(new AbstractAction("No") {
+        JButton noButton = new JButton(new AbstractAction("NO") {
             public void actionPerformed(ActionEvent e) {
                 setBillPanel(cMember, true);
             }
         });
-        rowFour.add(noButton);
-        rowFour.add(yesButton);
+        rowFive.add(noButton);
+        rowFive.add(yesButton);
 
         JPanel tempPanel1 = new JPanel();
         tempPanel1.setLayout(new BoxLayout(tempPanel1, BoxLayout.Y_AXIS));
@@ -350,6 +373,7 @@ public class ProviderTerminal {
         tempPanel1.add(rowTwo);
         tempPanel1.add(rowThree);
         tempPanel1.add(rowFour);
+        tempPanel1.add(rowFive);
         panel.removeAll();
         panel.add(tempPanel1);
 
@@ -357,12 +381,29 @@ public class ProviderTerminal {
         panel.repaint();
     }
 
+    // Makes the Show Directory panel after provider is verified
+    private void makeProviderDirectoryPanel(){
+        provDirectoryPanel = new JPanel();
+
+        services = providerDirectory.requestServices();
+
+        provDirectoryPanel.setLayout(new BoxLayout(provDirectoryPanel, BoxLayout.Y_AXIS));
+
+        for(int i = 0; i < services.size(); i++){
+            JPanel row = new JPanel();
+            Service s = services.get(i);
+            JLabel temp = new JLabel("Code: "+ s.getCode()+", Name: "+s.getName()+", Fee: "+s.getFee());
+            row.add(temp);
+            provDirectoryPanel.add(row);
+        }
+    }
+
     // Opens new frame which should show all services available
     private void showProviderDirectory() {
         JFrame frame = new JFrame("Provider Directory");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(400, 400);
-        // frame.add(memberUpdatePanel());
+        frame.setSize(400, 200);
+        frame.getContentPane().add(BorderLayout.SOUTH, provDirectoryPanel);  
         frame.setVisible(true);
     }
 
@@ -410,11 +451,9 @@ public class ProviderTerminal {
 
     // Uses information passed in to make a new ServiceRecord() and add it to the
     // member and provider involved
+    // Called when YES is clicked to confirm bill
     private void addServiceReports(Provider cProvider, Member cMember, String date, int serviceCode, String comments) {
-        // ServiceRecord temp = new ServiceRecord(date, date, cProvider.getCreds(),
-        // cMember.getMemberNumber(), serviceCode, comments);
-        // cProvider.addService(temp);
-        // cMember.addService(temp);
+        
     }
 
     private void billService(Member currMember, String date, String serviceDate, int serviceCode, String comment){

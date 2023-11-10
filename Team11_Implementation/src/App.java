@@ -25,9 +25,6 @@ class App{
           managers = new AllManagers();
           operators = new AllOperators();
 
-          ManagerReport m = new ManagerReport();
-          m.createReport(providers);
-
           //Making fake info
           members.addMember(1, "Fake Guy", "Paid", "10 Road", "Tuscaloosa", "Alabama", 0);
           members.addMember(2, "Fake Girl", "Unpaid", "11 Road", "Birmingham", "Alabama", 0);
@@ -37,6 +34,9 @@ class App{
           operators.addOperator(1, "Fake Op");
 
           managers.addManager(1, "Fake Man");
+
+          //Below is just for testing
+          new ManagerReport(providers);
 
           //Terminal instances below
           ManagerTerminal mngTerm = new ManagerTerminal(providers, members, managers);
