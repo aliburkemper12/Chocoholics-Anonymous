@@ -39,6 +39,11 @@ public class Member {
         serviceReports.add(service);
     }
 
+    // Get Service from ArrayList
+    public ArrayList<ServiceRecord> getService() {
+        return serviceReports;
+    }
+
     // Get member number
     public long getMemberNumber() {
         return memberNumber;
