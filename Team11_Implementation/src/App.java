@@ -35,8 +35,11 @@ class App{
 
           managers.addManager(1, "Fake Man");
 
+          //Below is just for testing
+          ManagerReport m = new ManagerReport(providers);
+
           //Terminal instances below
-          ManagerTerminal mngTerm = new ManagerTerminal(providers, members, managers);
+          ManagerTerminal mngTerm = new ManagerTerminal(providers, members, managers, m);
           ProviderTerminal provTerm = new ProviderTerminal(providers, members);
           OperatorTerminal opTerm = new OperatorTerminal(providers, members, operators);
           MemberTerminal memTerm = new MemberTerminal(members); //Just for Demo Purpose

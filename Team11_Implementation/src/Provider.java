@@ -10,8 +10,8 @@ public class Provider{
     private String city;
     private String state;
     private int zipcode;
-    private ArrayList<Service> services;
-    private ArrayList<ServiceRecord> records;
+    private ArrayList<Service> services = new ArrayList<Service>();
+    private ArrayList<ServiceRecord> records = new ArrayList<ServiceRecord>();
     
     Provider(String name, long credentials, String address, String city, String state, int zipcode){
         this.name = name;
@@ -20,6 +20,10 @@ public class Provider{
         this.city = city;
         this.zipcode = zipcode;
         this.state = state;
+        Service temp1 = new Service("Session with Dietitian", 598470, 50);
+        Service temp2 = new Service("Aerobics Exercise Session", 883948, 150);
+        services.add(temp1);
+        services.add(temp2);
     }
 
     public void addService(Service newService){

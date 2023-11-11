@@ -1,6 +1,8 @@
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -14,15 +16,18 @@ public class ManagerTerminal {
     AllMembers members;
     AllManagers managers;
 
+    ManagerReport mReport;
+
     Manager currentManager;
     boolean managerVerified = false;
 
     JPanel panel = new JPanel();
    
-    ManagerTerminal(AllProviders providers, AllMembers members, AllManagers managers){
+    ManagerTerminal(AllProviders providers, AllMembers members, AllManagers managers, ManagerReport report){
         this.providers = providers;
         this.members = members;
         this.managers = managers;
+        mReport = report;
     }
 
     //Called from App when Manager Terminal is selcted
@@ -54,7 +59,13 @@ public class ManagerTerminal {
                 requestReport();
             }
         });
+        JButton showReport = new JButton(new AbstractAction("Show Latest Report") {
+            public void actionPerformed(ActionEvent e) {
+                setReportPanel();
+            }
+        });
         panel.add(requestReport);
+        panel.add(showReport);
     }
 
     // Sets panel to the manager # _____ page
@@ -73,6 +84,40 @@ public class ManagerTerminal {
         panel.add(submitButton);
     }
 
+    private void setReportPanel(){
+        JPanel tempPanel = new JPanel();
+        tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
+
+        ArrayList<String> strings = mReport.linesInReport;
+
+        if(strings.size()==0){
+            JPanel row = new JPanel();
+            JLabel noReport = new JLabel("No reports ever made or requested.");
+            row.add(noReport);
+            tempPanel.add(row);
+        }else {
+            for(int i = 0; i < strings.size(); i++){
+                JPanel row = new JPanel();
+                JLabel temp = new JLabel(strings.get(i));
+                row.add(temp);
+                tempPanel.add(row);
+            }
+        }
+
+        JPanel lastRow = new JPanel();
+        JButton goBack = new JButton(new AbstractAction("Go Back") {
+            public void actionPerformed(ActionEvent e) {
+                refreshPanel();
+            }
+        });
+        lastRow.add(goBack);
+        tempPanel.add(lastRow);
+
+        panel.removeAll();
+        panel.add(tempPanel);
+        panel.revalidate();
+        panel.repaint();
+    }
 
     //Called when submit is clicked when asking for Provider OR Member #
     private void verify(String input, JPanel panel){
@@ -97,7 +142,7 @@ public class ManagerTerminal {
 
     //initiateReport is going to be called from GUI (getPanel function)
     private void requestReport(){
-        MainAccountingProcedure temp = new MainAccountingProcedure(members, providers);
-        temp.runMainAccountingProcedure();
+        //Whatever Jack wants us to call
+        mReport.createReport();
     }
 }
