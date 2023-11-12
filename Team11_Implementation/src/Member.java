@@ -34,7 +34,7 @@ public class Member {
         memberReport = report;
     }
 
-    public MemberReport getReports(){
+    public MemberReport getReport(){
         return memberReport;
     }
 

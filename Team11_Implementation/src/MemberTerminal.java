@@ -95,21 +95,28 @@ public class MemberTerminal {
         JPanel tempPanel = new JPanel();
         tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
 
-        ArrayList<MemberReport> memberReports = currentMember.getReports();
+        Boolean hasReport = true;
+        ArrayList<String> strings;
+        if(currentMember.getReport()==null){
+            hasReport = false;
+            strings = new ArrayList<>();
+        }else{
+            strings = new ArrayList<>(); //fix when member report done
+        }
 
-        // if(strings.size()==0){
-        //     JPanel row = new JPanel();
-        //     JLabel noReport = new JLabel("No reports ever made or requested.");
-        //     row.add(noReport);
-        //     tempPanel.add(row);
-        // }else {
-        //     for(int i = 0; i < strings.size(); i++){
-        //         JPanel row = new JPanel();
-        //         JLabel temp = new JLabel(strings.get(i));
-        //         row.add(temp);
-        //         tempPanel.add(row);
-        //     }
-        // }
+        if(hasReport || strings.size()==0){
+            JPanel row = new JPanel();
+            JLabel noReport = new JLabel("No reports ever made or requested.");
+            row.add(noReport);
+            tempPanel.add(row);
+        }else {
+            for(int i = 0; i < strings.size(); i++){
+                JPanel row = new JPanel();
+                JLabel temp = new JLabel(strings.get(i));
+                row.add(temp);
+                tempPanel.add(row);
+            }
+        }
 
         JPanel lastRow = new JPanel();
         JButton goBack = new JButton(new AbstractAction("Go Back") {
