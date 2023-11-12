@@ -1,7 +1,9 @@
-import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class ProviderReport {
     ArrayList<ServiceRecord> records;
@@ -11,7 +13,7 @@ public class ProviderReport {
     AllMembers members;
     Member currMember;
 
-    ProviderReport(AllMembers members, ArrayList<ServiceRecordecord> records){
+    ProviderReport(AllMembers members, ArrayList<ServiceRecord> records){
         weekFee = 0;
         memberName = "";
         report = "";
@@ -22,22 +24,24 @@ public class ProviderReport {
 
     public void writeReport(){
         String currDate;
-        String serviceDate;
+        LocalDate serviceDate;
         Long memberNum;
         int serviceCode;
-        int fee;
+        int fee = 0;
         int consultations = 0;
         makeFile();
         for(ServiceRecord record : records){
-            currDate = record.getCurrDate();
-            serviceDate = record.serviceDate();
+            currDate = record.getDate();
+            serviceDate = record.getDateService();
             memberNum = record.getMemberNum();
             serviceCode = record.getServiceCode();
-            fee = record.getFee();
+            fee = record.getServiceFee();
             report += "Current date and time: ";
             report += currDate;
             report += "\nService date: ";
-            report += serviceDate;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("LLLL-dd-yyyy");
+            String formattedString = serviceDate.format(formatter);
+            report += formattedString;
             report += "\nMember name and number: ";
             currMember = members.getMember(memberNum);
             memberName = currMember.getName();
@@ -48,7 +52,7 @@ public class ProviderReport {
             report += serviceCode;
             report += "\nFee: ";
             report += fee;
-            report += "\n\n"
+            report += "\n\n";
             consultations++;
             weekFee += fee;
         }
@@ -60,6 +64,8 @@ public class ProviderReport {
         writeToFile();
     }
 
+
+    private File myObj;
     private void makeFile() {
         try {
             myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReport.txt");
