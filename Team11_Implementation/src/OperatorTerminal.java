@@ -101,10 +101,11 @@ public class OperatorTerminal {
                     caughtError = true;
                     JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
                 }
+                panel.revalidate();
+                panel.repaint();
             }
              });
-             panel.revalidate();
-             panel.repaint();
+             
              panel.add(memberStatus);
              panel.add(memberName);
              panel.add(memberAddress);
@@ -112,6 +113,8 @@ public class OperatorTerminal {
              panel.add(memberCity);
              panel.add(memberZip);
              panel.add(submitButton);
+             panel.revalidate();
+             panel.repaint();
             }
         });
         JButton deleteMember = new JButton(new AbstractAction("Delete Member") {
