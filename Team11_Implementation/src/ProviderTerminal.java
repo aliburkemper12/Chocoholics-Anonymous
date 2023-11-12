@@ -474,6 +474,6 @@ public class ProviderTerminal {
     private void getReport(){
         ArrayList<ServiceRecord> records = currentProvider.getRecords();
         ProviderReport report = new ProviderReport(members, records);
-        String reportText = report.writeReport();
+        report.writeReport();
     }
 }
