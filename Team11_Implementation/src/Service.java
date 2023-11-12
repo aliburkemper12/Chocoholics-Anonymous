@@ -21,6 +21,6 @@ public class Service{
         return fee;
     }
     public String toString(){
-        return name + " code: " + code + " fee: " + fee + "\n";
+        return name + ", Code: " + code + ", Fee: " + fee;
     }
 }

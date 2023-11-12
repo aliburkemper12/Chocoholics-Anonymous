@@ -12,19 +12,26 @@ import javax.swing.JPanel;
 public class ProviderDirectory {
     
     ArrayList<Service> services;
+    Provider currProvider;
 
     ProviderDirectory(Provider provider){
         services = provider.getServices();
+        currProvider = provider;
     }
 
     public void requestDirectory(){
         Collections.sort(services, new ServiceComparator());
             
-        File outputFile = new File("Provider_Directory.txt");
+        File outputFile = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderDirectories"+File.separator+currProvider.getName()+"'s Services.txt");
 
         try{
-            FileWriter myWriter = new FileWriter("Provider_Directory.txt");
-            myWriter.write(services.toString());
+            FileWriter myWriter = new FileWriter(outputFile.getPath());
+            if(services!=null){
+                for(Service s : services){
+                    myWriter.write(s.toString());
+                    myWriter.write("\n");
+                }
+            }
             myWriter.close();
         } catch(IOException e){
             System.out.println("error occurred in provider directory file creation\n");

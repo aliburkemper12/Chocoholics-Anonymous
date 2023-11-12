@@ -151,6 +151,9 @@ public class ManagerTerminal {
             ProviderReport pReport = new ProviderReport(members, p);
             p.setReport(pReport);
             pReport.writeReport();
+
+            ProviderDirectory pDir = new ProviderDirectory(p);
+            pDir.requestDirectory();
         }
 
         ArrayList<Member> mList = members.memberList;
