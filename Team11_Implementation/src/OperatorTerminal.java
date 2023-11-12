@@ -97,6 +97,7 @@ public class OperatorTerminal {
                 try {
                     zip = Integer.parseInt(memberZip.getText());
                     JOptionPane.showMessageDialog(null, "Member added. Member number is: " + memberNumber);
+                    refreshPanel();
                 } catch (NumberFormatException rand) {
                     caughtError = true;
                     JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
