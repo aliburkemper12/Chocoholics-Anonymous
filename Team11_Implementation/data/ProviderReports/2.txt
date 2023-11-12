@@ -1,0 +1,14 @@
+Current date and time: 12-12-2000
+Service date: November-12-2023
+Member name and number: Fake Guy 1
+Service code: 598470
+Fee: 150
+
+Current date and time: 12-12-2000
+Service date: November-12-2023
+Member name and number: Fake Girl 2
+Service code: 883948
+Fee: 50
+
+Number of consultations: 2
+Total fee for the week: 50

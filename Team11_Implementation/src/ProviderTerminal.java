@@ -73,9 +73,17 @@ public class ProviderTerminal {
                 setMemberRequestPanel(true);
             }
         });
+        JButton showReport = new JButton(new AbstractAction("Show Report") {
+            public void actionPerformed(ActionEvent e) {
+                setReportPanel();
+            }
+        });
 
         panel.add(verifyMember);
         panel.add(addBill);
+        panel.add(showReport);
+        panel.revalidate();
+        panel.repaint();
     }
 
     // Sets panel to the provider # _____ page
@@ -383,6 +391,48 @@ public class ProviderTerminal {
         panel.repaint();
     }
 
+    private void setReportPanel(){
+        JPanel tempPanel = new JPanel();
+        tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
+
+        Boolean hasReport = true;
+        ArrayList<String> strings;
+        if(currentProvider.getReport()==null){
+            hasReport = false;
+            strings = new ArrayList<>();
+        }else{
+            strings = currentProvider.getReport().linesInReport;
+        }
+
+        if(!hasReport || strings.size()==0){
+            JPanel row = new JPanel();
+            JLabel noReport = new JLabel("No reports ever made for this provider.");
+            row.add(noReport);
+            tempPanel.add(row);
+        }else {
+            for(int i = 0; i < strings.size(); i++){
+                JPanel row = new JPanel();
+                JLabel temp = new JLabel(strings.get(i));
+                row.add(temp);
+                tempPanel.add(row);
+            }
+        }
+
+        JPanel lastRow = new JPanel();
+        JButton goBack = new JButton(new AbstractAction("Go Back") {
+            public void actionPerformed(ActionEvent e) {
+                refreshPanel();
+            }
+        });
+        lastRow.add(goBack);
+        tempPanel.add(lastRow);
+
+        panel.removeAll();
+        panel.add(tempPanel);
+        panel.revalidate();
+        panel.repaint();
+    }
+
     // Makes the Show Directory panel after provider is verified
     private void makeProviderDirectoryPanel(){
         provDirectoryPanel = new JPanel();
@@ -399,7 +449,6 @@ public class ProviderTerminal {
             provDirectoryPanel.add(row);
         }
     }
-
 
     boolean frameOpen = false;
     JFrame frame;
@@ -459,21 +508,21 @@ public class ProviderTerminal {
     // Uses information passed in to make a new ServiceRecord() and add it to the
     // member and provider involved
     // Called when YES is clicked to confirm bill
-    private void addServiceReports(Provider cProvider, Member cMember, String date, int serviceCode, String comments, int serviceFee) {
+    public void addServiceReports(Provider cProvider, Member cMember, String date, int serviceCode, String comments, int serviceFee) {
         ServiceRecord temp = new ServiceRecord(date, cProvider.getCreds(), cMember.getMemberNumber(), serviceCode, comments, serviceFee);
         cProvider.addRecord(temp);
         cMember.addService(temp);
     }
 
-    private void billService(Member currMember, String date, String serviceDate, int serviceCode, String comment){
-        members.verifyMember(currMember.getMemberNumber());
-        ServiceRecord service =  new ServiceRecord(date, serviceDate, currentProvider.getProviderNum(), currMember.getMemberNumber(), serviceCode, comment);
-        currentProvider.addRecord(service);
-    }
+    // private void billService(Member currMember, String date, String serviceDate, int serviceCode, String comment){
+    //     members.verifyMember(currMember.getMemberNumber());
+    //     ServiceRecord service =  new ServiceRecord(date, serviceDate, currentProvider.getProviderNum(), currMember.getMemberNumber(), serviceCode, comment);
+    //     currentProvider.addRecord(service);
+    // }
 
-    private void getReport(){
-        ArrayList<ServiceRecord> records = currentProvider.getRecords();
-        ProviderReport report = new ProviderReport(members, records);
-        report.writeReport();
-    }
+    // private void getReport(){
+    //     ArrayList<ServiceRecord> records = currentProvider.getRecords();
+    //     ProviderReport report = new ProviderReport(members, records);
+    //     report.writeReport();
+    // }
 }

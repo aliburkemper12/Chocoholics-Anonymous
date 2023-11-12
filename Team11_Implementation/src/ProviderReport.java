@@ -14,14 +14,18 @@ public class ProviderReport {
     String report;
     AllMembers members;
     Member currMember;
+    Provider currProvider;
 
-    ProviderReport(AllMembers members, ArrayList<ServiceRecord> records){
+    public ArrayList<String> linesInReport = new ArrayList<String>();
+
+    ProviderReport(AllMembers members, Provider provider){
         weekFee = 0;
         memberName = "";
         report = "";
         currMember = null;
         this.members = members;
-        this.records = records;
+        this.records = provider.getRecords();
+        this.currProvider = provider;
     }
 
     public void writeReport(){
@@ -57,12 +61,24 @@ public class ProviderReport {
             report += "\n\n";
             consultations++;
             weekFee += fee;
+
+            linesInReport.add("Current date and time: "+ currDate);
+            linesInReport.add("Service date: "+ formattedString);
+            linesInReport.add("Member name and number: "+ memberName +" "+memberNum);
+            linesInReport.add("Service code: "+ serviceCode);
+            linesInReport.add("Fee: "+ fee);
+            linesInReport.add("");
+            linesInReport.add("");
         }
         report += "Number of consultations: ";
         report += consultations;
         report += "\nTotal fee for the week: ";
         report += fee;
         report += "\n";
+
+        linesInReport.add("Number of consultations: "+ consultations);
+        linesInReport.add("Total fee for the week: "+ fee);
+
         writeToFile();
     }
 
@@ -70,7 +86,7 @@ public class ProviderReport {
     private File myObj;
     private void makeFile() {
         try {
-            myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReport.txt");
+            myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReports"+File.separator+currProvider.getCreds()+".txt");
             if (!myObj.createNewFile()) {
                 //file already exists so delete what's in there
                 myObj.delete();

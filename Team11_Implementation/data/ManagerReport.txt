@@ -1,3 +1,2 @@
-Provider Name: Fake Prov,  Total Consultations: 0,  Total Fee: 0
-Provider Name: Fake Prov,  Total Consultations: 0,  Total Fee: 0
 Provider Name: Fake Prov,  Total Consultations: 2,  Total Fee: 200
+Provider Name: Real Prov,  Total Consultations: 2,  Total Fee: 200

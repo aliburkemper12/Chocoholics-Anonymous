@@ -144,8 +144,22 @@ public class ManagerTerminal {
     private void requestReport(){
         //Whatever Jack wants us to call
         mReport.createReport();
-        Provider p = providers.getProvider(1);
-        ProviderReport pReport = new ProviderReport(members, p.getRecords());
-        pReport.writeReport();
+
+        ArrayList<Provider> pList = providers.providerList;
+        for(int i = 0; i < pList.size(); i++){
+            Provider p = pList.get(i);
+            ProviderReport pReport = new ProviderReport(members, p);
+            p.setReport(pReport);
+            pReport.writeReport();
+        }
+
+        ArrayList<Member> mList = members.memberList;
+        for(int i = 0; i < mList.size(); i++){
+            Member m = mList.get(i);
+            MemberReport mReport = new MemberReport();
+            m.setReport(mReport);
+            // pReport.writeReport();
+        }
+        
     }
 }

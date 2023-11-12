@@ -24,6 +24,7 @@ public class ManagerReport {
 
     // Called in managerReport
     public void createReport() {
+        linesInReport.clear();
         makeFile();
         ArrayList<Provider> pList = providers.providerList;
         for (int i = 0; i < pList.size(); i++) {

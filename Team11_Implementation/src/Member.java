@@ -15,7 +15,7 @@ public class Member {
     private int zipcode; // 6 digits
     private String state; // 2 characters
     private ArrayList<ServiceRecord> serviceReports;
-    private ArrayList<MemberReport> memberReports;
+    private MemberReport memberReport;
 
     // Create a new member to be put into the ArrayList
     Member(String name, long memberNumber, String status, String address, String city, int zipcode, String state) {
@@ -30,12 +30,12 @@ public class Member {
     }
 
     // Add report to memberReport
-    public void addReport(MemberReport report){
-        memberReports.add(report);
+    public void setReport(MemberReport report){
+        memberReport = report;
     }
 
-    public ArrayList<MemberReport> getReports(){
-        return memberReports;
+    public MemberReport getReports(){
+        return memberReport;
     }
 
     // Add service to ArrayList
