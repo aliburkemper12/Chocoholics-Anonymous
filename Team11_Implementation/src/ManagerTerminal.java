@@ -12,16 +12,16 @@ import javax.swing.JTextField;
 public class ManagerTerminal {
 
     //All... instances (passed from App on creation)
-    AllProviders providers;
-    AllMembers members;
-    AllManagers managers;
+    private AllProviders providers;
+    private AllMembers members;
+    private AllManagers managers;
 
-    ManagerReport mReport;
+    private ManagerReport mReport;
 
-    Manager currentManager;
-    boolean managerVerified = false;
+    private Manager currentManager;
+    private boolean managerVerified = false;
 
-    JPanel panel = new JPanel();
+    private JPanel panel = new JPanel();
    
     ManagerTerminal(AllProviders providers, AllMembers members, AllManagers managers, ManagerReport report){
         this.providers = providers;
@@ -141,7 +141,7 @@ public class ManagerTerminal {
     }
 
     //initiateReport is going to be called from GUI (getPanel function)
-    private void requestReport(){
+    public void requestReport(){
         //Whatever Jack wants us to call
         mReport.createReport();
 
