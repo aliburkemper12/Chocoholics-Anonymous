@@ -24,7 +24,7 @@ public class ProviderReport {
         int serviceCode;
         int fee;
         int consultations = 0;
-        
+        makeFile();
         for(ServiceRecord record : records){
             currDate = record.getCurrDate();
             serviceDate = record.serviceDate();
