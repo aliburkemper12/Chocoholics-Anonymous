@@ -158,7 +158,7 @@ public class ManagerTerminal {
             Member m = mList.get(i);
             MemberReport mReport = new MemberReport();
             m.setReport(mReport);
-            // pReport.writeReport();
+            mReport.generateReport(m);
         }
         
     }
