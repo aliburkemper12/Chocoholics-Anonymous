@@ -144,5 +144,8 @@ public class ManagerTerminal {
     private void requestReport(){
         //Whatever Jack wants us to call
         mReport.createReport();
+        Provider p = providers.getProvider(1);
+        ProviderReport pReport = new ProviderReport(members, p.getRecords());
+        pReport.writeReport();
     }
 }
