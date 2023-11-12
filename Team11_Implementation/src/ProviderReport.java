@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ProviderReport {
     ArrayList<ServiceRecord> records;
@@ -14,14 +17,14 @@ public class ProviderReport {
         this.records = records;
     }
 
-    public String writeReport(){
+    public void writeReport(){
         String currDate;
         String serviceDate;
         Long memberNum;
         int serviceCode;
         int fee;
         int consultations = 0;
-        
+        makeFile();
         for(ServiceRecord record : records){
             currDate = record.getCurrDate();
             serviceDate = record.serviceDate();
@@ -51,6 +54,31 @@ public class ProviderReport {
         report += "\nTotal fee for the week: ";
         report += fee;
         report += "\n";
-        return report;
+        writeToFile();
+    }
+
+    private void makeFile() {
+        try {
+            myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReport.txt");
+            if (myObj.createNewFile()) {
+                // System.out.println("File created: " + myObj.getName());
+            } else {
+                // System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    private void writeToFile() {
+        try {
+            FileWriter myWriter = new FileWriter(myObj.getPath());
+            myWriter.write(report);
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error writing to ProviderReport.txt occurred.");
+            e.printStackTrace();
+        }
     }
 }

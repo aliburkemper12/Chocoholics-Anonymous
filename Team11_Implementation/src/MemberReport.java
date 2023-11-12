@@ -17,6 +17,7 @@ public class MemberReport {
     long number;
     String member_report;
 
+    // Generate member report
     public void generateReport(Member member){
         String memberName;
         String memberAddress;
@@ -29,6 +30,7 @@ public class MemberReport {
         // int serviceCode;
         // String providerName;
 
+        //change to service record
         ArrayList<ServiceRecord> sRecords = member.getService();
         String service = sRecords.toString();
 
@@ -38,12 +40,12 @@ public class MemberReport {
         memberCity = member.getCity();
         memberState = member.getState();
         memberZip = member.getZip();
-        // currDate = sRecords.getDate();
+        // Add all information onto one string
         member_report += memberName + "\n" + memberNum + "\n" + memberAddress + "\n" + memberCity + "\n" + memberState + "\n" + memberZip + "\n" + service + "\n";
         LocalDate currDate = LocalDate.now();
 
 
-        // Create file
+        // Create file containing report string
         File outputFile = new File("../data/" + memberName + currDate + ".txt");
         try{
             FileWriter myWriter = new FileWriter("../data/" + memberName + currDate + ".txt");
