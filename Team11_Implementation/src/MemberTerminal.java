@@ -1,6 +1,8 @@
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -90,11 +92,36 @@ public class MemberTerminal {
 
     // initiateReport is going to be called from GUI (getPanel function)
     private void showReports() {
-        panel.removeAll();
-        
-        JLabel temp = new JLabel("Test");
+        JPanel tempPanel = new JPanel();
+        tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
 
-        panel.add(temp);
+        ArrayList<MemberReport> memberReports = currentMember.getReports();
+
+        // if(strings.size()==0){
+        //     JPanel row = new JPanel();
+        //     JLabel noReport = new JLabel("No reports ever made or requested.");
+        //     row.add(noReport);
+        //     tempPanel.add(row);
+        // }else {
+        //     for(int i = 0; i < strings.size(); i++){
+        //         JPanel row = new JPanel();
+        //         JLabel temp = new JLabel(strings.get(i));
+        //         row.add(temp);
+        //         tempPanel.add(row);
+        //     }
+        // }
+
+        JPanel lastRow = new JPanel();
+        JButton goBack = new JButton(new AbstractAction("Go Back") {
+            public void actionPerformed(ActionEvent e) {
+                refreshPanel();
+            }
+        });
+        lastRow.add(goBack);
+        tempPanel.add(lastRow);
+
+        panel.removeAll();
+        panel.add(tempPanel);
         panel.revalidate();
         panel.repaint();
     }

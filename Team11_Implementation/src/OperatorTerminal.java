@@ -102,6 +102,16 @@ public class OperatorTerminal {
                 }
             }
              });
+             panel.revalidate();
+             panel.repaint();
+             panel.add(memberStatus);
+             panel.add(memberName);
+             panel.add(memberAddress);
+             panel.add(memberState);
+             panel.add(memberCity);
+             panel.add(memberCity);
+             panel.add(memberZip);
+             panel.add(submitButton);
             }
         });
         JButton deleteMember = new JButton(new AbstractAction("Delete Member") {
@@ -122,7 +132,7 @@ public class OperatorTerminal {
         JButton addProvider = new JButton(new AbstractAction("Add Provider") {
             public void actionPerformed(ActionEvent e) {
                 //
-                
+
                credentials = RandomGeneratedNumber(); 
             }
         });
