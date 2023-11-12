@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -36,6 +37,29 @@ public class ProviderReport {
         int fee = 0;
         int consultations = 0;
         makeFile();
+        report+= "Provider name: ";
+        report+= currProvider.getName();
+        report+= "\nProvider number: ";
+        report+= currProvider.getCreds();
+        report+= "\nProvider street adress: ";
+        report+= currProvider.getAddress();
+        report+= "\nProvider city: ";
+        report+= currProvider.getCity();
+        report+= "\nProvider state: ";
+        report+= currProvider.getState();
+        report+= "\nProvider zip: ";
+        report+= currProvider.getZip();
+        report+= "\n\n";
+
+        linesInReport.add("Provider name: "+ currProvider.getName());
+        linesInReport.add("Provider number: "+ currProvider.getCreds());
+        linesInReport.add("Provider street address: "+ currProvider.getAddress());
+        linesInReport.add("Provider city: "+ currProvider.getCity());
+        linesInReport.add("Provider state: "+ currProvider.getState());
+        linesInReport.add("Provider zip: "+ currProvider.getZip());
+        linesInReport.add("");
+        linesInReport.add("");
+
         for(ServiceRecord record : records){
             currDate = record.getDate();
             serviceDate = record.getDateService();
@@ -45,7 +69,7 @@ public class ProviderReport {
             report += "Current date and time: ";
             report += currDate;
             report += "\nService date: ";
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("LLLL-dd-yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
             String formattedString = serviceDate.format(formatter);
             report += formattedString;
             report += "\nMember name and number: ";
@@ -86,7 +110,11 @@ public class ProviderReport {
     private File myObj;
     private void makeFile() {
         try {
-            myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReports"+File.separator+currProvider.getCreds()+".txt");
+            ZoneId z = ZoneId.of( "America/Chicago" ); //just sets zone
+            LocalDate today = LocalDate.now(z); //current date
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+            String formatDate = today.format(formatter);
+            myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReports"+File.separator+currProvider.getName()+":"+formatDate+".txt");
             if (!myObj.createNewFile()) {
                 //file already exists so delete what's in there
                 myObj.delete();
