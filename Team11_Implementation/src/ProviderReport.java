@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+//@author Luca Jontz
+
 public class ProviderReport {
     ArrayList<ServiceRecord> records;
     int weekFee;
