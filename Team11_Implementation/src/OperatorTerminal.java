@@ -96,6 +96,7 @@ public class OperatorTerminal {
                 boolean caughtError;
                 try {
                     zip = Integer.parseInt(memberZip.getText());
+                    JOptionPane.showMessageDialog(null, "Member added. Member number is: " + memberNumber);
                 } catch (NumberFormatException rand) {
                     caughtError = true;
                     JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
@@ -108,7 +109,6 @@ public class OperatorTerminal {
              panel.add(memberName);
              panel.add(memberAddress);
              panel.add(memberState);
-             panel.add(memberCity);
              panel.add(memberCity);
              panel.add(memberZip);
              panel.add(submitButton);
@@ -132,8 +132,48 @@ public class OperatorTerminal {
         JButton addProvider = new JButton(new AbstractAction("Add Provider") {
             public void actionPerformed(ActionEvent e) {
                 //
-
                credentials = RandomGeneratedNumber(); 
+               panel.removeAll();
+                JTextField providerName = new JTextField(1);
+                JTextField  providerAddress = new JTextField(1);
+                JTextField providerCity = new JTextField(1);
+                JTextField providerState = new JTextField(1);
+                JTextField providerZip = new JTextField(1);
+                
+                
+                
+
+
+        
+        JButton submitButton = new JButton(new AbstractAction("Submit") {
+            public void actionPerformed(ActionEvent e) {
+                // when submitted do more stuff here
+                // like setting currentOperator and checking if input is verified
+                name = providerName.getText();
+                address = providerAddress.getText();
+                state = providerState.getText();
+                city = providerCity.getText();
+                boolean caughtError;
+                try {
+                    zip = Integer.parseInt(providerZip.getText());
+                    JOptionPane.showMessageDialog(null, "Provider added. Provider credentials is: " + credentials);
+                } catch (NumberFormatException rand) {
+                    caughtError = true;
+                    JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
+                }
+                panel.revalidate();
+                panel.repaint(); 
+            }
+             });
+             
+                panel.add(providerName);
+                panel.add(providerAddress);
+                panel.add(providerState);
+                panel.add(providerCity);
+                panel.add(providerZip);
+                panel.add(submitButton);
+                panel.revalidate();
+                panel.repaint();
             }
         });
         JButton deleteProvider = new JButton(new AbstractAction("Delete Provider") {

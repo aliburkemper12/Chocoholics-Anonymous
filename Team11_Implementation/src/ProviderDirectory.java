@@ -7,6 +7,8 @@ import java.util.Collections;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+//@author Luca Jontz
+
 public class ProviderDirectory {
     
     ArrayList<Service> services;
