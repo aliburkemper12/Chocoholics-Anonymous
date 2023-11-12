@@ -130,6 +130,8 @@ public class OperatorTerminal {
                 //
                 members.getMember(memberNumber);
                 memberUpdatePanel(null);
+                panel.revalidate();
+                panel.repaint();
             }
         });
         JButton addProvider = new JButton(new AbstractAction("Add Provider") {
