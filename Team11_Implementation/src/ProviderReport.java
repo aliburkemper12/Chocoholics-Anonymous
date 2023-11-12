@@ -13,6 +13,9 @@ public class ProviderReport {
 
     ProviderReport(AllMembers members, ArrayList<ServiceRecordecord> records){
         weekFee = 0;
+        memberName = "";
+        report = "";
+        currMember = null;
         this.members = members;
         this.records = records;
     }
