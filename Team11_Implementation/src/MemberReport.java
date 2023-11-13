@@ -18,6 +18,7 @@ public class MemberReport {
     MemberReport (Provider record) {
         this.record = record;
     }
+    
     public MemberReport(){
     }
 
