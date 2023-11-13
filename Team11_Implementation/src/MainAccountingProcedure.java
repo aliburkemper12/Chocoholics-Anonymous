@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 //@author Jack Sherry
@@ -19,9 +20,14 @@ public class MainAccountingProcedure {
 
         for (int i = 0; i < memberList.size(); i++) {
             Member toFindMember = memberList.get(i);
-            if (toFindMember.getMemberNumber() =  /* was on a report this week */){
-                Report newMemberReport = new Report();
-                newMemberReport.generateMemberReport(toFindMember.getMemberNumber());
+            ArrayList<ServiceRecord> serviceReport = toFindMember.getService();
+            for (int j = 0; j < serviceReport.size(); j++) {
+                ServiceRecord toFindServiceReport = serviceReport.get(j);
+                LocalDate reportDate = toFindServiceReport.getDateService();
+                if (reportDate /* is equivalent to this week */){
+                    Report newMemberReport = new Report();
+                    newMemberReport.generateMemberReport(toFindMember.getMemberNumber());
+                }
             }
         }
         
