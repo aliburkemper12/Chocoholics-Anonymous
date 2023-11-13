@@ -18,6 +18,8 @@ public class MemberReport {
     MemberReport (Provider record) {
         this.record = record;
     }
+    public MemberReport(){
+    }
 
     // Generate member report
     public void generateReport(Member member){
