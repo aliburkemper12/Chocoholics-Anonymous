@@ -16,7 +16,7 @@ public class MemberReport {
     String service;
     String providerName;
     long number;
-    String member_report;
+    String member_report = "";
 
     // Generate member report
     public void generateReport(Member member){
