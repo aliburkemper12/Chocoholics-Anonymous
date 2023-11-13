@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class MemberReport {
     ArrayList<Member> memberList;
@@ -43,10 +44,11 @@ public class MemberReport {
         // Add all information onto one string
         member_report += memberName + "\n" + memberNum + "\n" + memberAddress + "\n" + memberCity + "\n" + memberState + "\n" + memberZip + "\n" + service + "\n";
         LocalDate currDate = LocalDate.now();
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        String formatDate = currDate.format(formatter);
 
         // Create file containing report string
-        File outputFile = new File("../data/" + memberName + currDate + ".txt");
+        File outputFile = new File("Team11_Implementation" + File.separator + "data" + File.separator + "MemberReports" + File.separator + memberName + formatDate + ".txt");
         try{
             FileWriter myWriter = new FileWriter("../data/" + memberName + currDate + ".txt");
             myWriter.write(member_report);
