@@ -5,7 +5,7 @@ import java.time.ZoneId;
 
 public class ServiceRecord {
 
-    //public ArrayList<ServiceRecord> serviceRecordList = new ArrayList<ServiceRecord>();
+    // public ArrayList<ServiceRecord> serviceRecordList = new ArrayList<ServiceRecord>();
     private String date = "";
     private LocalDate dateService;
     private long providerNum = 0;

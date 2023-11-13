@@ -12,14 +12,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class MemberReport {
-    ArrayList<Member> memberList;
-    String service;
-    String providerName;
-    long number;
     String member_report = "";
+    Provider record;
+
+    MemberReport (Provider record) {
+        this.record = record;
+    }
 
     // Generate member report
     public void generateReport(Member member){
+
+        ArrayList<ServiceRecord> records = record.records;
         String memberName;
         String memberAddress;
         String memberCity;
@@ -27,13 +30,13 @@ public class MemberReport {
         int memberZip;
         long memberNum;
 
-        // String serviceDate;
-        // int serviceCode;
-        // String providerName;
+        String serviceDate;
+        int serviceCode;
+        long providerNumber;
 
-        //change to service record
-        ArrayList<ServiceRecord> sRecords = member.getService();
-        String service = sRecords.toString();
+        // //change to service record
+        // ArrayList<ServiceRecord> sRecords = member.getService();
+        // String service = sRecords.toString();
 
         memberName = member.getName();
         memberNum = member.getMemberNumber();
@@ -41,8 +44,20 @@ public class MemberReport {
         memberCity = member.getCity();
         memberState = member.getState();
         memberZip = member.getZip();
+
+        for(int i = 0; i < records.size(); i++){
+            // get correct service record from array
+            ServiceRecord toFindRecord = records.get(i);
+            if (memberNum == toFindRecord.getMemberNum()) {
+                serviceDate = toFindRecord.getDate();
+                serviceCode = toFindRecord.getServiceCode();
+                providerNumber = toFindRecord.getProviderNum();
+                break;
+            }
+
+        }
         // Add all information onto one string
-        member_report += "Name: " + memberName + "\n" + "Member number: " + memberNum + "\n" + "Member address: " + memberAddress + "\n" + "Member City: " + memberCity + "\n" + "Member state: " + memberState + "\n" + "Member zipcode: " + memberZip + "\n" + "Service received: " + service + "\n";
+        member_report += "Name: " + memberName + "\n" + "Member number: " + memberNum + "\n" + "Member address: " + memberAddress + "\n" + "Member City: " + memberCity + "\n" + "Member state: " + memberState + "\n" + "Member zipcode: " + memberZip + "\n" + "Date of service: " + serviceDate + "\n" + "Provider name: " + "\n" + "Service name: " + "\n";
         LocalDate currDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         String formatDate = currDate.format(formatter);

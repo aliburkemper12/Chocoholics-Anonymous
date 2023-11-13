@@ -11,7 +11,7 @@ public class Provider{
     private String state;
     private int zipcode;
     private ArrayList<Service> services = new ArrayList<Service>();
-    private ArrayList<ServiceRecord> records = new ArrayList<ServiceRecord>();
+    public ArrayList<ServiceRecord> records = new ArrayList<ServiceRecord>();
     private ProviderReport report;
     
     Provider(String name, long credentials, String address, String city, String state, int zipcode){
