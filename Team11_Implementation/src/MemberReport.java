@@ -13,19 +13,15 @@ import java.time.format.DateTimeFormatter;
 
 public class MemberReport {
     String member_report = "";
-    Provider record;
+    // ArrayList<ServiceRecord> records;
 
-    MemberReport (Provider record) {
-        this.record = record;
-    }
-    
-    public MemberReport(){
-    }
+    // public MemberReport(){
+    // }
 
     // Generate member report
     public void generateReport(Member member){
 
-        ArrayList<ServiceRecord> records = record.records;
+        // ArrayList<ServiceRecord> records = record.records;
         String memberName;
         String memberAddress;
         String memberCity;
@@ -48,17 +44,17 @@ public class MemberReport {
         memberState = member.getState();
         memberZip = member.getZip();
 
-        for(int i = 0; i < records.size(); i++){
-            // get correct service record from array
-            ServiceRecord toFindRecord = records.get(i);
-            if (memberNum == toFindRecord.getMemberNum()) {
-                serviceDate = toFindRecord.getDate();
-                serviceCode = toFindRecord.getServiceCode();
-                providerNumber = toFindRecord.getProviderNum();
-                break;
-            }
+        // for(int i = 0; i < records.size(); i++){
+        //     // get correct service record from array
+        //     ServiceRecord toFindRecord = records.get(i);
+        //     if (memberNum == toFindRecord.getMemberNum()) {
+        //         serviceDate = toFindRecord.getDate();
+        //         serviceCode = toFindRecord.getServiceCode();
+        //         providerNumber = toFindRecord.getProviderNum();
+        //         break;
+        //     }
 
-        }
+        // }
         // Add all information onto one string
         member_report += "Name: " + memberName + "\n" + "Member number: " + memberNum + "\n" + "Member address: " + memberAddress + "\n" + "Member City: " + memberCity + "\n" + "Member state: " + memberState + "\n" + "Member zipcode: " + memberZip + "\n" + "Date of service: " + serviceDate + "\n" + "Provider name: " + "\n" + "Service name: " + "\n";
         LocalDate currDate = LocalDate.now();
