@@ -32,9 +32,9 @@ public class MemberReport {
         int memberZip;
         long memberNum;
 
-        String serviceDate;
-        int serviceCode;
-        long providerNumber;
+        String serviceDate = "";
+        int serviceCode = 0;
+        long providerNumber = 0;
 
         // //change to service record
         // ArrayList<ServiceRecord> sRecords = member.getService();
