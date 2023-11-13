@@ -140,16 +140,20 @@ public class ManagerTerminal {
 
     //initiateReport is going to be called from GUI (getPanel function)
     public void requestReport(){
-        //Whatever Jack wants us to call
         mReport.createReport();
 
         ArrayList<Provider> pList = providers.providerList;
         for(int i = 0; i < pList.size(); i++){
             Provider p = pList.get(i);
-            ProviderReport pReport = new ProviderReport(members, p);
-            p.setReport(pReport);
-            pReport.writeReport();
 
+            if(p.records.size()>0){
+                ProviderReport pReport = new ProviderReport(members, p);
+                p.setReport(pReport);
+                pReport.writeReport();
+                p.records.clear();
+            }
+
+            //Below needs to be done for every provider no matter what
             ProviderDirectory pDir = new ProviderDirectory(p);
             pDir.requestDirectory();
         }
@@ -157,10 +161,13 @@ public class ManagerTerminal {
         ArrayList<Member> mList = members.memberList;
         for(int i = 0; i < mList.size(); i++){
             Member m = mList.get(i);
-            MemberReport mReport = new MemberReport();
-            m.setReport(mReport);
-            mReport.generateReport(m);
+
+            if(m.serviceReports.size()>0){
+                MemberReport mReport = new MemberReport();
+                m.setReport(mReport);
+                mReport.generateReport(m);
+                m.serviceReports.clear();
+            }
         }
-        
     }
 }

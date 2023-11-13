@@ -120,13 +120,14 @@ public class ProviderReport extends Report{
             LocalDate today = LocalDate.now(z); //current date
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
             String formatDate = today.format(formatter);
-            String name = currProvider.getName();
+            String name = receiverName;
             name = name.replaceAll("\\s", "");
             myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReports"+File.separator+name+formatDate+".txt");
-            if (!myObj.createNewFile()) {
-                //file already exists so delete what's in there
-                myObj.delete();
-                myObj.createNewFile();
+            int count = 0;
+            while (!myObj.createNewFile()) {
+                //file already exists but want to keep old file
+                count++;
+                myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReports"+File.separator+name+formatDate+"("+count+").txt");
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");

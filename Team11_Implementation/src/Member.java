@@ -14,7 +14,7 @@ public class Member {
     private String city; // 14 characters
     private int zipcode; // 6 digits
     private String state; // 2 characters
-    private ArrayList<ServiceRecord> serviceReports;
+    public ArrayList<ServiceRecord> serviceReports;
     private MemberReport memberReport;
 
     // Create a new member to be put into the ArrayList
