@@ -68,9 +68,9 @@ public class ProviderReport extends Report{
             memberNum = record.getMemberNum();
             serviceCode = record.getServiceCode();
             fee = record.getServiceFee();
-            report += "Current date and time: ";
+            report += "Date of Service: ";
             report += currDate;
-            report += "\nService date: ";
+            report += "\nService Recieved on Date: ";
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
             String formattedString = serviceDate.format(formatter);
             report += formattedString;
@@ -88,8 +88,8 @@ public class ProviderReport extends Report{
             consultations++;
             weekFee += fee;
 
-            linesInReport.add("Current date and time: "+ currDate);
-            linesInReport.add("Service date: "+ formattedString);
+            linesInReport.add("Date of Service: "+ currDate);
+            linesInReport.add("Service Recieved on Date: "+ formattedString);
             linesInReport.add("Member name and number: "+ memberName +" "+memberNum);
             linesInReport.add("Service code: "+ serviceCode);
             linesInReport.add("Fee: "+ fee);
