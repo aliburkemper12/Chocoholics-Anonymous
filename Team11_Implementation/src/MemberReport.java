@@ -42,7 +42,7 @@ public class MemberReport {
         memberState = member.getState();
         memberZip = member.getZip();
         // Add all information onto one string
-        member_report += memberName + "\n" + memberNum + "\n" + memberAddress + "\n" + memberCity + "\n" + memberState + "\n" + memberZip + "\n" + service + "\n";
+        member_report += "Name: " + memberName + "\n" + "Member number: " + memberNum + "\n" + "Member address: " + memberAddress + "\n" + "Member City: " + memberCity + "\n" + "Member state: " + memberState + "\n" + "Member zipcode: " + memberZip + "\n" + "Service received: " + service + "\n";
         LocalDate currDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         String formatDate = currDate.format(formatter);
