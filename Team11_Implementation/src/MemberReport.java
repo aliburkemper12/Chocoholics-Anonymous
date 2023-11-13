@@ -50,11 +50,12 @@ public class MemberReport {
         // Create file containing report string
         File outputFile = new File("Team11_Implementation" + File.separator + "data" + File.separator + "MemberReports" + File.separator + memberName + formatDate + ".txt");
         try{
-            FileWriter myWriter = new FileWriter("../data/" + memberName + currDate + ".txt");
+            FileWriter myWriter = new FileWriter("Team11_Implementation" + File.separator + "data" + File.separator + "MemberReports" + File.separator + memberName + formatDate + ".txt");
             myWriter.write(member_report);
             myWriter.close();
         } catch(IOException e){
             System.out.println("error occurred in member report file creation\n");
+            e.printStackTrace();
         };
 
 
