@@ -22,6 +22,8 @@ public class MainAccountingProcedure {
             if (toFindMember.getMemberNumber() =  /* was on a report this week */){
                 Report newMemberReport = new Report();
                 newMemberReport.generateMemberReport(toFindMember.getMemberNumber());
+            }
+        }
         
 
         for (int i = 0; i < providerList.size(); i++) {
