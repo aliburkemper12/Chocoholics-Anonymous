@@ -1,8 +1,6 @@
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -16,8 +14,6 @@ public class ProviderReport extends Report{
     AllMembers members;
     Member currMember;
     Provider currProvider;
-
-    public ArrayList<String> linesInReport = new ArrayList<String>();
 
     ProviderReport(AllMembers members, Provider provider){
         weekFee = 0;
@@ -42,7 +38,7 @@ public class ProviderReport extends Report{
         int serviceCode;
         int fee = 0;
         int consultations = 0;
-        makeFile();
+        makeFile(true);
         report+= "Provider name: ";
         report+= receiverName;
         report+= "\nProvider number: ";
@@ -113,27 +109,31 @@ public class ProviderReport extends Report{
     }
 
 
-    private File myObj;
-    private void makeFile() {
-        try {
-            ZoneId z = ZoneId.of( "America/Chicago" ); //just sets zone
-            LocalDate today = LocalDate.now(z); //current date
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-            String formatDate = today.format(formatter);
-            String name = receiverName;
-            name = name.replaceAll("\\s", "");
-            myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReports"+File.separator+name+formatDate+".txt");
-            int count = 0;
-            while (!myObj.createNewFile()) {
-                //file already exists but want to keep old file
-                count++;
-                myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReports"+File.separator+name+formatDate+"("+count+").txt");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
+    // private File myObj;
+    // private void makeFile(boolean providerReport) {
+    //     try {
+    //         ZoneId z = ZoneId.of( "America/Chicago" ); //just sets zone
+    //         LocalDate today = LocalDate.now(z); //current date
+    //         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+    //         String formatDate = today.format(formatter);
+
+    //         String name = receiverName;
+    //         name = name.replaceAll("\\s", "");
+
+    //         String whichFolder = "MemberReports";
+    //         if(providerReport) whichFolder = "ProviderReports";
+    //         myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + whichFolder+File.separator+name+"_"+formatDate+".txt");
+    //         int count = 0;
+    //         while (!myObj.createNewFile()) {
+    //             //file already exists but want to keep old file
+    //             count++;
+    //             myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + whichFolder+File.separator+name+"_"+formatDate+"("+count+").txt");
+    //         }
+    //     } catch (IOException e) {
+    //         System.out.println("An error occurred.");
+    //         e.printStackTrace();
+    //     }
+    // }
 
     private void writeToFile() {
         try {
