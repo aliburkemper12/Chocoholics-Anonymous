@@ -1,5 +1,8 @@
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.time.ZonedDateTime;
 
 //@author Jack Sherry
 
@@ -24,10 +27,17 @@ public class MainAccountingProcedure {
             for (int j = 0; j < serviceReport.size(); j++) {
                 ServiceRecord toFindServiceReport = serviceReport.get(j);
                 LocalDate reportDate = toFindServiceReport.getDateService();
-                if (reportDate /* is equivalent to this week */){
+                ZoneId zone = ZoneId.of( "America/Chicago" ); //just sets zone
+                LocalDate today = LocalDate.now(zone); //current date
+                DayOfWeek dOTW = today.getDayOfWeek();
+                DayOfWeek reportDateInt = reportDate.getDayOfWeek();
+                // how do I convert the enums to ints???
+                if (dOTW < 4 ) {
                     Report newMemberReport = new Report();
                     newMemberReport.generateMemberReport(toFindMember.getMemberNumber());
                 }
+                //localDate 	minus(TemporalAmount amountToSubtract) Returns a copy of this date with the specified amount subtracted
+                // 	minusDays(long daysToSubtract) Returns a copy of this LocalDate with the specified number of days subtracted.
             }
         }
         
