@@ -18,7 +18,6 @@ public class ManagerTerminal {
 
     private ManagerReport mReport;
 
-    private Manager currentManager;
     private boolean managerVerified = false;
 
     private JPanel panel = new JPanel();
@@ -131,7 +130,6 @@ public class ManagerTerminal {
 
         //now we know if code was valid or not
         if(managers.verifyManager(inputInt)){//Manager code was right
-            currentManager = managers.getManager(inputInt);
             managerVerified = true;
             refreshPanel();
         }

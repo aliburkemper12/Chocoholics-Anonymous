@@ -24,7 +24,7 @@ public class ProviderDirectory {
             
         String name = currProvider.getName();
         name = name.replaceAll("\\s", "");
-        File outputFile = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderDirectories"+File.separator+name+"'sServices.txt");
+        File outputFile = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderDirectories"+File.separator+name+"Services.txt");
 
         try{
             FileWriter myWriter = new FileWriter(outputFile.getPath());

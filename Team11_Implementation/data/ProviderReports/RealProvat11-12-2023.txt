@@ -1,9 +1,0 @@
-Provider name: Real Prov
-Provider number: 2
-Provider street adress: 10 Road
-Provider city: Birm
-Provider state: Alabama
-Provider zip: 0
-
-Number of consultations: 0
-Total fee for the week: 0

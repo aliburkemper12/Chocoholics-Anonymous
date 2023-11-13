@@ -46,7 +46,12 @@ class App{
           MemberTerminal memTerm = new MemberTerminal(members); //Just for Demo Purpose
 
           //More testing
-          mngTerm.requestReport();
+          mngTerm.requestReport();     
+          provTerm.addServiceReports(providers.getProvider(1), members.getMember(1), "12-12-2000", 598470, "null", 50);
+          provTerm.addServiceReports(providers.getProvider(1), members.getMember(2), "12-12-2000", 883948, "null", 150);
+          provTerm.addServiceReports(providers.getProvider(2), members.getMember(1), "12-12-2000", 598470, "null", 50);
+          provTerm.addServiceReports(providers.getProvider(2), members.getMember(2), "12-12-2000", 883948, "null", 150);
+               
 
           //Timer instance and start timer
           TimerClass timer = new TimerClass(providers, members);
