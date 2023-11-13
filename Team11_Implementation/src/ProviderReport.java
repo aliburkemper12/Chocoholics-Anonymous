@@ -116,7 +116,7 @@ public class ProviderReport {
             String formatDate = today.format(formatter);
             String name = currProvider.getName();
             name = name.replaceAll("\\s", "");
-            myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReports"+File.separator+name+":"+formatDate+".txt");
+            myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReports"+File.separator+name+"at"+formatDate+".txt");
             if (!myObj.createNewFile()) {
                 //file already exists so delete what's in there
                 myObj.delete();
