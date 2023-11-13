@@ -114,7 +114,9 @@ public class ProviderReport {
             LocalDate today = LocalDate.now(z); //current date
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
             String formatDate = today.format(formatter);
-            myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReports"+File.separator+currProvider.getName()+": "+formatDate+".txt");
+            String name = currProvider.getName();
+            name = name.replaceAll("\\s", "");
+            myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReports"+File.separator+name+":"+formatDate+".txt");
             if (!myObj.createNewFile()) {
                 //file already exists so delete what's in there
                 myObj.delete();

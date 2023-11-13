@@ -22,7 +22,9 @@ public class ProviderDirectory {
     public void requestDirectory(){
         Collections.sort(services, new ServiceComparator());
             
-        File outputFile = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderDirectories"+File.separator+currProvider.getName()+"'s Services.txt");
+        String name = currProvider.getName();
+        name = name.replaceAll("\\s", "");
+        File outputFile = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderDirectories"+File.separator+name+"'sServices.txt");
 
         try{
             FileWriter myWriter = new FileWriter(outputFile.getPath());
