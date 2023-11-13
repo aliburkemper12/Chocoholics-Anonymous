@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 //@author Luca Jontz
 
-public class ProviderReport {
+public class ProviderReport extends Report{
     ArrayList<ServiceRecord> records;
     int weekFee;
     String memberName;
@@ -27,6 +27,12 @@ public class ProviderReport {
         this.members = members;
         this.records = provider.getRecords();
         this.currProvider = provider;
+        receiverName = currProvider.getName();
+        receiverNum = currProvider.getCreds();
+        receiverAdress = currProvider.getAddress();
+        receiverCity = currProvider.getCity();
+        receiverState = currProvider.getState();
+        receiverZip = currProvider.getZip();
     }
 
     public void writeReport(){
@@ -38,25 +44,25 @@ public class ProviderReport {
         int consultations = 0;
         makeFile();
         report+= "Provider name: ";
-        report+= currProvider.getName();
+        report+= receiverName;
         report+= "\nProvider number: ";
-        report+= currProvider.getCreds();
+        report+= receiverNum;
         report+= "\nProvider street adress: ";
-        report+= currProvider.getAddress();
+        report+= receiverAdress;
         report+= "\nProvider city: ";
-        report+= currProvider.getCity();
+        report+= receiverCity;
         report+= "\nProvider state: ";
-        report+= currProvider.getState();
+        report+= receiverState;
         report+= "\nProvider zip: ";
-        report+= currProvider.getZip();
+        report+= receiverZip;
         report+= "\n\n";
 
-        linesInReport.add("Provider name: "+ currProvider.getName());
-        linesInReport.add("Provider number: "+ currProvider.getCreds());
-        linesInReport.add("Provider street address: "+ currProvider.getAddress());
-        linesInReport.add("Provider city: "+ currProvider.getCity());
-        linesInReport.add("Provider state: "+ currProvider.getState());
-        linesInReport.add("Provider zip: "+ currProvider.getZip());
+        linesInReport.add("Provider name: "+ receiverName);
+        linesInReport.add("Provider number: "+ receiverNum);
+        linesInReport.add("Provider street address: "+ receiverAdress);
+        linesInReport.add("Provider city: "+ receiverCity);
+        linesInReport.add("Provider state: "+ receiverState);
+        linesInReport.add("Provider zip: "+ receiverZip);
         linesInReport.add("");
         linesInReport.add("");
 

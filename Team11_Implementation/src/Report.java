@@ -1,20 +1,12 @@
 public class Report {
     String receiverName;
-    int receiverNum;
+    Long receiverNum;
     String receiverAdress;
     String receiverCity;
     String receiverState;
     int receiverZip;
-    String serviceDate;
 
     Report(){
-        receiverName = "";
-        receiverNum = 0;
-        receiverAdress = "";
-        receiverCity = "";
-        receiverState = "";
-        receiverZip = 0;
-        serviceDate = "";
     }
 
     public void generateProviderReport(long providerNum){
@@ -26,7 +18,7 @@ public class Report {
     }
 
     public void sendReport(){
-        if(receiverName == ""|| receiverNum == 0 || receiverAdress == "" || receiverCity == "" || receiverState == "" || receiverZip == 0 || serviceDate == ""){
+        if(receiverName == ""|| receiverNum == 0 || receiverAdress == "" || receiverCity == "" || receiverState == "" || receiverZip == 0){
             //Prompt that not all info filled out or not generated
             return;
         }
@@ -34,7 +26,7 @@ public class Report {
     }
 
     public void printReport(){
-        if(receiverName == ""|| receiverNum == 0 || receiverAdress == "" || receiverCity == "" || receiverState == "" || receiverZip == 0 || serviceDate == ""){
+        if(receiverName == ""|| receiverNum == 0 || receiverAdress == "" || receiverCity == "" || receiverState == "" || receiverZip == 0){
             //Prompt that not all info filled out or not generated
             return;
         }
