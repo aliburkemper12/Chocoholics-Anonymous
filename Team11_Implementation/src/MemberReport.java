@@ -50,6 +50,10 @@ public class MemberReport {
         // Create file containing report string
         File outputFile = new File("Team11_Implementation" + File.separator + "data" + File.separator + "MemberReports" + File.separator + memberName + formatDate + ".txt");
         try{
+            if(!outputFile.createNewFile()) {
+                outputFile.delete();
+                outputFile.createNewFile();
+            }
             FileWriter myWriter = new FileWriter("Team11_Implementation" + File.separator + "data" + File.separator + "MemberReports" + File.separator + memberName + formatDate + ".txt");
             myWriter.write(member_report);
             myWriter.close();
