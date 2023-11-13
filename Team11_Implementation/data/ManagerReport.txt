@@ -1,1 +1,1 @@
-Provider Name: Fake Prov,  Total Consultations: 2,  Total Fee: 200
+Provider Name: Fake Prov,  Total Consultations: 1,  Total Fee: 50

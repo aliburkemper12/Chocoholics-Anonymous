@@ -82,11 +82,9 @@ public class TimerClass {
     };
 
     //Finish below
+    //
     public void runMainAccountingProcedure(){
         // do stuff
     }
 
-    public void deleteMemberList(){
-        // do stuff
-    }
 }
