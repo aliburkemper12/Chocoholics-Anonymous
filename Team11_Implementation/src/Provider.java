@@ -12,6 +12,7 @@ public class Provider{
     private int zipcode;
     private ArrayList<Service> services = new ArrayList<Service>();
     private ArrayList<ServiceRecord> records = new ArrayList<ServiceRecord>();
+    private ProviderReport report;
     
     Provider(String name, long credentials, String address, String city, String state, int zipcode){
         this.name = name;
@@ -28,6 +29,14 @@ public class Provider{
 
     public void addService(Service newService){
         services.add(newService);
+    }
+
+    public void setReport(ProviderReport newReport){
+        report = newReport;
+    }
+
+    public ProviderReport getReport(){
+        return report;
     }
 
     public String getName(){

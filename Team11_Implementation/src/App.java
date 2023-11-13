@@ -30,6 +30,7 @@ class App{
           members.addMember(2, "Fake Girl", "Unpaid", "11 Road", "Birmingham", "Alabama", 0);
 
           providers.addProvider(1, "Fake Prov", "10 Road", "Tuscaloosa", "Alabama", 0);
+          providers.addProvider(2, "Real Prov", "10 Road", "Birm", "Alabama", 0);
 
           operators.addOperator(1, "Fake Op");
 
@@ -43,6 +44,9 @@ class App{
           ProviderTerminal provTerm = new ProviderTerminal(providers, members);
           OperatorTerminal opTerm = new OperatorTerminal(providers, members, operators);
           MemberTerminal memTerm = new MemberTerminal(members); //Just for Demo Purpose
+
+          //More testing
+          mngTerm.requestReport();
 
           //Timer instance and start timer
           TimerClass timer = new TimerClass(providers, members);
@@ -75,8 +79,17 @@ class App{
                     terminalPanel.add(memTerm.getPanel());
                }
           });
+          JMenuItem m2_3 = new JMenuItem(new AbstractAction("Bill Services") {
+               public void actionPerformed(ActionEvent e) {
+                    provTerm.addServiceReports(providers.getProvider(1), members.getMember(1), "12-12-2000", 598470, "null", 50);
+                    provTerm.addServiceReports(providers.getProvider(1), members.getMember(2), "12-12-2000", 883948, "null", 150);
+                    provTerm.addServiceReports(providers.getProvider(2), members.getMember(1), "12-12-2000", 598470, "null", 50);
+                    provTerm.addServiceReports(providers.getProvider(2), members.getMember(2), "12-12-2000", 883948, "null", 150);
+               }
+          });
           m2.add(m2_1);
           m2.add(m2_2);
+          m2.add(m2_3);
      
           //Below is menu item 'Operator' and it's onClick function
           JMenuItem m1_1 = new JMenuItem(new AbstractAction("Operator") {

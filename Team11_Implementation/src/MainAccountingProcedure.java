@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class MainAccountingProcedure {
     
-    /*  ***BELOW CODE NOT BEING USED***
     AllMembers members;
     AllProviders providers;
 
@@ -18,29 +17,25 @@ public class MainAccountingProcedure {
         ArrayList<Member> memberList = members.memberList;
         ArrayList<Provider> providerList = providers.providerList;
 
-        public void findMember(long memberNumber){
-            for (int i = 0; i < memberList.size(); i++) {
-                Member toFindMember = memberList.get(i);
-                if (toFindMember =  in the billing list ){
-                    Report newMemberReport = new Report();
-                    newMemberReport.generateMemberReport(memberNumber);
-                }
+        for (int i = 0; i < memberList.size(); i++) {
+            Member toFindMember = memberList.get(i);
+            if (toFindMember.getMemberNumber() =  /* was on a report this week */){
+                Report newMemberReport = new Report();
+                newMemberReport.generateMemberReport(toFindMember.getMemberNumber());
             }
         }
-    } */
+        
 
-    /*  new pseudo code:
-    search through the services and check for the ones from that week
-    make a list of the service codes from that week
+        for (int i = 0; i < providerList.size(); i++) {
+            Provider toFindProvider = providerList.get(i);
+            Report newProviderReport = new Report();
+            newProviderReport.generateProviderReport(toFindProvider.getCreds());
+        }
+    } 
+
+    /*  The problem is that this is sending every single member to have their report created
+
     */
-
-
-    Member servRecord;
-    
-    public void runMainAccountingProcedure(){
-        ArrayList<Member> serviceRecordList = servRecord.serviceRecordList;
-
-    }
 
     public void summaryReport(){
 

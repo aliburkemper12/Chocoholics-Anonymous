@@ -24,6 +24,7 @@ public class ManagerReport {
 
     // Called in managerReport
     public void createReport() {
+        linesInReport.clear();
         makeFile();
         ArrayList<Provider> pList = providers.providerList;
         for (int i = 0; i < pList.size(); i++) {
@@ -60,10 +61,10 @@ public class ManagerReport {
     private void makeFile() {
         try {
             myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ManagerReport.txt");
-            if (myObj.createNewFile()) {
-                // System.out.println("File created: " + myObj.getName());
-            } else {
-                // System.out.println("File already exists.");
+            if (!myObj.createNewFile()) {
+                //file already exists so delete what's in there
+                myObj.delete();
+                myObj.createNewFile();
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
