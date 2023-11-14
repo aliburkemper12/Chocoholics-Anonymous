@@ -18,7 +18,7 @@ public class ManagerTerminal {
 
     private ManagerReport mReport;
 
-    private boolean managerVerified = false;
+    public boolean managerVerified = false;
 
     private JPanel panel = new JPanel();
    
@@ -72,7 +72,7 @@ public class ManagerTerminal {
         JTextField input = new JTextField(10);
         JButton submitButton = new JButton(new AbstractAction("Submit") {
             public void actionPerformed(ActionEvent e) {
-                verify(input.getText(), panel);
+                verify(input.getText());
             }
         });
 
@@ -119,7 +119,7 @@ public class ManagerTerminal {
     }
 
     //Called when submit is clicked when asking for Provider OR Member #
-    private void verify(String input, JPanel panel){
+    public void verify(String input){
         int inputInt;
         try {
             inputInt = Integer.parseInt(input);
