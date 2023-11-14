@@ -23,9 +23,9 @@ public class MainAccountingProcedure {
 
         for (int i = 0; i < memberList.size(); i++) {
             Member toFindMember = memberList.get(i);
-            ArrayList<ServiceRecord> serviceReport = toFindMember.getService();
-            for (int j = 0; j < serviceReport.size(); j++) {
-                ServiceRecord toFindServiceReport = serviceReport.get(j);
+            //ArrayList<ServiceRecord> serviceReport = toFindMember.getService();
+            //for (int j = 0; j < serviceReport.size(); j++) {
+                //ServiceRecord toFindServiceReport = serviceReport.get(j);
                 
                 //LocalDate reportDate = toFindServiceReport.getDateService();
                 //ZoneId zone = ZoneId.of( "America/Chicago" ); 
@@ -36,23 +36,21 @@ public class MainAccountingProcedure {
                 //if (reportDate < today) {
                     Report newMemberReport = new Report();
                     newMemberReport.generateMemberReport(toFindMember.getMemberNumber());
+                    toFindMember.serviceReports.clear();
                 //}
-            }
+            //}
         }
         
 
         for (int i = 0; i < providerList.size(); i++) {
             Provider toFindProvider = providerList.get(i);
-            ArrayList<ServiceRecord> serviceReport = toFindProvider.getRecords();
-            
+            //ArrayList<ServiceRecord> serviceReport = toFindProvider.getRecords();
+
             Report newProviderReport = new Report();
             newProviderReport.generateProviderReport(toFindProvider.getCreds());
+            toFindProvider.records.clear();
         }
     } 
-
-    /*  The problem is that this is sending every single member to have their report created
-
-    */
 
     public void summaryReport(){
 
