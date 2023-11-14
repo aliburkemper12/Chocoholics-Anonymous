@@ -50,6 +50,10 @@ public class JackBentleyJUnitTests {
 
 
     }
-
-    
+    //JUnit test for someone elses 
+    public void successTest(){
+        
+    }
+    @After
+    public void noNeed(){}
 }
