@@ -96,4 +96,7 @@ public class Provider{
     public ArrayList<ServiceRecord> getRecords(){
         return records;
     }
+    public void clearReports(ArrayList<ServiceRecord> serviceReports) {
+        serviceReports.clear();
+    }
 }
