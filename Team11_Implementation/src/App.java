@@ -53,7 +53,7 @@ class App{
           mngTerm.requestReport();   
 
           //Timer instance and start timer
-          TimerClass timer = new TimerClass(providers, members);
+          TimerClass timer = new TimerClass(providers, members, m);
           timer.runTask(5,23,59,59);     //5,23,59,59 is correct parameters for friday at 11:59:59 PM
 
           //Creating the Frame
