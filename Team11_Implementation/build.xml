@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<project name="Team11_Implementation" default="all" basedir=".">
-  <property name="src"   value="src"/>
-  <property name="release" value="release"/>
-  <property name="lib"   value="lib"/>
-  <property name="build"   value="build"/>
+<project name="Team11_Implementation" default="all" basedir="..">
+  <property name="src"   value="Team11_Implementation/src"/>
+  <property name="release" value="Team11_Implementation/release"/>
+  <property name="lib"   value="Team11_Implementation/lib"/>
+  <property name="build"   value="Team11_Implementation/build"/>
 
 <target name="all" depends="clean, compile, jar, cleanup, run" description="Builds the whole project">
 
