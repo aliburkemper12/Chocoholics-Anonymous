@@ -24,8 +24,8 @@ public class Report {
         //do stuff
     }
 
-    public void generateMemberReport(long memberNum){
-        //do stuff
+    public void generateMemberReport(Member memberReport){
+        //do stuff maybe
     }
 
     public void sendReport(){

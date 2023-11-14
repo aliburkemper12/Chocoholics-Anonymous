@@ -10,16 +10,20 @@ public class MainAccountingProcedure {
     
     AllMembers members;
     AllProviders providers;
+    ManagerReport managerReport;
 
-    MainAccountingProcedure(AllMembers members, AllProviders providers){
+    MainAccountingProcedure(AllMembers members, AllProviders providers, ManagerReport managerReport){
         this.members = members;
         this.providers = providers;
+        this.managerReport = managerReport;
     }
 
     public void runMainAccountingProcedure(){
 
         ArrayList<Member> memberList = members.memberList;
         ArrayList<Provider> providerList = providers.providerList;
+
+        managerReport.createReport();
 
         for (int i = 0; i < memberList.size(); i++) {
             Member toFindMember = memberList.get(i);
@@ -34,8 +38,8 @@ public class MainAccountingProcedure {
                 //DayOfWeek reportDateEnum = reportDate.getDayOfWeek();
                 // how do I convert the enums to ints???
                 //if (reportDate < today) {
-                    Report newMemberReport = new Report();
-                    newMemberReport.generateMemberReport(toFindMember.getMemberNumber());
+                    MemberReport newMemberReport = new MemberReport();
+                    newMemberReport.generateReport(toFindMember);
                     toFindMember.serviceReports.clear();
                 //}
             //}
@@ -44,10 +48,14 @@ public class MainAccountingProcedure {
 
         for (int i = 0; i < providerList.size(); i++) {
             Provider toFindProvider = providerList.get(i);
+
+            ProviderDirectory pDir = new ProviderDirectory(toFindProvider);
+            pDir.requestDirectory();
             //ArrayList<ServiceRecord> serviceReport = toFindProvider.getRecords();
 
-            Report newProviderReport = new Report();
-            newProviderReport.generateProviderReport(toFindProvider.getCreds());
+            ProviderReport newProviderReport = new ProviderReport(members, toFindProvider);
+            toFindProvider.setReport(newProviderReport);
+            newProviderReport.writeReport();
             toFindProvider.records.clear();
         }
     } 
