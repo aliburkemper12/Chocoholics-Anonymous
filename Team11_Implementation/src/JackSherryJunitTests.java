@@ -15,9 +15,12 @@ public class JackSherryJunitTests {
     Provider singleProvider;
 
     @Before
-    public void setUp(AllMembers members, AllProviders providers) {
-        this.members = members;
-        this.providers = providers;
+    public void setUp() {
+        //this.members = members;
+        //this.providers = providers;
+        members = new AllMembers();
+        providers = new AllProviders();
+        singleProvider = new Provider("Jon", 0, null, null, null, 0);
     }
 
     @Test
