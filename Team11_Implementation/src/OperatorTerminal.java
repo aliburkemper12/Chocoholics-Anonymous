@@ -1,3 +1,6 @@
+// @author Jack Bentley
+
+
 import java.awt.event.ActionEvent;
 import java.util.Random;
 
@@ -16,7 +19,7 @@ public class OperatorTerminal {
 
     boolean operatorVerified = false;
     Operator currentOperator;
-
+    //generates the member ID and provider credentials, gives random 9 digit numbers 
     private long RandomGeneratedNumber() {
         // Create an instance of the Random class
         Random random = new Random();
@@ -68,6 +71,7 @@ public class OperatorTerminal {
     long credentials;
     // Sets mainPanel to verified page
     private void setVerfiedPanel() {
+        //Adds a new member to the member arraylist 
         JButton addMember = new JButton(new AbstractAction("Add Member") {
             public void actionPerformed(ActionEvent e) {
                 //
@@ -118,6 +122,7 @@ public class OperatorTerminal {
              panel.repaint();
             }
         });
+        //deletes a member from the arraylist 
         JButton deleteMember = new JButton(new AbstractAction("Delete Member") {
             public void actionPerformed(ActionEvent e) {
                 //
@@ -125,7 +130,7 @@ public class OperatorTerminal {
                 JOptionPane.showMessageDialog(null, "Member successfully deleted"); 
             }
         });
-
+        //updates member's information 
         JButton updateMember = new JButton(new AbstractAction("Update Member") {
             public void actionPerformed(ActionEvent e) {
                 //
@@ -135,6 +140,7 @@ public class OperatorTerminal {
                 panel.repaint();
             }
         });
+        //adds a provider to the provider arraylist 
         JButton addProvider = new JButton(new AbstractAction("Add Provider") {
             public void actionPerformed(ActionEvent e) {
                 //
@@ -182,6 +188,7 @@ public class OperatorTerminal {
                 panel.repaint();
             }
         });
+        //deletes a provider from the arraylist 
         JButton deleteProvider = new JButton(new AbstractAction("Delete Provider") {
             public void actionPerformed(ActionEvent e) {
                 //
@@ -189,6 +196,7 @@ public class OperatorTerminal {
                 JOptionPane.showMessageDialog(null, "Provider successfully deleted");  
             }
         });
+        //can update any of the provider's information from the providerupdatepanel 
         JButton updateProvider = new JButton(new AbstractAction("Update Provider") {
             public void actionPerformed(ActionEvent e) {
                 //
@@ -240,7 +248,7 @@ public class OperatorTerminal {
 
         refreshPanel();
     }
-
+    //This is the panel that shows what things you can update for the member 
     private void memberUpdatePanel(Member cMember) {
         panel.removeAll();
         JPanel rowOne = new JPanel();
@@ -289,6 +297,7 @@ public class OperatorTerminal {
         panel.add(rowFive);
         panel.add(rowSix);
     }
+    //panel that shows what provider information you can update 
     private void providerUpdatePanel(Provider cProvider) {
         panel.removeAll();
         JPanel rowOne = new JPanel();
