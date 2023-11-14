@@ -87,7 +87,8 @@ public class TimerClass {
     //Finish below
     //
     public void runMainAccountingProcedure(){
-        // do stuff
+        MainAccountingProcedure p  = new MainAccountingProcedure(members, providers, m);
+        p.runMainAccountingProcedure();
     }
 
 }
