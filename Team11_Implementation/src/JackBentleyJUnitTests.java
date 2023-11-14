@@ -10,21 +10,21 @@ public class JackBentleyJUnitTests {
     OperatorTerminal oT;
 
     AllMembers testMember;
-    AllProviders testProvider;
+    AllOperators testOperators;
+    AllMembers members = new AllMembers();
+    AllProviders providers = new AllProviders();
 
     @Before
     public void setUp(){
         //Setup for both
-        AllMembers members = new AllMembers();
-        AllOperators operators = new AllOperators();
-
         //setup for testOperatorTerminalVerify
-        AllProviders provider = new AllProviders();
-        provider.addProvider(1, "Provider One", "stuff", "stuff", "stuff", 12345);
-        oT = new OperatorTerminal(provider, members, operators);
+        AllOperators operators = new AllOperators();
+        operators.addOperator(1, "name");
+        oT = new OperatorTerminal(providers, members, operators);
 
         //setup for testAddMember
-        
+        oT = new OperatorTerminal(providers, members, operators);
+        members.addMember(223456789, "stuff", "stuff", "stuff", "stuff", "stuff", 123456); 
     }
 
     @Test
@@ -39,15 +39,21 @@ public class JackBentleyJUnitTests {
     }
     @Test
     public void testAddMember(){
-        int totalMembersBefore = testMember.memberList.size();
+        int totalMembersBefore = members.memberList.size();
 
-        testMember.addMember(123456789, "stuff", "stuff", "stuff", "stuff", "stuff", 123456);
-        int totalMembersAfter = testMember.memberList.size();
+        members.addMember(123456789, "stuff", "stuff", "stuff", "stuff", "stuff", 123456);
+        int totalMembersAfter = members.memberList.size();
 
-        if(totalMembersAfter + 1 != totalMembersBefore){
+        if(totalMembersBefore + 1 != totalMembersAfter){
             fail("Did not add one member");
         }
 
+
+    }
+    //JUnit test for someone elses 
+    public void successTest(){
         
     }
+    @After
+    public void noNeed(){}
 }
