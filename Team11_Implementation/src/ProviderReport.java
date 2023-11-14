@@ -1,5 +1,3 @@
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -39,6 +37,7 @@ public class ProviderReport extends Report{
         int fee = 0;
         int consultations = 0;
         makeFile(true);
+
         report+= "Provider name: ";
         report+= receiverName;
         report+= "\nProvider number: ";
@@ -105,7 +104,7 @@ public class ProviderReport extends Report{
         linesInReport.add("Number of consultations: "+ consultations);
         linesInReport.add("Total fee for the week: "+ fee);
 
-        writeToFile();
+        writeToFile(report);
     }
 
 
@@ -135,14 +134,14 @@ public class ProviderReport extends Report{
     //     }
     // }
 
-    private void writeToFile() {
-        try {
-            FileWriter myWriter = new FileWriter(myObj.getPath());
-            myWriter.write(report);
-            myWriter.close();
-        } catch (IOException e) {
-            System.out.println("An error writing to ProviderReport.txt occurred.");
-            e.printStackTrace();
-        }
-    }
+    // private void writeToFile(String report) {
+    //     try {
+    //         FileWriter myWriter = new FileWriter(myObj.getPath());
+    //         myWriter.write(report);
+    //         myWriter.close();
+    //     } catch (IOException e) {
+    //         System.out.println("An error writing to ProviderReport.txt occurred.");
+    //         e.printStackTrace();
+    //     }
+    // }
 }
