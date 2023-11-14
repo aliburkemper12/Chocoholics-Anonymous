@@ -10,7 +10,7 @@ import java.util.ArrayList;
 //Method testOperatorGetName is from Adison's class
 //@author Luca Jontz
 
-public class RyanJUnitTests {
+public class LucaJUnitTests {
     
     @Before
     public void setUp(){
