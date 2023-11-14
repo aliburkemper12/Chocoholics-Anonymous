@@ -1,5 +1,7 @@
 // @author Jack Bentley
-
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.util.Random;
 
@@ -170,8 +172,9 @@ public class OperatorTerminal {
         if (operators.verifyOperator(inputInt)) {
             operatorVerified = true;
             currentOperator = operators.getOperator(inputInt);
-        } else
-            JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
+        } else{
+            JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");  
+        }
 
         refreshPanel();
     }
@@ -267,7 +270,18 @@ public class OperatorTerminal {
                 }
                 Long creds = RandomGeneratedNumber();
                 members.addMember(creds, nameText.getText(), "Paid", addressText.getText(), cityText.getText(), stateText.getText(), zipInt);
-                JOptionPane.showMessageDialog(null, "Member Number: "+creds+"  ADDED");
+                JPanel temp = new JPanel();
+                JLabel test = new JLabel("Member #"+creds+" Added!");
+                JButton testButton = new JButton(new AbstractAction("Copy Number") {
+                    public void actionPerformed(ActionEvent e) {
+                        StringSelection stringSelection = new StringSelection(creds+"");
+                        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                        clipboard.setContents(stringSelection, null);
+                    }
+                });        
+                temp.add(test);
+                temp.add(testButton);
+                JOptionPane.showMessageDialog(null, temp);
                 refreshPanel();     
             }
         });
@@ -284,13 +298,13 @@ public class OperatorTerminal {
         JPanel tempPanel = new JPanel();
         tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
 
+        tempPanel.add(rowSeven);
         tempPanel.add(rowOne);
         tempPanel.add(rowTwo);
         tempPanel.add(rowThree);
         tempPanel.add(rowFour);
         tempPanel.add(rowFive);
         tempPanel.add(rowSix);
-        tempPanel.add(rowSeven);
 
         panel.add(tempPanel);
 
@@ -344,7 +358,18 @@ public class OperatorTerminal {
                 }
                 Long creds = RandomGeneratedNumber();
                 providers.addProvider(creds, nameText.getText(), addressText.getText(), cityText.getText(), stateText.getText(), zipInt);
-                JOptionPane.showMessageDialog(null, "Provider Number: "+creds+"  ADDED");
+                JPanel temp = new JPanel();
+                JLabel test = new JLabel("Provider #"+creds+" Added!");
+                JButton testButton = new JButton(new AbstractAction("Copy Number") {
+                    public void actionPerformed(ActionEvent e) {
+                        StringSelection stringSelection = new StringSelection(creds+"");
+                        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                        clipboard.setContents(stringSelection, null);
+                    }
+                });        
+                temp.add(test);
+                temp.add(testButton);
+                JOptionPane.showMessageDialog(null, temp);
                 refreshPanel();     
             }
         });
@@ -361,13 +386,13 @@ public class OperatorTerminal {
         JPanel tempPanel = new JPanel();
         tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
 
+        tempPanel.add(rowSeven);
         tempPanel.add(rowOne);
         tempPanel.add(rowTwo);
         tempPanel.add(rowThree);
         tempPanel.add(rowFour);
         tempPanel.add(rowFive);
         tempPanel.add(rowSix);
-        tempPanel.add(rowSeven);
 
         panel.add(tempPanel);
 
@@ -442,13 +467,13 @@ public class OperatorTerminal {
         JPanel tempPanel = new JPanel();
         tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
 
+        tempPanel.add(rowSeven);
         tempPanel.add(rowOne);
         tempPanel.add(rowTwo);
         tempPanel.add(rowThree);
         tempPanel.add(rowFour);
         tempPanel.add(rowFive);
         tempPanel.add(rowSix);
-        tempPanel.add(rowSeven);
 
         panel.add(tempPanel);
 
@@ -510,12 +535,12 @@ public class OperatorTerminal {
         });
         rowSix.add(submitButton);
 
+        panel.add(rowSix);
         panel.add(rowOne);
         panel.add(rowTwo);
         panel.add(rowThree);
         panel.add(rowFour);
         panel.add(rowFive);
-        panel.add(rowSix);
 
         JPanel tempPanel = new JPanel();
         tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
