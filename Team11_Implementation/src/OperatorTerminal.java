@@ -192,7 +192,7 @@ public class OperatorTerminal {
         JButton updateProvider = new JButton(new AbstractAction("Update Provider") {
             public void actionPerformed(ActionEvent e) {
                 //
-                memberUpdatePanel(null);
+                providerUpdatePanel(null);
             }
         });
         panel.add(addMember);
@@ -289,5 +289,52 @@ public class OperatorTerminal {
         panel.add(rowFive);
         panel.add(rowSix);
     }
+    private void providerUpdatePanel(Provider cProvider) {
+        panel.removeAll();
+        JPanel rowOne = new JPanel();
+        JLabel nameLabel = new JLabel(cProvider.getName());
+        rowOne.add(nameLabel);
 
+        JPanel rowTwo = new JPanel();
+        JLabel addressLabel = new JLabel(cProvider.getAddress());
+        rowTwo.add(addressLabel);
+
+        JPanel rowThree = new JPanel();
+        JLabel cityLabel = new JLabel(cProvider.getCity());
+        rowThree.add(cityLabel);
+
+        JPanel rowFour = new JPanel();
+        JLabel stateLabel = new JLabel(cProvider.getState());
+        rowFour.add(stateLabel);
+
+        JPanel rowFive = new JPanel();
+        JLabel zipLabel = new JLabel(cProvider.getZip() + "");
+        rowFive.add(zipLabel);
+
+        JPanel rowSix = new JPanel();
+        JButton submitButton = new JButton(new AbstractAction("Submit") {
+            public void actionPerformed(ActionEvent e) {
+                int zipInt;
+                try {
+                    zipInt = Integer.parseInt(zipLabel.getText());
+                } catch (NumberFormatException rand) {
+                    JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
+                    return;
+                }
+                cProvider.setName(nameLabel.getText());
+                cProvider.setAddress(addressLabel.getText());
+                cProvider.setCity(cityLabel.getText());
+                cProvider.setState(stateLabel.getText());
+                cProvider.setZip(zipInt);
+            }
+        });
+        rowSix.add(submitButton);
+
+        panel.add(rowOne);
+        panel.add(rowTwo);
+        panel.add(rowThree);
+        panel.add(rowFour);
+        panel.add(rowFive);
+        panel.add(rowSix);
+    }
 }
