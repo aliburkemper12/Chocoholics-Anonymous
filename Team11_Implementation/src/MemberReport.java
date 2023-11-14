@@ -25,11 +25,11 @@ public class MemberReport {
         String memberState;
         int memberZip;
         long memberNum;
-
         String serviceDate = "";
         int serviceCode = 0;
         long providerNumber = 0;
 
+        // Gather member information
         memberName = member.getName();
         memberNum = member.getMemberNumber();
         memberAddress = member.getAddress();
@@ -37,18 +37,24 @@ public class MemberReport {
         memberState = member.getState();
         memberZip = member.getZip();
 
+        // Add member information to report string
         member_report += "Name: " + memberName + "\n" + "Member number: " + memberNum + "\n" + "Member address: " + memberAddress + "\n" + "Member City: " + memberCity + "\n" + "Member state: " + memberState + "\n" + "Member zipcode: " + memberZip + "\n";
 
 
-        //change to service record
+        // Get all services for currMember and add to report string
         for(ServiceRecord record : records) {
+            // Provider tempProvider;
+            // tempProvider = tempProvider.getProvider(record.getProviderNum());
+            // String providerName = tempProvider.getName();
+            // Service tempService;
+
             serviceDate = record.getDate();
             serviceCode = record.getServiceCode();
             providerNumber = record.getProviderNum();
             member_report +=  "Service name: " + serviceCode + "\n" + "Date of service: " + serviceDate + "\n" + "Provider name: " + providerNumber + "\n";
         }
 
-        // Add all information onto one string
+        // Get local date and format it
         LocalDate currDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         String formatDate = currDate.format(formatter);
