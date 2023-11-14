@@ -14,7 +14,7 @@ public class Member {
     private String city; // 14 characters
     private int zipcode; // 6 digits
     private String state; // 2 characters
-    private ArrayList<ServiceRecord> serviceReports;
+    public ArrayList<ServiceRecord> serviceReports;
     private MemberReport memberReport;
 
     // Create a new member to be put into the ArrayList
@@ -34,6 +34,7 @@ public class Member {
         memberReport = report;
     }
 
+    // Get member report
     public MemberReport getReport(){
         return memberReport;
     }
@@ -116,5 +117,9 @@ public class Member {
     // Set state of member
     public void setState(String state) {
         this.state = state;
+    }
+
+    public void clearReports(ArrayList<ServiceRecord> serviceReports) {
+        serviceReports.clear();
     }
 }

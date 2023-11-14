@@ -26,24 +26,25 @@ public class MainAccountingProcedure {
             ArrayList<ServiceRecord> serviceReport = toFindMember.getService();
             for (int j = 0; j < serviceReport.size(); j++) {
                 ServiceRecord toFindServiceReport = serviceReport.get(j);
-                LocalDate reportDate = toFindServiceReport.getDateService();
-                ZoneId zone = ZoneId.of( "America/Chicago" ); //just sets zone
-                LocalDate today = LocalDate.now(zone); //current date
-                DayOfWeek dOTW = today.getDayOfWeek();
-                DayOfWeek reportDateInt = reportDate.getDayOfWeek();
+                
+                //LocalDate reportDate = toFindServiceReport.getDateService();
+                //ZoneId zone = ZoneId.of( "America/Chicago" ); 
+                //LocalDate today = LocalDate.now(zone);
+                //DayOfWeek todayEnum = today.getDayOfWeek();
+                //DayOfWeek reportDateEnum = reportDate.getDayOfWeek();
                 // how do I convert the enums to ints???
-                if (dOTW < 4 ) {
+                //if (reportDate < today) {
                     Report newMemberReport = new Report();
                     newMemberReport.generateMemberReport(toFindMember.getMemberNumber());
-                }
-                //localDate 	minus(TemporalAmount amountToSubtract) Returns a copy of this date with the specified amount subtracted
-                // 	minusDays(long daysToSubtract) Returns a copy of this LocalDate with the specified number of days subtracted.
+                //}
             }
         }
         
 
         for (int i = 0; i < providerList.size(); i++) {
             Provider toFindProvider = providerList.get(i);
+            ArrayList<ServiceRecord> serviceReport = toFindProvider.getRecords();
+            
             Report newProviderReport = new Report();
             newProviderReport.generateProviderReport(toFindProvider.getCreds());
         }

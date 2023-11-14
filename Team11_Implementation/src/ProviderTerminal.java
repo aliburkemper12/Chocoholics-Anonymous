@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -12,8 +13,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 
 public class ProviderTerminal {
@@ -427,8 +430,14 @@ public class ProviderTerminal {
         lastRow.add(goBack);
         tempPanel.add(lastRow);
 
+        JScrollPane pane = new JScrollPane(tempPanel, 
+        ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,  
+        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        pane.setPreferredSize(new Dimension(1200,650));
+
         panel.removeAll();
-        panel.add(tempPanel);
+        panel.add(pane);
         panel.revalidate();
         panel.repaint();
     }

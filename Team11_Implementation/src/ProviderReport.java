@@ -1,14 +1,12 @@
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 //@author Luca Jontz
 
-public class ProviderReport {
+public class ProviderReport extends Report{
     ArrayList<ServiceRecord> records;
     int weekFee;
     String memberName;
@@ -16,8 +14,6 @@ public class ProviderReport {
     AllMembers members;
     Member currMember;
     Provider currProvider;
-
-    public ArrayList<String> linesInReport = new ArrayList<String>();
 
     ProviderReport(AllMembers members, Provider provider){
         weekFee = 0;
@@ -27,6 +23,12 @@ public class ProviderReport {
         this.members = members;
         this.records = provider.getRecords();
         this.currProvider = provider;
+        receiverName = currProvider.getName();
+        receiverNum = currProvider.getCreds();
+        receiverAdress = currProvider.getAddress();
+        receiverCity = currProvider.getCity();
+        receiverState = currProvider.getState();
+        receiverZip = currProvider.getZip();
     }
 
     public void writeReport(){
@@ -36,27 +38,27 @@ public class ProviderReport {
         int serviceCode;
         int fee = 0;
         int consultations = 0;
-        makeFile();
+        makeFile(true);
         report+= "Provider name: ";
-        report+= currProvider.getName();
+        report+= receiverName;
         report+= "\nProvider number: ";
-        report+= currProvider.getCreds();
+        report+= receiverNum;
         report+= "\nProvider street adress: ";
-        report+= currProvider.getAddress();
+        report+= receiverAdress;
         report+= "\nProvider city: ";
-        report+= currProvider.getCity();
+        report+= receiverCity;
         report+= "\nProvider state: ";
-        report+= currProvider.getState();
+        report+= receiverState;
         report+= "\nProvider zip: ";
-        report+= currProvider.getZip();
+        report+= receiverZip;
         report+= "\n\n";
 
-        linesInReport.add("Provider name: "+ currProvider.getName());
-        linesInReport.add("Provider number: "+ currProvider.getCreds());
-        linesInReport.add("Provider street address: "+ currProvider.getAddress());
-        linesInReport.add("Provider city: "+ currProvider.getCity());
-        linesInReport.add("Provider state: "+ currProvider.getState());
-        linesInReport.add("Provider zip: "+ currProvider.getZip());
+        linesInReport.add("Provider name: "+ receiverName);
+        linesInReport.add("Provider number: "+ receiverNum);
+        linesInReport.add("Provider street address: "+ receiverAdress);
+        linesInReport.add("Provider city: "+ receiverCity);
+        linesInReport.add("Provider state: "+ receiverState);
+        linesInReport.add("Provider zip: "+ receiverZip);
         linesInReport.add("");
         linesInReport.add("");
 
@@ -66,9 +68,9 @@ public class ProviderReport {
             memberNum = record.getMemberNum();
             serviceCode = record.getServiceCode();
             fee = record.getServiceFee();
-            report += "Current date and time: ";
+            report += "Date of Service: ";
             report += currDate;
-            report += "\nService date: ";
+            report += "\nService Recieved on Date: ";
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
             String formattedString = serviceDate.format(formatter);
             report += formattedString;
@@ -86,8 +88,8 @@ public class ProviderReport {
             consultations++;
             weekFee += fee;
 
-            linesInReport.add("Current date and time: "+ currDate);
-            linesInReport.add("Service date: "+ formattedString);
+            linesInReport.add("Date of Service: "+ currDate);
+            linesInReport.add("Service Recieved on Date: "+ formattedString);
             linesInReport.add("Member name and number: "+ memberName +" "+memberNum);
             linesInReport.add("Service code: "+ serviceCode);
             linesInReport.add("Fee: "+ fee);
@@ -107,26 +109,31 @@ public class ProviderReport {
     }
 
 
-    private File myObj;
-    private void makeFile() {
-        try {
-            ZoneId z = ZoneId.of( "America/Chicago" ); //just sets zone
-            LocalDate today = LocalDate.now(z); //current date
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-            String formatDate = today.format(formatter);
-            String name = currProvider.getName();
-            name = name.replaceAll("\\s", "");
-            myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + "ProviderReports"+File.separator+name+formatDate+".txt");
-            if (!myObj.createNewFile()) {
-                //file already exists so delete what's in there
-                myObj.delete();
-                myObj.createNewFile();
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
+    // private File myObj;
+    // private void makeFile(boolean providerReport) {
+    //     try {
+    //         ZoneId z = ZoneId.of( "America/Chicago" ); //just sets zone
+    //         LocalDate today = LocalDate.now(z); //current date
+    //         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+    //         String formatDate = today.format(formatter);
+
+    //         String name = receiverName;
+    //         name = name.replaceAll("\\s", "");
+
+    //         String whichFolder = "MemberReports";
+    //         if(providerReport) whichFolder = "ProviderReports";
+    //         myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + whichFolder+File.separator+name+"_"+formatDate+".txt");
+    //         int count = 0;
+    //         while (!myObj.createNewFile()) {
+    //             //file already exists but want to keep old file
+    //             count++;
+    //             myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + whichFolder+File.separator+name+"_"+formatDate+"("+count+").txt");
+    //         }
+    //     } catch (IOException e) {
+    //         System.out.println("An error occurred.");
+    //         e.printStackTrace();
+    //     }
+    // }
 
     private void writeToFile() {
         try {

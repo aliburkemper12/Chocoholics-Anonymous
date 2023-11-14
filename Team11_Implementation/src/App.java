@@ -59,7 +59,7 @@ class App{
           //Creating the Frame
           JFrame frame = new JFrame("ChocAn System");
           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-          frame.setSize(800, 400);
+          frame.setSize(1400, 700);
                
           //Creating the MenuBar and adding components
           JMenuBar mb = new JMenuBar();
