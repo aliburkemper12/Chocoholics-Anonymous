@@ -12,11 +12,15 @@ public class JackSherryJunitTests {
 
     AllMembers members;
     AllProviders providers;
+    Provider singleProvider;
 
     @Before
-    public void setUp(AllMembers members, AllProviders providers) {
-        this.members = members;
-        this.providers = providers;
+    public void setUp() {
+        //this.members = members;
+        //this.providers = providers;
+        members = new AllMembers();
+        providers = new AllProviders();
+        singleProvider = new Provider("Jon", 0, null, null, null, 0);
     }
 
     @Test
@@ -33,4 +37,9 @@ public class JackSherryJunitTests {
         assertTrue(providerList.isEmpty());
     }
 
+    @Test
+    public void test3(){
+        singleProvider.setCity("Atlanta");
+        assertTrue(singleProvider.getCity() == "Atlanta");
+    }
 }
