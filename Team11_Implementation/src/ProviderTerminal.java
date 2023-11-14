@@ -18,6 +18,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
+// ProviderTerminal class is responsible for GUI for the provider.
+// It also verifies provider by calling method from AllProvider
+// and is the start for all methods providers can do. 
+
+// @author Ryan Kutella
 
 public class ProviderTerminal {
 

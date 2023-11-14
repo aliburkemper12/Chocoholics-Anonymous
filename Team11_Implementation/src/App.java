@@ -10,6 +10,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+
+// App Class contains the main to be run and is responsible for holding the frame for the GUI
+// App Class also initializes the Record Class (AllMembers, AllManagers, etc) and is responsible for
+// passing them to other classes as needed.
+
+// @author Ryan Kutella
+
 class App{
 
      static AllProviders providers;

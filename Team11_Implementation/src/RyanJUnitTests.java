@@ -4,6 +4,12 @@ import org.junit.After;
 import  org.junit.Before;
 import org.junit.Test;
 
+// RyanJUnitTests is just the class for running the testing.
+// Methods testManagerTerminalVerify and testProviderTerminalAddService use
+// methods made in MY classes. Other method is testing someone elses class.
+
+// @author Ryan Kutella
+
 public class RyanJUnitTests {
     
     ManagerTerminal mT;

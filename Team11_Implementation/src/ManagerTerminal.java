@@ -9,6 +9,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+// ManagerTerminal Class is responsible for the GUI of the terminal
+// and the verification of managers. It is also the first step of when 
+// manager requests reports and calls MainAccountingProcedure.
+
+// @author Ryan Kutella
+
 public class ManagerTerminal {
 
     //All... instances (passed from App on creation)

@@ -9,6 +9,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+// MemberTerminal Class is responsible for the GUI of the member terminal for demo purpose.
+// This class, although not part of ChocAn, helps demo the reports being made for each member.
+
+// @author Ryan Kutella
+
 public class MemberTerminal {
 
     // All... instances (passed from App on creation)
