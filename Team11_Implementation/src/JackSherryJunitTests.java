@@ -1,24 +1,42 @@
 import org.junit.Assert.*;
 import java.util.ArrayList;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.lang.reflect.Array; 
 import org.junit.Before;
 import org.junit.Test;
 
 public class JackSherryJunitTests {
-    
-    ArrayList<String> myList;
+
+    AllMembers members;
+    AllProviders providers;
+    Provider singleProvider;
 
     @Before
-    public void setUp() {
-        // Initialize the list before each test
-        myList = new ArrayList<>();
-        myList.add("Item 1");
-        myList.add("Item 2");
-        myList.add("Item 3");
+    public void setUp(AllMembers members, AllProviders providers) {
+        this.members = members;
+        this.providers = providers;
     }
 
     @Test
-    public void 
+    public void clearTest1() {
+        ArrayList<Member> memberList = members.memberList;
+        memberList.clear();
+        assertTrue(memberList.isEmpty());
+    }
 
+    @Test
+    public void clearTest2() {
+        ArrayList<Provider> providerList = providers.providerList;
+        providerList.clear();
+        assertTrue(providerList.isEmpty());
+    }
 
+    @Test
+    public void test3(){
+        singleProvider.setCity("Atlanta");
+        assertTrue(singleProvider.getCity() == "Atlanta");
+    }
 }
