@@ -117,4 +117,8 @@ public class Member {
     public void setState(String state) {
         this.state = state;
     }
+
+    public void clearReports(ArrayList<ServiceRecord> serviceReports) {
+        serviceReports.clear();
+    }
 }
