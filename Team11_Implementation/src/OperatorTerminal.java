@@ -1,10 +1,10 @@
 // @author Jack Bentley
 
-
 import java.awt.event.ActionEvent;
 import java.util.Random;
 
 import javax.swing.AbstractAction;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,7 +19,9 @@ public class OperatorTerminal {
 
     boolean operatorVerified = false;
     Operator currentOperator;
-    //generates the member ID and provider credentials, gives random 9 digit numbers 
+
+    // generates the member ID and provider credentials, gives random 9 digit
+    // numbers
     private long RandomGeneratedNumber() {
         // Create an instance of the Random class
         Random random = new Random();
@@ -43,6 +45,7 @@ public class OperatorTerminal {
     private JPanel panel = new JPanel();
 
     public JPanel getPanel() {
+        operatorVerified = false;
         refreshPanel();
         return panel;
     }
@@ -61,154 +64,78 @@ public class OperatorTerminal {
         panel.revalidate();
         panel.repaint();
     }
+
     String name; // 25 characters
     String status;
     String address; // 25 characters
     String city; // 14 characters
     String state; // 2 characters
-    int zip; 
+    int zip;
     long memberNumber;
     long credentials;
+
     // Sets mainPanel to verified page
     private void setVerfiedPanel() {
-        //Adds a new member to the member arraylist 
+        // Adds a new member to the member arraylist
         JButton addMember = new JButton(new AbstractAction("Add Member") {
             public void actionPerformed(ActionEvent e) {
                 //
-                panel.removeAll();
-                JTextField memberName = new JTextField(1);
-                JTextField memberStatus = new JTextField(1);
-                JTextField  memberAddress = new JTextField(1);
-                JTextField memberCity = new JTextField(1);
-                JTextField memberState = new JTextField(1);
-                JTextField memberZip = new JTextField(1);
-                
-                memberNumber = RandomGeneratedNumber();
-                
-
-
-        
-        JButton submitButton = new JButton(new AbstractAction("Submit") {
-            public void actionPerformed(ActionEvent e) {
-                // when submitted do more stuff here
-                // like setting currentOperator and checking if input is verified
-                status = memberStatus.getText();
-                name = memberName.getText();
-                address = memberAddress.getText();
-                state = memberState.getText();
-                city = memberCity.getText();
-                boolean caughtError;
-                try {
-                    zip = Integer.parseInt(memberZip.getText());
-                    JOptionPane.showMessageDialog(null, "Member added. Member number is: " + memberNumber);
-                    refreshPanel();
-                } catch (NumberFormatException rand) {
-                    caughtError = true;
-                    JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
-                }
-                panel.revalidate();
-                panel.repaint();
-            }
-             });
-             
-             panel.add(memberStatus);
-             panel.add(memberName);
-             panel.add(memberAddress);
-             panel.add(memberState);
-             panel.add(memberCity);
-             panel.add(memberZip);
-             panel.add(submitButton);
-             panel.revalidate();
-             panel.repaint();
+                memberAddPanel();
             }
         });
-        //deletes a member from the arraylist 
+        // deletes a member from the arraylist
         JButton deleteMember = new JButton(new AbstractAction("Delete Member") {
             public void actionPerformed(ActionEvent e) {
                 //
-                members.deleteMember(memberNumber);
-                JOptionPane.showMessageDialog(null, "Member successfully deleted"); 
+                setMemberRequestPanel(false);
             }
         });
-        //updates member's information 
+        // updates member's information
         JButton updateMember = new JButton(new AbstractAction("Update Member") {
             public void actionPerformed(ActionEvent e) {
                 //
-                members.getMember(memberNumber);
-                memberUpdatePanel(null);
-                panel.revalidate();
-                panel.repaint();
+                setMemberRequestPanel(true);
             }
         });
-        //adds a provider to the provider arraylist 
+        // adds a provider to the provider arraylist
         JButton addProvider = new JButton(new AbstractAction("Add Provider") {
             public void actionPerformed(ActionEvent e) {
                 //
-               credentials = RandomGeneratedNumber(); 
-               panel.removeAll();
-                JTextField providerName = new JTextField(1);
-                JTextField  providerAddress = new JTextField(1);
-                JTextField providerCity = new JTextField(1);
-                JTextField providerState = new JTextField(1);
-                JTextField providerZip = new JTextField(1);
-                
-                
-                
-
-
-        
-        JButton submitButton = new JButton(new AbstractAction("Submit") {
-            public void actionPerformed(ActionEvent e) {
-                // when submitted do more stuff here
-                // like setting currentOperator and checking if input is verified
-                name = providerName.getText();
-                address = providerAddress.getText();
-                state = providerState.getText();
-                city = providerCity.getText();
-                boolean caughtError;
-                try {
-                    zip = Integer.parseInt(providerZip.getText());
-                    JOptionPane.showMessageDialog(null, "Provider added. Provider credentials is: " + credentials);
-                } catch (NumberFormatException rand) {
-                    caughtError = true;
-                    JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
-                }
-                panel.revalidate();
-                panel.repaint(); 
-            }
-             });
-             
-                panel.add(providerName);
-                panel.add(providerAddress);
-                panel.add(providerState);
-                panel.add(providerCity);
-                panel.add(providerZip);
-                panel.add(submitButton);
-                panel.revalidate();
-                panel.repaint();
+                providerAddPanel();
             }
         });
-        //deletes a provider from the arraylist 
+        // deletes a provider from the arraylist
         JButton deleteProvider = new JButton(new AbstractAction("Delete Provider") {
             public void actionPerformed(ActionEvent e) {
                 //
-                providers.deleteProvider(credentials);
-                JOptionPane.showMessageDialog(null, "Provider successfully deleted");  
+                setProviderRequestPanel(false);
             }
         });
-        //can update any of the provider's information from the providerupdatepanel 
+        // can update any of the provider's information from the providerupdatepanel
         JButton updateProvider = new JButton(new AbstractAction("Update Provider") {
             public void actionPerformed(ActionEvent e) {
                 //
-                providerUpdatePanel(null);
+                setProviderRequestPanel(true);
             }
         });
-        panel.add(addMember);
-        panel.add(deleteMember);
-        panel.add(updateMember);
-        panel.add(addProvider);
-        panel.add(deleteProvider);
-        panel.add(updateProvider);
+        JPanel rowOne = new JPanel();
+        rowOne.add(addMember);
+        rowOne.add(addProvider);
+        JPanel rowTwo = new JPanel();
+        rowTwo.add(deleteMember);
+        rowTwo.add(deleteProvider);
+        JPanel rowThree = new JPanel();
+        rowThree.add(updateMember);
+        rowThree.add(updateProvider);
+
+        JPanel tempPanel = new JPanel();
+        tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
+
+        tempPanel.add(rowOne);
+        tempPanel.add(rowTwo);
+        tempPanel.add(rowThree);
+
+        panel.add(tempPanel);
     }
 
     // Sets panel to the provider # _____ page
@@ -248,93 +175,337 @@ public class OperatorTerminal {
 
         refreshPanel();
     }
-    //This is the panel that shows what things you can update for the member 
-    private void memberUpdatePanel(Member cMember) {
+
+    private void verifyMember(String input, boolean toUpdate) {
+        int inputInt;
+        try {
+            inputInt = Integer.parseInt(input);
+        } catch (NumberFormatException rand) {
+            inputInt = -1;
+        }
+
+        String memberStatus = members.verifyMember(inputInt);
+
+        if (memberStatus.equals("Validated")||memberStatus.equals("Member suspended")) {
+            Member m = members.getMember(inputInt);
+            if (toUpdate) {
+                memberUpdatePanel(m);
+            } else {
+                members.deleteMember(inputInt);
+                JOptionPane.showMessageDialog(null, "Member successfully deleted");
+                refreshPanel();
+            }
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
+    }
+
+    private void verifyProvider(String input, boolean toUpdate) {
+        int inputInt;
+        try {
+            inputInt = Integer.parseInt(input);
+        } catch (NumberFormatException rand) {
+            inputInt = -1;
+        }
+
+        if (providers.verifyProvider(inputInt)) {
+            Provider p = providers.getProvider(inputInt);
+            if (toUpdate) {
+                providerUpdatePanel(p);
+            } else {
+                providers.deleteProvider(inputInt);
+                JOptionPane.showMessageDialog(null, "Provider successfully deleted");
+                refreshPanel();
+            }
+        } else
+            JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
+    }
+
+    // This is the panel that shows what things you can update for the member
+    private void memberAddPanel() {
         panel.removeAll();
+
         JPanel rowOne = new JPanel();
-        JLabel nameLabel = new JLabel(cMember.getName());
+        JLabel nameLabel = new JLabel("Member Name: ");
+        JTextField nameText = new JTextField(10);
         rowOne.add(nameLabel);
+        rowOne.add(nameText);
 
         JPanel rowTwo = new JPanel();
-        JLabel addressLabel = new JLabel(cMember.getAddress());
+        JLabel addressLabel = new JLabel("Member Address: ");
+        JTextField addressText = new JTextField(10);
         rowTwo.add(addressLabel);
+        rowTwo.add(addressText);
 
         JPanel rowThree = new JPanel();
-        JLabel cityLabel = new JLabel(cMember.getCity());
+        JLabel cityLabel = new JLabel("Member City: ");
+        JTextField cityText = new JTextField(10);
         rowThree.add(cityLabel);
+        rowThree.add(cityText);
 
         JPanel rowFour = new JPanel();
-        JLabel stateLabel = new JLabel(cMember.getState());
+        JLabel stateLabel = new JLabel("Member State: ");
+        JTextField stateText = new JTextField(10);
         rowFour.add(stateLabel);
+        rowFour.add(stateText);
 
         JPanel rowFive = new JPanel();
-        JLabel zipLabel = new JLabel(cMember.getZip() + "");
+        JLabel zipLabel = new JLabel("Member Zip: ");
+        JTextField zipText = new JTextField(10);
         rowFive.add(zipLabel);
+        rowFive.add(zipText);
 
         JPanel rowSix = new JPanel();
         JButton submitButton = new JButton(new AbstractAction("Submit") {
             public void actionPerformed(ActionEvent e) {
                 int zipInt;
                 try {
-                    zipInt = Integer.parseInt(zipLabel.getText());
+                    zipInt = Integer.parseInt(zipText.getText());
                 } catch (NumberFormatException rand) {
                     JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
                     return;
                 }
-                cMember.setName(nameLabel.getText());
-                cMember.setAddress(addressLabel.getText());
-                cMember.setCity(cityLabel.getText());
-                cMember.setState(stateLabel.getText());
-                cMember.setZip(zipInt);
+                Long creds = RandomGeneratedNumber();
+                members.addMember(creds, nameText.getText(), "Paid", addressText.getText(), cityText.getText(), stateText.getText(), zipInt);
+                JOptionPane.showMessageDialog(null, "Member Number: "+creds+"  ADDED");
+                refreshPanel();     
             }
         });
         rowSix.add(submitButton);
 
-        panel.add(rowOne);
-        panel.add(rowTwo);
-        panel.add(rowThree);
-        panel.add(rowFour);
-        panel.add(rowFive);
-        panel.add(rowSix);
+        JPanel rowSeven = new JPanel();
+        JButton goBack = new JButton(new AbstractAction("Go Back") {
+            public void actionPerformed(ActionEvent e) {
+                refreshPanel();
+            }
+        });
+        rowSeven.add(goBack);
+
+        JPanel tempPanel = new JPanel();
+        tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
+
+        tempPanel.add(rowOne);
+        tempPanel.add(rowTwo);
+        tempPanel.add(rowThree);
+        tempPanel.add(rowFour);
+        tempPanel.add(rowFive);
+        tempPanel.add(rowSix);
+        tempPanel.add(rowSeven);
+
+        panel.add(tempPanel);
+
+        panel.revalidate();
+        panel.repaint();
     }
-    //panel that shows what provider information you can update 
+
+    // This is the panel that shows what things you can update for the member
+    private void providerAddPanel() {
+        panel.removeAll();
+
+        JPanel rowOne = new JPanel();
+        JLabel nameLabel = new JLabel("Provider Name: ");
+        JTextField nameText = new JTextField(10);
+        rowOne.add(nameLabel);
+        rowOne.add(nameText);
+
+        JPanel rowTwo = new JPanel();
+        JLabel addressLabel = new JLabel("Provider Address: ");
+        JTextField addressText = new JTextField(10);
+        rowTwo.add(addressLabel);
+        rowTwo.add(addressText);
+
+        JPanel rowThree = new JPanel();
+        JLabel cityLabel = new JLabel("Provider City: ");
+        JTextField cityText = new JTextField(10);
+        rowThree.add(cityLabel);
+        rowThree.add(cityText);
+
+        JPanel rowFour = new JPanel();
+        JLabel stateLabel = new JLabel("Provider State: ");
+        JTextField stateText = new JTextField(10);
+        rowFour.add(stateLabel);
+        rowFour.add(stateText);
+
+        JPanel rowFive = new JPanel();
+        JLabel zipLabel = new JLabel("Provider Zip: ");
+        JTextField zipText = new JTextField(10);
+        rowFive.add(zipLabel);
+        rowFive.add(zipText);
+
+        JPanel rowSix = new JPanel();
+        JButton submitButton = new JButton(new AbstractAction("Submit") {
+            public void actionPerformed(ActionEvent e) {
+                int zipInt;
+                try {
+                    zipInt = Integer.parseInt(zipText.getText());
+                } catch (NumberFormatException rand) {
+                    JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
+                    return;
+                }
+                Long creds = RandomGeneratedNumber();
+                providers.addProvider(creds, nameText.getText(), addressText.getText(), cityText.getText(), stateText.getText(), zipInt);
+                JOptionPane.showMessageDialog(null, "Provider Number: "+creds+"  ADDED");
+                refreshPanel();     
+            }
+        });
+        rowSix.add(submitButton);
+
+        JPanel rowSeven = new JPanel();
+        JButton goBack = new JButton(new AbstractAction("Go Back") {
+            public void actionPerformed(ActionEvent e) {
+                refreshPanel();
+            }
+        });
+        rowSeven.add(goBack);
+
+        JPanel tempPanel = new JPanel();
+        tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
+
+        tempPanel.add(rowOne);
+        tempPanel.add(rowTwo);
+        tempPanel.add(rowThree);
+        tempPanel.add(rowFour);
+        tempPanel.add(rowFive);
+        tempPanel.add(rowSix);
+        tempPanel.add(rowSeven);
+
+        panel.add(tempPanel);
+
+        panel.revalidate();
+        panel.repaint();
+    }
+
+
+    // This is the panel that shows what things you can update for the member
+    private void memberUpdatePanel(Member cMember) {
+        panel.removeAll();
+
+        JPanel rowOne = new JPanel();
+        JLabel nameLabel = new JLabel("Member Name: ");
+        JTextField nameText = new JTextField(cMember.getName(),10);
+        rowOne.add(nameLabel);
+        rowOne.add(nameText);
+
+        JPanel rowTwo = new JPanel();
+        JLabel addressLabel = new JLabel("Member Address: ");
+        JTextField addressText = new JTextField(cMember.getAddress(),10);
+        rowTwo.add(addressLabel);
+        rowTwo.add(addressText);
+
+        JPanel rowThree = new JPanel();
+        JLabel cityLabel = new JLabel("Member City: ");
+        JTextField cityText = new JTextField(cMember.getCity(),10);
+        rowThree.add(cityLabel);
+        rowThree.add(cityText);
+
+        JPanel rowFour = new JPanel();
+        JLabel stateLabel = new JLabel("Member State: ");
+        JTextField stateText = new JTextField(cMember.getState(), 10);
+        rowFour.add(stateLabel);
+        rowFour.add(stateText);
+
+        JPanel rowFive = new JPanel();
+        JLabel zipLabel = new JLabel("Member Zip: ");
+        JTextField zipText = new JTextField(cMember.getZip()+"", 10);
+        rowFive.add(zipLabel);
+        rowFive.add(zipText);
+
+        JPanel rowSix = new JPanel();
+        JButton submitButton = new JButton(new AbstractAction("Submit") {
+            public void actionPerformed(ActionEvent e) {
+                int zipInt;
+                try {
+                    zipInt = Integer.parseInt(zipText.getText());
+                } catch (NumberFormatException rand) {
+                    JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
+                    return;
+                }
+                cMember.setName(nameText.getText());
+                cMember.setAddress(addressText.getText());
+                cMember.setCity(cityText.getText());
+                cMember.setState(stateText.getText());
+                cMember.setZip(zipInt);
+                JOptionPane.showMessageDialog(null, "Successfully Updated");
+                refreshPanel();
+            }
+        });
+        rowSix.add(submitButton);
+
+        JPanel rowSeven = new JPanel();
+        JButton goBack = new JButton(new AbstractAction("Go Back") {
+            public void actionPerformed(ActionEvent e) {
+                refreshPanel();
+            }
+        });
+        rowSeven.add(goBack);
+
+        JPanel tempPanel = new JPanel();
+        tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
+
+        tempPanel.add(rowOne);
+        tempPanel.add(rowTwo);
+        tempPanel.add(rowThree);
+        tempPanel.add(rowFour);
+        tempPanel.add(rowFive);
+        tempPanel.add(rowSix);
+        tempPanel.add(rowSeven);
+
+        panel.add(tempPanel);
+
+        panel.revalidate();
+        panel.repaint();
+    }
+
+    // panel that shows what provider information you can update
     private void providerUpdatePanel(Provider cProvider) {
         panel.removeAll();
         JPanel rowOne = new JPanel();
-        JLabel nameLabel = new JLabel(cProvider.getName());
+        JLabel nameLabel = new JLabel("Provider Name: ");
+        JTextField nameText = new JTextField(cProvider.getName(),10);
         rowOne.add(nameLabel);
+        rowOne.add(nameText);
 
         JPanel rowTwo = new JPanel();
-        JLabel addressLabel = new JLabel(cProvider.getAddress());
+        JLabel addressLabel = new JLabel("Provider Address: ");
+        JTextField addressText = new JTextField(cProvider.getAddress(),10);
         rowTwo.add(addressLabel);
+        rowTwo.add(addressText);
 
         JPanel rowThree = new JPanel();
-        JLabel cityLabel = new JLabel(cProvider.getCity());
+        JLabel cityLabel = new JLabel("Provider City: ");
+        JTextField cityText = new JTextField(cProvider.getCity(),10);
         rowThree.add(cityLabel);
+        rowThree.add(cityText);
 
         JPanel rowFour = new JPanel();
-        JLabel stateLabel = new JLabel(cProvider.getState());
+        JLabel stateLabel = new JLabel("Provider State: ");
+        JTextField stateText = new JTextField(cProvider.getState(), 10);
         rowFour.add(stateLabel);
+        rowFour.add(stateText);
 
         JPanel rowFive = new JPanel();
-        JLabel zipLabel = new JLabel(cProvider.getZip() + "");
+        JLabel zipLabel = new JLabel("Provider Zip: ");
+        JTextField zipText = new JTextField(cProvider.getZip()+"", 10);
         rowFive.add(zipLabel);
+        rowFive.add(zipText);
 
         JPanel rowSix = new JPanel();
         JButton submitButton = new JButton(new AbstractAction("Submit") {
             public void actionPerformed(ActionEvent e) {
                 int zipInt;
                 try {
-                    zipInt = Integer.parseInt(zipLabel.getText());
+                    zipInt = Integer.parseInt(zipText.getText());
                 } catch (NumberFormatException rand) {
                     JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
                     return;
                 }
-                cProvider.setName(nameLabel.getText());
-                cProvider.setAddress(addressLabel.getText());
-                cProvider.setCity(cityLabel.getText());
-                cProvider.setState(stateLabel.getText());
+                cProvider.setName(nameText.getText());
+                cProvider.setAddress(addressText.getText());
+                cProvider.setCity(cityText.getText());
+                cProvider.setState(stateText.getText());
                 cProvider.setZip(zipInt);
+                JOptionPane.showMessageDialog(null, "Successfully Updated");
+                refreshPanel();
             }
         });
         rowSix.add(submitButton);
@@ -345,5 +516,103 @@ public class OperatorTerminal {
         panel.add(rowFour);
         panel.add(rowFive);
         panel.add(rowSix);
+
+        JPanel tempPanel = new JPanel();
+        tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
+
+        JPanel rowSeven = new JPanel();
+        JButton goBack = new JButton(new AbstractAction("Go Back") {
+            public void actionPerformed(ActionEvent e) {
+                refreshPanel();
+            }
+        });
+        rowSeven.add(goBack);
+
+        tempPanel.add(rowOne);
+        tempPanel.add(rowTwo);
+        tempPanel.add(rowThree);
+        tempPanel.add(rowFour);
+        tempPanel.add(rowFive);
+        tempPanel.add(rowSix);
+        tempPanel.add(rowSeven);
+
+        panel.add(tempPanel);
+
+        panel.revalidate();
+        panel.repaint();
+    }
+
+    private void setMemberRequestPanel(boolean toUpdate) {
+        panel.removeAll();
+
+        JPanel rowZero = new JPanel();
+        JButton goBack = new JButton(new AbstractAction("Go Back") {
+            public void actionPerformed(ActionEvent e) {
+                refreshPanel();
+            }
+        });
+        rowZero.add(goBack);
+
+        JPanel rowOne = new JPanel();
+        JLabel label = new JLabel("Member #:");
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        JTextField input = new JTextField(10);
+        JButton submitButton = new JButton(new AbstractAction("Submit") {
+            public void actionPerformed(ActionEvent e) {
+                verifyMember(input.getText(), toUpdate);
+            }
+        });
+
+        rowOne.add(label);
+        rowOne.add(input);
+        rowOne.add(submitButton);
+
+        JPanel tempPanel = new JPanel();
+        tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
+
+        tempPanel.add(rowZero);
+        tempPanel.add(rowOne);
+
+        panel.add(tempPanel);
+
+        panel.revalidate();
+        panel.repaint();
+    }
+
+    private void setProviderRequestPanel(boolean toUpdate) {
+        panel.removeAll();
+
+        JPanel rowZero = new JPanel();
+        JButton goBack = new JButton(new AbstractAction("Go Back") {
+            public void actionPerformed(ActionEvent e) {
+                refreshPanel();
+            }
+        });
+        rowZero.add(goBack);
+
+        JPanel rowOne = new JPanel();
+        JLabel label = new JLabel("Provider #:");
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        JTextField input = new JTextField(10);
+        JButton submitButton = new JButton(new AbstractAction("Submit") {
+            public void actionPerformed(ActionEvent e) {
+                verifyProvider(input.getText(), toUpdate);
+            }
+        });
+
+        rowOne.add(label);
+        rowOne.add(input);
+        rowOne.add(submitButton);
+
+        JPanel tempPanel = new JPanel();
+        tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
+
+        tempPanel.add(rowZero);
+        tempPanel.add(rowOne);
+
+        panel.add(tempPanel);
+
+        panel.revalidate();
+        panel.repaint();
     }
 }
