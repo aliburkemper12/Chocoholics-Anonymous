@@ -10,6 +10,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+
+// App Class contains the main to be run and is responsible for holding the frame for the GUI
+// App Class also initializes the Record Class (AllMembers, AllManagers, etc) and is responsible for
+// passing them to other classes as needed.
+
+// @author Ryan Kutella
+
 class App{
 
      static AllProviders providers;
@@ -28,12 +35,9 @@ class App{
           //Making fake info
           members.addMember(1, "Fake Guy", "Paid", "10 Road", "Tuscaloosa", "Alabama", 0);
           members.addMember(2, "Fake Girl", "Unpaid", "11 Road", "Birmingham", "Alabama", 0);
-
           providers.addProvider(1, "Fake Prov", "10 Road", "Tuscaloosa", "Alabama", 0);
           providers.addProvider(2, "Real Prov", "10 Road", "Birm", "Alabama", 0);
-
           operators.addOperator(1, "Fake Op");
-
           managers.addManager(1, "Fake Man");
 
           //Below is just for testing
@@ -50,10 +54,10 @@ class App{
           provTerm.addServiceReports(providers.getProvider(1), members.getMember(2), "12-12-2000", 883948, "null", 150);
           provTerm.addServiceReports(providers.getProvider(2), members.getMember(1), "12-12-2000", 598470, "null", 50);
           provTerm.addServiceReports(providers.getProvider(2), members.getMember(2), "12-12-2000", 883948, "null", 150);
-          mngTerm.requestReport();   
+          // mngTerm.requestReport();   
 
           //Timer instance and start timer
-          TimerClass timer = new TimerClass(providers, members);
+          TimerClass timer = new TimerClass(providers, members, m);
           timer.runTask(5,23,59,59);     //5,23,59,59 is correct parameters for friday at 11:59:59 PM
 
           //Creating the Frame

@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -23,8 +24,8 @@ public class Report {
         //do stuff
     }
 
-    public void generateMemberReport(long memberNum){
-        //do stuff
+    public void generateMemberReport(Member memberReport){
+        //do stuff maybe
     }
 
     public void sendReport(){
@@ -65,6 +66,17 @@ public class Report {
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    protected void writeToFile(String report) {
+        try {
+            FileWriter myWriter = new FileWriter(myObj.getPath());
+            myWriter.write(report);
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error writing to ProviderReport.txt occurred.");
             e.printStackTrace();
         }
     }

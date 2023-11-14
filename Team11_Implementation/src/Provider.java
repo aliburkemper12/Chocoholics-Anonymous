@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Provider{
 
-    private String name;
+    public String name;
     private long credentials;
     private String address;
     private String city;

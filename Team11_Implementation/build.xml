@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="Team11_Implementation" default="all" basedir=".">
+<project name="Team11_Implementation" default="all" basedir="..">
   <property name="src"   value="Team11_Implementation/src"/>
   <property name="release" value="Team11_Implementation/release"/>
   <property name="lib"   value="Team11_Implementation/lib"/>

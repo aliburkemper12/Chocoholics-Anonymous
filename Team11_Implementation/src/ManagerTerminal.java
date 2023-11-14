@@ -9,6 +9,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+// ManagerTerminal Class is responsible for the GUI of the terminal
+// and the verification of managers. It is also the first step of when 
+// manager requests reports and calls MainAccountingProcedure.
+
+// @author Ryan Kutella
+
 public class ManagerTerminal {
 
     //All... instances (passed from App on creation)
@@ -18,7 +24,7 @@ public class ManagerTerminal {
 
     private ManagerReport mReport;
 
-    private boolean managerVerified = false;
+    public boolean managerVerified = false;
 
     private JPanel panel = new JPanel();
    
@@ -72,7 +78,7 @@ public class ManagerTerminal {
         JTextField input = new JTextField(10);
         JButton submitButton = new JButton(new AbstractAction("Submit") {
             public void actionPerformed(ActionEvent e) {
-                verify(input.getText(), panel);
+                verify(input.getText());
             }
         });
 
@@ -119,7 +125,7 @@ public class ManagerTerminal {
     }
 
     //Called when submit is clicked when asking for Provider OR Member #
-    private void verify(String input, JPanel panel){
+    public void verify(String input){
         int inputInt;
         try {
             inputInt = Integer.parseInt(input);

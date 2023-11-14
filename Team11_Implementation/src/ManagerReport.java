@@ -7,6 +7,11 @@ import java.time.ZoneId;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 
+// ManagerReport Class is responsible for holding the manager reports in linesInReport
+// as well making and writing the file for the report.
+
+// @author Ryan Kutella
+
 public class ManagerReport {
 
     private ZoneId z = ZoneId.of("America/Chicago"); // just sets zone

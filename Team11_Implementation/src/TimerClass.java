@@ -19,10 +19,13 @@ public class TimerClass {
     ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1); //just # of tasks so in this case 1 
 
     boolean justRan = false; //This is just to fix Task from runnning more than once in a second
+    
+    ManagerReport m;
 
-    TimerClass(AllProviders providers, AllMembers members){
+    TimerClass(AllProviders providers, AllMembers members, ManagerReport m){
         this.providers = providers;
         this.members = members;
+        this.m = m;
     }
 
     //Sets up Task class to run every Friday at (or whatever parameters you pass in)
