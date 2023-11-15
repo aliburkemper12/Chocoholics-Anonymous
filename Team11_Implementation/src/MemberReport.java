@@ -28,8 +28,6 @@ public class MemberReport {
         int memberZip;
         long memberNum;
         String serviceDate = "";
-        int serviceCode = 0;
-        long providerNumber = 0;
 
         // Gather member information
         memberName = member.getName();
@@ -48,7 +46,7 @@ public class MemberReport {
             Provider tempProvider;
             tempProvider = providers.getProvider(record.getProviderNum());
             String providerName = tempProvider.getName();
-            String seriviceName = record.getServiceName();
+            String serviceName = record.getServiceName();
 
 
             serviceDate = record.getDate();

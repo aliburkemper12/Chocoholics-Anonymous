@@ -39,7 +39,7 @@ public class MainAccountingProcedure {
                 // how do I convert the enums to ints???
                 //if (reportDate < today) {
                     MemberReport newMemberReport = new MemberReport();
-                    newMemberReport.generateReport(toFindMember);
+                    newMemberReport.generateReport(toFindMember, providers);
                     toFindMember.serviceReports.clear();
                 //}
             //}
