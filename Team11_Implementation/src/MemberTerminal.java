@@ -102,13 +102,14 @@ public class MemberTerminal {
         Boolean hasReport = true;
         ArrayList<String> strings;
         if(currentMember.getReport()==null){
+            System.out.println("HUH");
             hasReport = false;
             strings = new ArrayList<>();
         }else{
             strings = currentMember.getReport().linesInReport; //fix when member report done
         }
 
-        if(hasReport || strings.size()==0){
+        if(!hasReport || strings.size()==0){
             JPanel row = new JPanel();
             JLabel noReport = new JLabel("No reports ever made or requested.");
             row.add(noReport);
