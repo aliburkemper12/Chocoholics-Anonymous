@@ -1,0 +1,6 @@
+Name: Fake Dude
+Member number: 3
+Member address: 12 Road
+Member City: Montana
+Member state: Wherever
+Member zipcode: 8
