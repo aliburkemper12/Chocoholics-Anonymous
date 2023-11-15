@@ -13,8 +13,9 @@ public class ServiceRecord {
     private int serviceCode = 0;
     private String comment = "";
     private int serviceFee = 0;
+    private String serviceName = "";
 
-    public ServiceRecord(String date, long providerNum, long memberNum, int serviceCode, String comment, int serviceFee){
+    public ServiceRecord(String date, long providerNum, long memberNum, int serviceCode, String comment, int serviceFee, String serviceName){
         this.date = date;
         ZoneId z = ZoneId.of( "America/Chicago" ); //just sets zone
         LocalDate today = LocalDate.now(z); //current date
@@ -24,6 +25,7 @@ public class ServiceRecord {
         this.serviceCode = serviceCode;
         this.comment = comment;
         this.serviceFee = serviceFee;
+        this.serviceName = serviceName;
     }
 
     public void setDate(String date) {
@@ -33,6 +35,10 @@ public class ServiceRecord {
     // public void setDateService(Loc dateService) {
     //     this.dateService = dateService;
     // }
+
+    public String getServiceName(){
+        return serviceName;
+    }
 
     public void setMemberNum(long memberNum) {
         this.memberNum = memberNum;

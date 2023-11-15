@@ -1,9 +1,10 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import  org.junit.Before;
 import org.junit.Test;
-import java.util.ArrayList;
 
 //Class for testing
 //Method testProviderGetName() and testProviderDirectoryRequestServices() are from my classes
@@ -12,16 +13,21 @@ import java.util.ArrayList;
 
 public class LucaJUnitTests {
     
+    Provider testProv;
+    Service testService;
+    ProviderDirectory testDirectory;
+    ArrayList<Service> services;
+    Operator testOperator;
+
     @Before
     public void setUp(){
         //Setup for all
-        Provider testProv = new Provider("prov1", 123456789, "4405 ridge ave", "Tuscaloosa", "Alabama", 20198);
-        Service testService = new Service("service1", 123456, 50);
+        testProv = new Provider("prov1", 123456789, "4405 ridge ave", "Tuscaloosa", "Alabama", 20198);
+        testService = new Service("service1", 123456, 50);
         testProv.addService(testService);
-        ProviderDirectory testDirectory = new ProviderDirectory(testProv);
-        ArrayList<Service> services;
-        services.add(testService);
-        Operator testOperator = new Operator(123456789, "operator1");
+        testDirectory = new ProviderDirectory(testProv);
+        services = testProv.getServices();
+        testOperator = new Operator(123456789, "operator1");
     }
 
     //Test the getName function in Provider class;

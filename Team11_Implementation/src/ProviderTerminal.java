@@ -372,7 +372,7 @@ public class ProviderTerminal {
         JButton yesButton = new JButton(new AbstractAction("YES") {
             public void actionPerformed(ActionEvent e) {
                 String date = monthInt + "-" + dayInt + "-" + yearInt;
-                addServiceReports(currentProvider, cMember, date, codeInt, comments, serviceFee);
+                addServiceReports(currentProvider, cMember, date, codeInt, comments, serviceFee, serviceName);
                 showServiceFeePanel(codeInt, serviceName, serviceFee);
             }
         });
@@ -522,8 +522,8 @@ public class ProviderTerminal {
     // Uses information passed in to make a new ServiceRecord() and add it to the
     // member and provider involved
     // Called when YES is clicked to confirm bill
-    public void addServiceReports(Provider cProvider, Member cMember, String date, int serviceCode, String comments, int serviceFee) {
-        ServiceRecord temp = new ServiceRecord(date, cProvider.getCreds(), cMember.getMemberNumber(), serviceCode, comments, serviceFee);
+    public void addServiceReports(Provider cProvider, Member cMember, String date, int serviceCode, String comments, int serviceFee, String serviceName) {
+        ServiceRecord temp = new ServiceRecord(date, cProvider.getCreds(), cMember.getMemberNumber(), serviceCode, comments, serviceFee, serviceName);
         cProvider.addRecord(temp);
         cMember.addService(temp);
     }

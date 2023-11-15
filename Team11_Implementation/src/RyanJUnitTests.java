@@ -14,6 +14,7 @@ public class RyanJUnitTests {
     
     ManagerTerminal mT;
     ProviderTerminal pT;
+    OperatorTerminal oT;
 
     Member memToTest;
     Provider provToTest;
@@ -35,6 +36,11 @@ public class RyanJUnitTests {
         providers.addProvider(2, "Fake Prov", "10 Road", "Tuscaloosa", "Alabama", 0);
         memToTest = members.getMember(2);
         provToTest = providers.getProvider(2);
+
+        //setup for idk
+        AllOperators operators = new AllOperators();
+        oT = new OperatorTerminal(providers, members, operators);
+
     }
 
     //Test the verify function in ManagerTerminal class;
@@ -55,7 +61,7 @@ public class RyanJUnitTests {
         int memberServicesBefore = memToTest.serviceReports.size();
         int providerServicesBefore = provToTest.getRecords().size();
 
-        pT.addServiceReports(provToTest, memToTest, "12-12-2000", 1, "No Comments", 20);
+        pT.addServiceReports(provToTest, memToTest, "12-12-2000", 1, "No Comments", 20, "Blank");
 
         int memberServicesAfter = memToTest.serviceReports.size();
         int providerServicesAfter = provToTest.getRecords().size();
@@ -96,9 +102,9 @@ public class RyanJUnitTests {
         }
     }
 
-    //Need to do someone elses
+    //Test idk function in Jack B's Operator Terminal Class
     @Test
-    public void successTest1(){
+    public void idk(){
         
     }
 
