@@ -14,10 +14,12 @@ import java.time.format.DateTimeFormatter;
 public class MemberReport {
     String member_report = "";
     ArrayList<ServiceRecord> records;
+    AllProviders providers;
 
     // Generate member report
-    public void generateReport(Member member){
+    public void generateReport(Member member, AllProviders providers){
         this.records = member.getService();
+        this.providers = providers;
      
         String memberName;
         String memberAddress;
@@ -43,15 +45,16 @@ public class MemberReport {
 
         // Get all services for currMember and add to report string
         for(ServiceRecord record : records) {
-            // Provider tempProvider;
-            // tempProvider = tempProvider.getProvider(record.getProviderNum());
-            // String providerName = tempProvider.getName();
-            // Service tempService;
+            Provider tempProvider;
+            tempProvider = providers.getProvider(record.getProviderNum());
+            String providerName = tempProvider.getName();
+            String seriviceName = record.getServiceName();
+
 
             serviceDate = record.getDate();
             serviceCode = record.getServiceCode();
             providerNumber = record.getProviderNum();
-            member_report +=  "Service name: " + serviceCode + "\n" + "Date of service: " + serviceDate + "\n" + "Provider name: " + providerNumber + "\n";
+            member_report +=  "Service name: " + serviceName + "\n" + "Date of service: " + serviceDate + "\n" + "Provider name: " + providerName + "\n";
         }
 
         // Get local date and format it
