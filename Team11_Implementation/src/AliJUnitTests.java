@@ -27,7 +27,7 @@ public class AliJUnitTests {
         members.addMember(2, "Fake Girl", "Unpaid", "1 ABC street", "St. Louis", "Missouri", 1);
         providers.addProvider(1, "Bob", "1", "NYC", "NY", 0);
         memToTest = members.getMember(2);
-        pT.addServiceReports(providers.getProvider(1), members.getMember(2), "01-01-2023", 883948, "null", 150);
+        pT.addServiceReports(providers.getProvider(1), members.getMember(2), "01-01-2023", 883948, "null", 150, "Swimming");
         rT = memToTest.getService();
     }
 
