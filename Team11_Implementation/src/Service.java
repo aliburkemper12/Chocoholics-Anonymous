@@ -1,3 +1,4 @@
+//@author Luca Jontz
 public class Service{
     private String name;
     private int code;

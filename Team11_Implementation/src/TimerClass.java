@@ -10,6 +10,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+// @author Ali Burkemper
+
 public class TimerClass {
 
     AllProviders providers;
@@ -84,8 +86,7 @@ public class TimerClass {
         }
     };
 
-    //Finish below
-    //
+    // Run the actual mainAccountingProcedure
     public void runMainAccountingProcedure(){
         MainAccountingProcedure p  = new MainAccountingProcedure(members, providers, m);
         p.runMainAccountingProcedure();

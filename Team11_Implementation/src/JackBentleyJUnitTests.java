@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class JackBentleyJUnitTests {
     OperatorTerminal oT;
+    long creds = 123456789;
 
     AllMembers testMember;
     AllOperators testOperators;
@@ -51,8 +52,12 @@ public class JackBentleyJUnitTests {
 
     }
     //JUnit test for someone elses 
+    @Test
     public void successTest(){
-        
+        Provider testProv = new Provider("prov1", creds, "4405 ridge ave", "Tuscaloosa", "Alabama", 20198);
+        if(testProv.getCreds() != creds){
+            fail("Credentials is wrong");
+        }
     }
     @After
     public void noNeed(){}
