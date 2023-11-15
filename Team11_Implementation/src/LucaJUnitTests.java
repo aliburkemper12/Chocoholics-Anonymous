@@ -3,14 +3,14 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import  org.junit.Before;
 import org.junit.Test;
-import.java.util.ArrayList;
+import java.util.ArrayList;
 
 //Class for testing
 //Method testProviderGetName() and testProviderDirectoryRequestServices() are from my classes
 //Method testOperatorGetName is from Adison's class
 //@author Luca Jontz
 
-public class RyanJUnitTests {
+public class LucaJUnitTests {
     
     @Before
     public void setUp(){
