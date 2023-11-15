@@ -1,3 +1,4 @@
+
 // @author Jack Bentley
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -172,8 +173,8 @@ public class OperatorTerminal {
         if (operators.verifyOperator(inputInt)) {
             operatorVerified = true;
             currentOperator = operators.getOperator(inputInt);
-        } else{
-            JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");  
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
         }
 
         refreshPanel();
@@ -189,7 +190,7 @@ public class OperatorTerminal {
 
         String memberStatus = members.verifyMember(inputInt);
 
-        if (memberStatus.equals("Validated")||memberStatus.equals("Member suspended")) {
+        if (memberStatus.equals("Validated") || memberStatus.equals("Member suspended")) {
             Member m = members.getMember(inputInt);
             if (toUpdate) {
                 memberUpdatePanel(m);
@@ -198,11 +199,11 @@ public class OperatorTerminal {
                 JOptionPane.showMessageDialog(null, "Member successfully deleted");
                 refreshPanel();
             }
-        }
-        else
+        } else
             JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
     }
-    //verifies that a provider exists before you try to delete it
+
+    // verifies that a provider exists before you try to delete it
     public void verifyProvider(String input, boolean toUpdate) {
         int inputInt;
         try {
@@ -268,21 +269,8 @@ public class OperatorTerminal {
                     JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
                     return;
                 }
-                Long creds = RandomGeneratedNumber();
-                members.addMember(creds, nameText.getText(), "Paid", addressText.getText(), cityText.getText(), stateText.getText(), zipInt);
-                JPanel temp = new JPanel();
-                JLabel test = new JLabel("Member #"+creds+" Added!");
-                JButton testButton = new JButton(new AbstractAction("Copy Number") {
-                    public void actionPerformed(ActionEvent e) {
-                        StringSelection stringSelection = new StringSelection(creds+"");
-                        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-                        clipboard.setContents(stringSelection, null);
-                    }
-                });        
-                temp.add(test);
-                temp.add(testButton);
-                JOptionPane.showMessageDialog(null, temp);
-                refreshPanel();     
+                addMember(nameText.getText(), addressText.getText(), cityText.getText(), stateText.getText(), zipInt);
+                refreshPanel();
             }
         });
         rowSix.add(submitButton);
@@ -310,6 +298,40 @@ public class OperatorTerminal {
 
         panel.revalidate();
         panel.repaint();
+    }
+
+    public void addMember(String name, String addy, String city, String state, int zipInt) {
+        Long creds = RandomGeneratedNumber();
+        members.addMember(creds, name, "Paid", addy, city, state, zipInt);
+        JPanel temp = new JPanel();
+        JLabel test = new JLabel("Member #" + creds + " Added!");
+        JButton testButton = new JButton(new AbstractAction("Copy Number") {
+            public void actionPerformed(ActionEvent e) {
+                StringSelection stringSelection = new StringSelection(creds + "");
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(stringSelection, null);
+            }
+        });
+        temp.add(test);
+        temp.add(testButton);
+        JOptionPane.showMessageDialog(null, temp);
+    }
+
+    public void addProvider(String name, String addy, String city, String state, int zipInt) {
+        Long creds = RandomGeneratedNumber();
+        providers.addProvider(creds, name, addy, city, state, zipInt);
+        JPanel temp = new JPanel();
+        JLabel test = new JLabel("Provider #" + creds + " Added!");
+        JButton testButton = new JButton(new AbstractAction("Copy Number") {
+            public void actionPerformed(ActionEvent e) {
+                StringSelection stringSelection = new StringSelection(creds + "");
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(stringSelection, null);
+            }
+        });
+        temp.add(test);
+        temp.add(testButton);
+        JOptionPane.showMessageDialog(null, temp);
     }
 
     // This is the panel that shows what things you can update for the member
@@ -356,21 +378,8 @@ public class OperatorTerminal {
                     JOptionPane.showMessageDialog(null, "Invalid Zip, Please Retry");
                     return;
                 }
-                Long creds = RandomGeneratedNumber();
-                providers.addProvider(creds, nameText.getText(), addressText.getText(), cityText.getText(), stateText.getText(), zipInt);
-                JPanel temp = new JPanel();
-                JLabel test = new JLabel("Provider #"+creds+" Added!");
-                JButton testButton = new JButton(new AbstractAction("Copy Number") {
-                    public void actionPerformed(ActionEvent e) {
-                        StringSelection stringSelection = new StringSelection(creds+"");
-                        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-                        clipboard.setContents(stringSelection, null);
-                    }
-                });        
-                temp.add(test);
-                temp.add(testButton);
-                JOptionPane.showMessageDialog(null, temp);
-                refreshPanel();     
+                addProvider(nameText.getText(), addressText.getText(), cityText.getText(), stateText.getText(), zipInt);
+                refreshPanel();
             }
         });
         rowSix.add(submitButton);
@@ -400,26 +409,25 @@ public class OperatorTerminal {
         panel.repaint();
     }
 
-
     // This is the panel that shows what things you can update for the member
     public void memberUpdatePanel(Member cMember) {
         panel.removeAll();
 
         JPanel rowOne = new JPanel();
         JLabel nameLabel = new JLabel("Member Name: ");
-        JTextField nameText = new JTextField(cMember.getName(),10);
+        JTextField nameText = new JTextField(cMember.getName(), 10);
         rowOne.add(nameLabel);
         rowOne.add(nameText);
 
         JPanel rowTwo = new JPanel();
         JLabel addressLabel = new JLabel("Member Address: ");
-        JTextField addressText = new JTextField(cMember.getAddress(),10);
+        JTextField addressText = new JTextField(cMember.getAddress(), 10);
         rowTwo.add(addressLabel);
         rowTwo.add(addressText);
 
         JPanel rowThree = new JPanel();
         JLabel cityLabel = new JLabel("Member City: ");
-        JTextField cityText = new JTextField(cMember.getCity(),10);
+        JTextField cityText = new JTextField(cMember.getCity(), 10);
         rowThree.add(cityLabel);
         rowThree.add(cityText);
 
@@ -431,7 +439,7 @@ public class OperatorTerminal {
 
         JPanel rowFive = new JPanel();
         JLabel zipLabel = new JLabel("Member Zip: ");
-        JTextField zipText = new JTextField(cMember.getZip()+"", 10);
+        JTextField zipText = new JTextField(cMember.getZip() + "", 10);
         rowFive.add(zipLabel);
         rowFive.add(zipText);
 
@@ -486,19 +494,19 @@ public class OperatorTerminal {
         panel.removeAll();
         JPanel rowOne = new JPanel();
         JLabel nameLabel = new JLabel("Provider Name: ");
-        JTextField nameText = new JTextField(cProvider.getName(),10);
+        JTextField nameText = new JTextField(cProvider.getName(), 10);
         rowOne.add(nameLabel);
         rowOne.add(nameText);
 
         JPanel rowTwo = new JPanel();
         JLabel addressLabel = new JLabel("Provider Address: ");
-        JTextField addressText = new JTextField(cProvider.getAddress(),10);
+        JTextField addressText = new JTextField(cProvider.getAddress(), 10);
         rowTwo.add(addressLabel);
         rowTwo.add(addressText);
 
         JPanel rowThree = new JPanel();
         JLabel cityLabel = new JLabel("Provider City: ");
-        JTextField cityText = new JTextField(cProvider.getCity(),10);
+        JTextField cityText = new JTextField(cProvider.getCity(), 10);
         rowThree.add(cityLabel);
         rowThree.add(cityText);
 
@@ -510,7 +518,7 @@ public class OperatorTerminal {
 
         JPanel rowFive = new JPanel();
         JLabel zipLabel = new JLabel("Provider Zip: ");
-        JTextField zipText = new JTextField(cProvider.getZip()+"", 10);
+        JTextField zipText = new JTextField(cProvider.getZip() + "", 10);
         rowFive.add(zipLabel);
         rowFive.add(zipText);
 
@@ -566,7 +574,8 @@ public class OperatorTerminal {
         panel.revalidate();
         panel.repaint();
     }
-    //panel for member update 
+
+    // panel for member update
     public void setMemberRequestPanel(boolean toUpdate) {
         panel.removeAll();
 
@@ -603,7 +612,8 @@ public class OperatorTerminal {
         panel.revalidate();
         panel.repaint();
     }
-    //This is the panel for provider update 
+
+    // This is the panel for provider update
     public void setProviderRequestPanel(boolean toUpdate) {
         panel.removeAll();
 

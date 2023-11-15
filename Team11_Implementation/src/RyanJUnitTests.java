@@ -19,10 +19,12 @@ public class RyanJUnitTests {
     Member memToTest;
     Provider provToTest;
 
+    AllProviders providers;
+
     @Before
     public void setUp(){
         //Setup for both
-        AllProviders providers = new AllProviders();
+        providers = new AllProviders();
         AllMembers members = new AllMembers();
 
         //setup for testManagerTerminalVerify
@@ -102,10 +104,19 @@ public class RyanJUnitTests {
         }
     }
 
-    //Test idk function in Jack B's Operator Terminal Class
+    //Test AddProvider function in Jack B's Operator Terminal Class
     @Test
-    public void idk(){
-        
+    public void testOperatorTerminalAddProvider(){
+        int totalProvidersBefore = providers.providerList.size();
+
+        oT.addProvider("stuff", "stuff", "stuff", "stuff", 123456);
+    
+        int totalProvidersAfter = providers.providerList.size();
+
+        if(totalProvidersBefore + 1 != totalProvidersAfter){
+            fail("Did not add one provider");
+        }
+
     }
 
     @After

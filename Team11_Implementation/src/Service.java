@@ -7,21 +7,22 @@ public class Service{
     public Service(){}
 
     public Service(String name, int code, int fee){
+        //Service initialization
         this.name = name;
         this.code = code;
         this.fee = fee;
     }
 
     public String getName(){
-        return name;
+        return name; //return this service's name
     }
     public int getCode(){
-        return code;
+        return code; //return this service's code
     }
     public int getFee(){
-        return fee;
+        return fee; //return this service's fee
     }
     public String toString(){
-        return name + ", Code: " + code + ", Fee: " + fee;
+        return name + ", Code: " + code + ", Fee: " + fee; //return a string that has this service's info
     }
 }
