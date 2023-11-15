@@ -171,7 +171,7 @@ public class ManagerTerminal {
             if(m.serviceReports.size()>0){
                 MemberReport mReport = new MemberReport();
                 m.setReport(mReport);
-                mReport.generateReport(m);
+                mReport.generateReport(m, providers);
                 m.serviceReports.clear();
             }
         }

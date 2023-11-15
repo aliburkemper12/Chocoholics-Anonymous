@@ -14,6 +14,7 @@ public class JackBentleyJUnitTests {
     AllOperators testOperators;
     AllMembers members = new AllMembers();
     AllProviders providers = new AllProviders();
+    
 
     @Before
     public void setUp(){
@@ -42,7 +43,7 @@ public class JackBentleyJUnitTests {
     public void testAddMember(){
         int totalMembersBefore = members.memberList.size();
 
-        members.addMember(123456789, "stuff", "stuff", "stuff", "stuff", "stuff", 123456);
+        oT.addMember("stuff", "stuff", "stuff", "stuff", 123456);
         int totalMembersAfter = members.memberList.size();
 
         if(totalMembersBefore + 1 != totalMembersAfter){
