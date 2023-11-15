@@ -6,6 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 // Class to run testing.
@@ -22,11 +26,14 @@ public class AliJUnitTests {
     MemberReport report = new MemberReport();
     AllMembers members = new AllMembers();
     AllProviders providers = new AllProviders();
-    pT = new ProviderTerminal(providers, members);
+    ZoneId z = ZoneId.of( "America/Chicago" );
+    LocalDate today = LocalDate.now(z); //current date
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+    String formatDate = today.format(formatter);
     @Before
     public void setUp(){
         // Setup for getMemberNumber()
-
+        pT = new ProviderTerminal(providers, members);
         members.addMember(2, "Fake Girl", "Unpaid", "1 ABC street", "St. Louis", "Missouri", 1);
         providers.addProvider(1, "Bob", "1", "NYC", "NY", 0);
         memToTest = members.getMember(2);
@@ -43,11 +50,19 @@ public class AliJUnitTests {
     }
 
     @Test
-    public void testMainAccountingProcedure(){
-        if(file.exists()) {
+    public void testGenerateReport(){
 
+        File f = new File("Team11_Implementation" + File.separator + "data" + File.separator + "MemberReports" +File.separator+memToTest.getName()+"_"+formatDate+".txt");
+        // Get date for path
+        try{
+        if(f.createNewFile()) {
+            fail("Fail is not created");
         }
-    }
+
+        } catch (IOException e) {
+            fail("Error in file creation");
+        }
+}
 
     @Test
     public void testGetServiceCode(){
