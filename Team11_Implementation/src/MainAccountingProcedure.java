@@ -1,8 +1,4 @@
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.time.ZonedDateTime;
 
 //@author Jack Sherry
 
@@ -28,6 +24,7 @@ public class MainAccountingProcedure {
         for (int i = 0; i < memberList.size(); i++) {
             Member toFindMember = memberList.get(i);   //create an instance of a single member in the list
             MemberReport newMemberReport = new MemberReport();
+            toFindMember.setReport(newMemberReport);
             newMemberReport.generateReport(toFindMember, providers);   //generate a new report with the member we need and the list of providers
             toFindMember.serviceReports.clear();   //clear the report so we don't generate the same report multiple times
         }

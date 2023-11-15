@@ -85,12 +85,11 @@ public class MemberTerminal {
         }
 
         String memberStatus = members.verifyMember(inputInt);
-        if (memberStatus.equals("Validated")) {
-            JOptionPane.showMessageDialog(null, "Member Valid");
+        if (memberStatus.equals("Validated")||memberStatus.equals("Member suspended")) {
+            JOptionPane.showMessageDialog(null, "Valid Member Number");
             currentMember = members.getMember(inputInt);
             memberVerified = true;
-        } else if (memberStatus.equals("Member suspended")) JOptionPane.showMessageDialog(null, "Member Suspended");
-        else JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
+        } else JOptionPane.showMessageDialog(null, "Member Suspended");
 
         refreshPanel();
     }
@@ -106,7 +105,7 @@ public class MemberTerminal {
             hasReport = false;
             strings = new ArrayList<>();
         }else{
-            strings = new ArrayList<>(); //fix when member report done
+            strings = currentMember.getReport().linesInReport; //fix when member report done
         }
 
         if(hasReport || strings.size()==0){

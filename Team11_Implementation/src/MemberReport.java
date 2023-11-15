@@ -34,6 +34,14 @@ public class MemberReport extends Report{
 
         // Add member information to report string
         member_report += "Name: " + memberName + "\n" + "Member number: " + memberNum + "\n" + "Member address: " + memberAddress + "\n" + "Member City: " + memberCity + "\n" + "Member state: " + memberState + "\n" + "Member zipcode: " + memberZip + "\n";
+        linesInReport.add("Name: " + memberName);
+        linesInReport.add("Member number: " + memberNum );
+        linesInReport.add("Member address: " + memberAddress);
+
+        linesInReport.add("Member City: " + memberCity);
+        linesInReport.add("Member state: " + memberState);
+        linesInReport.add("Member zipcode: " + memberZip);
+
 
 
         // Get all services for currMember and add to report string
@@ -43,9 +51,14 @@ public class MemberReport extends Report{
             String providerName = tempProvider.getName();
             String serviceName = record.getServiceName();
 
-
             serviceDate = record.getDate();
             member_report +=  "Service name: " + serviceName + "\n" + "Date of service: " + serviceDate + "\n" + "Provider name: " + providerName + "\n";
+            
+            linesInReport.add("Service name: " + serviceName);
+        linesInReport.add("Member zipcode: " + memberZip);
+        linesInReport.add( "Date of service: " + serviceDate);
+        linesInReport.add( "Provider name: " + providerName );
+
         }
 
         
