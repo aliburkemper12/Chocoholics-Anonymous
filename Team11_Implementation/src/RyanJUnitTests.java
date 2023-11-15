@@ -107,14 +107,14 @@ public class RyanJUnitTests {
     //Test AddProvider function in Jack B's Operator Terminal Class
     @Test
     public void testOperatorTerminalAddProvider(){
-        int totalMembersBefore = providers.providerList.size();
+        int totalProvidersBefore = providers.providerList.size();
 
         oT.addProvider("stuff", "stuff", "stuff", "stuff", 123456);
     
-        int totalMembersAfter = providers.providerList.size();
+        int totalProvidersAfter = providers.providerList.size();
 
-        if(totalMembersBefore + 1 != totalMembersAfter){
-            fail("Did not add one member");
+        if(totalProvidersBefore + 1 != totalProvidersAfter){
+            fail("Did not add one provider");
         }
 
     }
