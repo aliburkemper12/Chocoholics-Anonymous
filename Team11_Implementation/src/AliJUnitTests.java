@@ -51,8 +51,10 @@ public class AliJUnitTests {
 
     @Test
     public void testGenerateReport(){
+        String name = memToTest.getName();
+        name = name.replaceAll("\\s", "");
 
-        File f = new File("Team11_Implementation" + File.separator + "data" + File.separator + "MemberReports" +File.separator+memToTest.getName()+"_"+formatDate+".txt");
+        File f = new File("Team11_Implementation" + File.separator + "data" + File.separator + "MemberReports" +File.separator+name+"_"+formatDate+".txt");
         // Get date for path
         try{
         if(f.createNewFile()) {
