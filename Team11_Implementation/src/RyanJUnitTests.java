@@ -14,14 +14,17 @@ public class RyanJUnitTests {
     
     ManagerTerminal mT;
     ProviderTerminal pT;
+    OperatorTerminal oT;
 
     Member memToTest;
     Provider provToTest;
 
+    AllProviders providers;
+
     @Before
     public void setUp(){
         //Setup for both
-        AllProviders providers = new AllProviders();
+        providers = new AllProviders();
         AllMembers members = new AllMembers();
 
         //setup for testManagerTerminalVerify
@@ -35,6 +38,11 @@ public class RyanJUnitTests {
         providers.addProvider(2, "Fake Prov", "10 Road", "Tuscaloosa", "Alabama", 0);
         memToTest = members.getMember(2);
         provToTest = providers.getProvider(2);
+
+        //setup for idk
+        AllOperators operators = new AllOperators();
+        oT = new OperatorTerminal(providers, members, operators);
+
     }
 
     //Test the verify function in ManagerTerminal class;
@@ -55,7 +63,7 @@ public class RyanJUnitTests {
         int memberServicesBefore = memToTest.serviceReports.size();
         int providerServicesBefore = provToTest.getRecords().size();
 
-        pT.addServiceReports(provToTest, memToTest, "12-12-2000", 1, "No Comments", 20);
+        pT.addServiceReports(provToTest, memToTest, "12-12-2000", 1, "No Comments", 20, "Blank");
 
         int memberServicesAfter = memToTest.serviceReports.size();
         int providerServicesAfter = provToTest.getRecords().size();
@@ -96,10 +104,19 @@ public class RyanJUnitTests {
         }
     }
 
-    //Need to do someone elses
+    //Test AddProvider function in Jack B's Operator Terminal Class
     @Test
-    public void successTest1(){
-        
+    public void testOperatorTerminalAddProvider(){
+        int totalMembersBefore = providers.providerList.size();
+
+        oT.addProvider("stuff", "stuff", "stuff", "stuff", 123456);
+    
+        int totalMembersAfter = providers.providerList.size();
+
+        if(totalMembersBefore + 1 != totalMembersAfter){
+            fail("Did not add one member");
+        }
+
     }
 
     @After

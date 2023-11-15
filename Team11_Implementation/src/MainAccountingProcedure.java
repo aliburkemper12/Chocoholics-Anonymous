@@ -23,50 +23,24 @@ public class MainAccountingProcedure {
         ArrayList<Member> memberList = members.memberList;
         ArrayList<Provider> providerList = providers.providerList;
 
-        managerReport.createReport();
+        managerReport.createReport();   //the only thing we need to do for the manager portion
 
         for (int i = 0; i < memberList.size(); i++) {
-            Member toFindMember = memberList.get(i);
-            //ArrayList<ServiceRecord> serviceReport = toFindMember.getService();
-            //for (int j = 0; j < serviceReport.size(); j++) {
-                //ServiceRecord toFindServiceReport = serviceReport.get(j);
-                
-                //LocalDate reportDate = toFindServiceReport.getDateService();
-                //ZoneId zone = ZoneId.of( "America/Chicago" ); 
-                //LocalDate today = LocalDate.now(zone);
-                //DayOfWeek todayEnum = today.getDayOfWeek();
-                //DayOfWeek reportDateEnum = reportDate.getDayOfWeek();
-                // how do I convert the enums to ints???
-                //if (reportDate < today) {
-                    MemberReport newMemberReport = new MemberReport();
-                    newMemberReport.generateReport(toFindMember);
-                    toFindMember.serviceReports.clear();
-                //}
-            //}
+            Member toFindMember = memberList.get(i);   //create an instance of a single member in the list
+            MemberReport newMemberReport = new MemberReport();
+            newMemberReport.generateReport(toFindMember, providers);   //generate a new report with the member we need and the list of providers
+            toFindMember.serviceReports.clear();   //clear the report so we don't generate the same report multiple times
         }
         
 
         for (int i = 0; i < providerList.size(); i++) {
-            Provider toFindProvider = providerList.get(i);
-
-            ProviderDirectory pDir = new ProviderDirectory(toFindProvider);
+            Provider toFindProvider = providerList.get(i);   //create an instance of a single provider in the list
+            ProviderDirectory pDir = new ProviderDirectory(toFindProvider);   //create an object to request the provider directory
             pDir.requestDirectory();
-            //ArrayList<ServiceRecord> serviceReport = toFindProvider.getRecords();
-
             ProviderReport newProviderReport = new ProviderReport(members, toFindProvider);
-            toFindProvider.setReport(newProviderReport);
+            toFindProvider.setReport(newProviderReport);   //generate a new report with the provider we need and the list of members
             newProviderReport.writeReport();
-            toFindProvider.records.clear();
+            toFindProvider.records.clear();   //clear the report so we don't generate the same report multiple times
         }
     } 
-
-    public void summaryReport(){
-
-    }
-
-    public void EFTReport(){
-
-    }
-
-
 }

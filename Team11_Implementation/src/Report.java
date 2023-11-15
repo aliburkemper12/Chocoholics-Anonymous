@@ -19,30 +19,6 @@ public class Report {
     Report(){
         linesInReport = new ArrayList<String>();
     }
-
-    public void generateProviderReport(long providerNum){
-        //do stuff
-    }
-
-    public void generateMemberReport(Member memberReport){
-        //do stuff maybe
-    }
-
-    public void sendReport(){
-        if(receiverName == ""|| receiverNum == 0 || receiverAdress == "" || receiverCity == "" || receiverState == "" || receiverZip == 0){
-            //Prompt that not all info filled out or not generated
-            return;
-        }
-        //do whatever needed
-    }
-
-    public void printReport(){
-        if(receiverName == ""|| receiverNum == 0 || receiverAdress == "" || receiverCity == "" || receiverState == "" || receiverZip == 0){
-            //Prompt that not all info filled out or not generated
-            return;
-        }
-        //do whatever needed
-    }
     
     protected File myObj;
     protected void makeFile(boolean providerReport) {
