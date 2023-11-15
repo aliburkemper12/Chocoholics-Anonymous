@@ -6,6 +6,8 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+// @author Jack Sherry
+
 public class Report {
     String receiverName;
     Long receiverNum;

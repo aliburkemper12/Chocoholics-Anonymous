@@ -27,9 +27,11 @@ public class AliJUnitTests {
     AllMembers members = new AllMembers();
     AllProviders providers = new AllProviders();
     ZoneId z = ZoneId.of( "America/Chicago" );
+    // Get time
     LocalDate today = LocalDate.now(z); //current date
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
     String formatDate = today.format(formatter);
+
     @Before
     public void setUp(){
         // Setup for getMemberNumber()
@@ -42,6 +44,7 @@ public class AliJUnitTests {
         report.generateReport(memToTest, providers);
     }
 
+    // getMemberNumber from member.java
     @Test
     public void testMemberNumber(){
         if(memToTest.getMemberNumber() != 2){
@@ -49,6 +52,7 @@ public class AliJUnitTests {
         }
     }
 
+    // generateReport from memberReport.java
     @Test
     public void testGenerateReport(){
         String name = memToTest.getName();
@@ -64,8 +68,9 @@ public class AliJUnitTests {
         } catch (IOException e) {
             fail("Error in file creation");
         }
-}
+    }
 
+    // getServiceCode from serviceRecord.java
     @Test
     public void testGetServiceCode(){
         if(rT.get(0).getServiceCode() != 883948) {

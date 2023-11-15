@@ -119,6 +119,7 @@ public class Member {
         this.state = state;
     }
 
+    // Clear the service record array list
     public void clearReports(ArrayList<ServiceRecord> serviceReports) {
         serviceReports.clear();
     }
