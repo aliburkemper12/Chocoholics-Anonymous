@@ -1,9 +1,0 @@
-Provider name: Fake Prov
-Provider number: 1
-Provider street adress: 10 Road
-Provider city: Tuscaloosa
-Provider state: Alabama
-Provider zip: 0
-
-Number of consultations: 0
-Total fee for the week: 0

@@ -12,7 +12,7 @@ import org.junit.Test;
 
 public class RyanJUnitTests {
     
-    ManagerTerminal mT;
+    MemberTerminal mT;
     ProviderTerminal pT;
     OperatorTerminal oT;
 
@@ -26,15 +26,13 @@ public class RyanJUnitTests {
         //Setup for both
         providers = new AllProviders();
         AllMembers members = new AllMembers();
+        members.addMember(2, "Fake Girl", "Paid", "11 Road", "Birmingham", "Alabama", 0);
 
-        //setup for testManagerTerminalVerify
-        AllManagers managers = new AllManagers();
-        managers.addManager(1, "Manager One");
-        mT = new ManagerTerminal(providers, new AllMembers(), managers, new ManagerReport(providers));
+        //setup for testMemberTerminalVerify
+        mT = new MemberTerminal(members);
 
         //setup for testProviderTerminalAddService
         pT = new ProviderTerminal(providers, members);
-        members.addMember(2, "Fake Girl", "Unpaid", "11 Road", "Birmingham", "Alabama", 0);
         providers.addProvider(2, "Fake Prov", "10 Road", "Tuscaloosa", "Alabama", 0);
         memToTest = members.getMember(2);
         provToTest = providers.getProvider(2);
@@ -45,14 +43,14 @@ public class RyanJUnitTests {
 
     }
 
-    //Test the verify function in ManagerTerminal class;
+    //Test the verify function in MemberTerminal class;
     @Test
-    public void testManagerTerminalVerify(){
-        if(mT.managerVerified!=false){
+    public void testMemberTerminalVerify(){
+        if(mT.memberVerified!=false){
             fail("Manager terminal verify should be false by default");
         }
-        mT.verify("1");
-        if(mT.managerVerified!=true){
+        mT.verify("2");
+        if(mT.memberVerified!=true){
             fail("Manager terminal verify should have been true after inputting valid manager");
         }
     }

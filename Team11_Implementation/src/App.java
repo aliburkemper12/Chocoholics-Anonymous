@@ -2,10 +2,13 @@ import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -96,9 +99,37 @@ class App{
                     provTerm.addServiceReports(providers.getProvider(2), members.getMember(2), "12-12-2000", 883948, "null", 150,"Aerobics Exercise Session");
                }
           });
+          JMenuItem m2_4 = new JMenuItem(new AbstractAction("Show EFT") {
+               public void actionPerformed(ActionEvent e) {
+                    m1.setEnabled(false);
+                    m2.setVisible(false);
+
+                    JPanel tempPanel = new JPanel();
+                    tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.Y_AXIS));
+
+                    ArrayList<String> strings = m.linesInReport;
+
+                    if(strings.size()==0){
+                         JPanel row = new JPanel();
+                         JLabel noReport = new JLabel("No reports ever made or requested.");
+                         row.add(noReport);
+                         tempPanel.add(row);
+                    }else {
+                         for(int i = 0; i < strings.size(); i++){
+                              JPanel row = new JPanel();
+                              JLabel temp = new JLabel(strings.get(i));
+                              row.add(temp);
+                              tempPanel.add(row);
+                         }
+                    }
+
+                    terminalPanel.add(tempPanel);
+               }
+          });
           m2.add(m2_1);
           m2.add(m2_2);
           m2.add(m2_3);
+          m2.add(m2_4);
      
           //Below is menu item 'Operator' and it's onClick function
           JMenuItem m1_1 = new JMenuItem(new AbstractAction("Operator") {

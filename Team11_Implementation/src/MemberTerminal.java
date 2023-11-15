@@ -75,7 +75,7 @@ public class MemberTerminal {
     }
 
     // Called when submit is clicked when asking for Provider OR Member #
-    private void verify(String input) {
+    public void verify(String input) {
         int inputInt;
         try {
             inputInt = Integer.parseInt(input);
@@ -89,7 +89,7 @@ public class MemberTerminal {
             JOptionPane.showMessageDialog(null, "Valid Member Number");
             currentMember = members.getMember(inputInt);
             memberVerified = true;
-        } else JOptionPane.showMessageDialog(null, "Member Suspended");
+        } else JOptionPane.showMessageDialog(null, "Code Invalid");
 
         refreshPanel();
     }

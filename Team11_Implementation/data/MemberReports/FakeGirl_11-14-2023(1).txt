@@ -1,6 +1,0 @@
-Name: Fake Girl
-Member number: 2
-Member address: 11 Road
-Member City: Birmingham
-Member state: Alabama
-Member zipcode: 0
