@@ -1,9 +1,0 @@
-Name: Fake Guy
-Member number: 1
-Member address: 10 Road
-Member City: Tuscaloosa
-Member state: Alabama
-Member zipcode: 0
-Date of service: 
-Provider name: 
-Service name: 
