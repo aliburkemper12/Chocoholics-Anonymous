@@ -14,7 +14,7 @@ public class JackBentleyJUnitTests {
     AllOperators testOperators;
     AllMembers members = new AllMembers();
     AllProviders providers = new AllProviders();
-    OperatorTerminal member = new OperatorTerminal(providers, members, testOperators);
+    
 
     @Before
     public void setUp(){
