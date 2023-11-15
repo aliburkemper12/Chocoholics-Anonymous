@@ -34,7 +34,8 @@ class App{
 
           //Making fake info
           members.addMember(1, "Fake Guy", "Paid", "10 Road", "Tuscaloosa", "Alabama", 0);
-          members.addMember(2, "Fake Girl", "Unpaid", "11 Road", "Birmingham", "Alabama", 0);
+          members.addMember(2, "Fake Girl", "Paid", "11 Road", "Birmingham", "Alabama", 0);
+          members.addMember(3, "Fake Dude", "Unpaid", "12 Road", "Montana", "Wherever", 8);
           providers.addProvider(1, "Fake Prov", "10 Road", "Tuscaloosa", "Alabama", 0);
           providers.addProvider(2, "Real Prov", "10 Road", "Birm", "Alabama", 0);
           operators.addOperator(1, "Fake Op");
