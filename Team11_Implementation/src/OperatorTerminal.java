@@ -77,7 +77,7 @@ public class OperatorTerminal {
     long credentials;
 
     // Sets mainPanel to verified page
-    private void setVerfiedPanel() {
+    public void setVerfiedPanel() {
         // Adds a new member to the member arraylist
         JButton addMember = new JButton(new AbstractAction("Add Member") {
             public void actionPerformed(ActionEvent e) {
@@ -141,7 +141,7 @@ public class OperatorTerminal {
     }
 
     // Sets panel to the provider # _____ page
-    private void setUnverifiedPanel() {
+    public void setUnverifiedPanel() {
         JTextField input = new JTextField(10);
         JButton submitButton = new JButton(new AbstractAction("Submit") {
             public void actionPerformed(ActionEvent e) {
@@ -161,7 +161,7 @@ public class OperatorTerminal {
     }
 
     // Called when submit is clicked when asking for Operator #
-    private void verify(String input) {
+    public void verify(String input) {
         int inputInt;
         try {
             inputInt = Integer.parseInt(input);
@@ -179,7 +179,7 @@ public class OperatorTerminal {
         refreshPanel();
     }
 
-    private void verifyMember(String input, boolean toUpdate) {
+    public void verifyMember(String input, boolean toUpdate) {
         int inputInt;
         try {
             inputInt = Integer.parseInt(input);
@@ -202,8 +202,8 @@ public class OperatorTerminal {
         else
             JOptionPane.showMessageDialog(null, "Invalid Code, Please Retry");
     }
-
-    private void verifyProvider(String input, boolean toUpdate) {
+    //verifies that a provider exists before you try to delete it
+    public void verifyProvider(String input, boolean toUpdate) {
         int inputInt;
         try {
             inputInt = Integer.parseInt(input);
@@ -225,7 +225,7 @@ public class OperatorTerminal {
     }
 
     // This is the panel that shows what things you can update for the member
-    private void memberAddPanel() {
+    public void memberAddPanel() {
         panel.removeAll();
 
         JPanel rowOne = new JPanel();
@@ -313,7 +313,7 @@ public class OperatorTerminal {
     }
 
     // This is the panel that shows what things you can update for the member
-    private void providerAddPanel() {
+    public void providerAddPanel() {
         panel.removeAll();
 
         JPanel rowOne = new JPanel();
@@ -402,7 +402,7 @@ public class OperatorTerminal {
 
 
     // This is the panel that shows what things you can update for the member
-    private void memberUpdatePanel(Member cMember) {
+    public void memberUpdatePanel(Member cMember) {
         panel.removeAll();
 
         JPanel rowOne = new JPanel();
@@ -482,7 +482,7 @@ public class OperatorTerminal {
     }
 
     // panel that shows what provider information you can update
-    private void providerUpdatePanel(Provider cProvider) {
+    public void providerUpdatePanel(Provider cProvider) {
         panel.removeAll();
         JPanel rowOne = new JPanel();
         JLabel nameLabel = new JLabel("Provider Name: ");
@@ -566,8 +566,8 @@ public class OperatorTerminal {
         panel.revalidate();
         panel.repaint();
     }
-
-    private void setMemberRequestPanel(boolean toUpdate) {
+    //panel for member update 
+    public void setMemberRequestPanel(boolean toUpdate) {
         panel.removeAll();
 
         JPanel rowZero = new JPanel();
@@ -603,8 +603,8 @@ public class OperatorTerminal {
         panel.revalidate();
         panel.repaint();
     }
-
-    private void setProviderRequestPanel(boolean toUpdate) {
+    //This is the panel for provider update 
+    public void setProviderRequestPanel(boolean toUpdate) {
         panel.removeAll();
 
         JPanel rowZero = new JPanel();
