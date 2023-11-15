@@ -14,6 +14,7 @@ public class ProviderReport extends Report{
     Provider currProvider;
 
     ProviderReport(AllMembers members, Provider provider){
+        //ProviderReport initialization
         weekFee = 0;
         memberName = "";
         report = "";
@@ -38,7 +39,7 @@ public class ProviderReport extends Report{
         int consultations = 0;
         makeFile(true);
 
-        report+= "Provider name: ";
+        report+= "Provider name: "; //Add provider's details to the report
         report+= receiverName;
         report+= "\nProvider number: ";
         report+= receiverNum;
@@ -61,7 +62,7 @@ public class ProviderReport extends Report{
         linesInReport.add("");
         linesInReport.add("");
 
-        for(ServiceRecord record : records){
+        for(ServiceRecord record : records){ //Loop through each of this provider's service records and add them to the report
             currDate = record.getDate();
             serviceDate = record.getDateService();
             memberNum = record.getMemberNum();
@@ -95,53 +96,15 @@ public class ProviderReport extends Report{
             linesInReport.add("");
             linesInReport.add("");
         }
-        report += "Number of consultations: ";
+        report += "Number of consultations: "; //add total consultations to the report
         report += consultations;
-        report += "\nTotal fee for the week: ";
+        report += "\nTotal fee for the week: "; //add the fee for the week to the report
         report += fee;
         report += "\n";
 
         linesInReport.add("Number of consultations: "+ consultations);
         linesInReport.add("Total fee for the week: "+ fee);
 
-        writeToFile(report);
+        writeToFile(report); //write the report to the report file
     }
-
-
-    // private File myObj;
-    // private void makeFile(boolean providerReport) {
-    //     try {
-    //         ZoneId z = ZoneId.of( "America/Chicago" ); //just sets zone
-    //         LocalDate today = LocalDate.now(z); //current date
-    //         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-    //         String formatDate = today.format(formatter);
-
-    //         String name = receiverName;
-    //         name = name.replaceAll("\\s", "");
-
-    //         String whichFolder = "MemberReports";
-    //         if(providerReport) whichFolder = "ProviderReports";
-    //         myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + whichFolder+File.separator+name+"_"+formatDate+".txt");
-    //         int count = 0;
-    //         while (!myObj.createNewFile()) {
-    //             //file already exists but want to keep old file
-    //             count++;
-    //             myObj = new File("Team11_Implementation" + File.separator + "data" + File.separator + whichFolder+File.separator+name+"_"+formatDate+"("+count+").txt");
-    //         }
-    //     } catch (IOException e) {
-    //         System.out.println("An error occurred.");
-    //         e.printStackTrace();
-    //     }
-    // }
-
-    // private void writeToFile(String report) {
-    //     try {
-    //         FileWriter myWriter = new FileWriter(myObj.getPath());
-    //         myWriter.write(report);
-    //         myWriter.close();
-    //     } catch (IOException e) {
-    //         System.out.println("An error writing to ProviderReport.txt occurred.");
-    //         e.printStackTrace();
-    //     }
-    // }
 }
